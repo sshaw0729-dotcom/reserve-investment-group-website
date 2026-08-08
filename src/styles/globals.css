@@ -1,0 +1,168 @@
+@import "./tokens.css";
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+h1, h2, h3, h4 {
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+a { color: var(--color-primary); }
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+img, video { max-width: 100%; height: auto; }
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--space-8); }
+}
+
+table {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .table-to-cards tr {
+    display: block;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+  }
+  .table-to-cards td {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2) 0;
+  }
+}
+
+/* Breadcrumbs */
+.breadcrumbs { padding-block: var(--space-4) 0; }
+.breadcrumbs ol { list-style: none; display: flex; gap: var(--space-2); padding: 0; margin: 0; flex-wrap: wrap; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.breadcrumbs li:not(:last-child)::after { content: "/"; margin-left: var(--space-2); color: var(--color-border); }
+
+/* Card grid */
+.card-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); padding-block: var(--space-8); }
+@media (min-width: 768px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+.card { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); background: var(--color-bg); }
+
+/* Hero / CTA (shared with the WHTML build in Webflow) */
+.hero { padding-block: var(--space-16) var(--space-8); }
+.hero-eyebrow { color: var(--color-text-muted); font-weight: 600; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--space-2); }
+.hero-subhead { font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 60ch; }
+.cta-strip { padding-block: var(--space-4) var(--space-8); }
+
+/* Approach steps */
+.approach-steps { list-style: decimal; padding-left: var(--space-6); display: flex; flex-direction: column; gap: var(--space-6); }
+
+/* Accordion */
+.accordion-item { border-bottom: 1px solid var(--color-border); }
+.accordion-trigger { width: 100%; text-align: left; background: none; border: none; padding: var(--space-4) 0; font-size: var(--font-size-lg); font-weight: 600; cursor: pointer; min-height: var(--touch-target-min); }
+
+/* Alerts */
+.alert { border-radius: var(--radius-md); padding: var(--space-4); margin-block: var(--space-4); }
+.alert-info { background: var(--color-disclosure-bg); }
+.alert-warning { background: #fdf3e7; border: 1px solid #e8b04b; }
+.alert-success { background: #eaf3ee; border: 1px solid var(--color-success); }
+.alert-error { background: #fbeceb; border: 1px solid var(--color-error); }
+
+/* Buttons — used by components/ui/Button.tsx (btn-primary/btn-secondary/
+   btn-text) and by raw <a>/<button> CTAs (e.g. LeadForm's submit and
+   post-download link) that reuse the same class names. Was previously
+   referenced by both but never defined — added 2026-08-06 while
+   building the lead-magnet download CTA (MARKETING-ECOSYSTEM-BRIEF.md
+   Section 5), since it directly touched an already-unstyled component. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-target-min);
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color var(--motion-duration) var(--motion-easing);
+}
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-secondary { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.btn-secondary:hover { background: var(--color-bg-muted); }
+.btn-text { background: transparent; color: var(--color-primary); padding-inline: var(--space-1); }
+.btn-text:hover { text-decoration: underline; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Disclosure block */
+.disclosure-block { background: var(--color-disclosure-bg); border-radius: var(--radius-md); padding: var(--space-4); margin-block: var(--space-6); font-size: var(--font-size-sm); color: var(--color-text-muted); }
+
+/* Site header / footer (shared naming with Webflow build) */
+.site-header { border-bottom: 1px solid var(--color-border); padding-block: var(--space-4); }
+.site-header-nav { display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; }
+.site-header-nav ul { list-style: none; display: flex; gap: var(--space-4); padding: 0; margin: 0; flex-wrap: wrap; }
+.site-header-nav a { color: var(--color-text); text-decoration: none; min-height: var(--touch-target-min); display: inline-flex; align-items: center; }
+.site-header-toggle { display: none; }
+.site-footer { border-top: 1px solid var(--color-border); padding-block: var(--space-8); margin-top: var(--space-8); }
+.site-footer nav[aria-label="Legal"] { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-4); }
+.site-footer nav[aria-label="Legal"] a { color: var(--color-text); font-size: var(--font-size-sm); text-decoration: none; }
+
+/* Lead form */
+.lead-form { display: flex; flex-direction: column; gap: var(--space-4); max-width: 480px; margin-top: var(--space-6); }
+.lead-form-privacy-notice { font-size: var(--font-size-sm); color: var(--color-text-muted); background: var(--color-disclosure-bg); padding: var(--space-3); border-radius: var(--radius-sm); }
+.form-field { display: flex; flex-direction: column; gap: var(--space-1); }
+.form-field-checkbox { flex-direction: row; align-items: flex-start; gap: var(--space-2); }
+.form-field input, .form-field select { min-height: var(--touch-target-min); padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: var(--font-size-base); }
+.form-error { color: var(--color-error); font-size: var(--font-size-sm); }
+.form-success { color: var(--color-success); font-size: var(--font-size-lg); }
+
+/* Landing Page System (MARKETING-ECOSYSTEM-BRIEF.md, Section 1) */
+.lp-benefits { padding-block: var(--space-8); }
+.lp-benefits-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4); }
+@media (min-width: 768px) { .lp-benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+.lp-benefit { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); }
+
+.lp-problem-solution { display: grid; grid-template-columns: 1fr; gap: var(--space-6); padding-block: var(--space-8); }
+@media (min-width: 768px) { .lp-problem-solution { grid-template-columns: 1fr 1fr; } }
+.lp-problem { background: #fbeceb; border-radius: var(--radius-md); padding: var(--space-6); }
+.lp-solution { background: #eaf3ee; border-radius: var(--radius-md); padding: var(--space-6); }
+
+.lp-process { padding-block: var(--space-8); }
+.lp-process-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-6); margin-top: var(--space-4); }
+.lp-process-list li { display: flex; gap: var(--space-4); align-items: flex-start; }
+.lp-process-number { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+
+.lp-trust { padding-block: var(--space-8); background: var(--color-bg-muted); }
+.lp-trust-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4); }
+@media (min-width: 768px) { .lp-trust-grid { grid-template-columns: repeat(3, 1fr); } }
+.lp-trust-item { padding: var(--space-4); }
+
+.lp-testimonial { padding-block: var(--space-6); }
+.lp-testimonial-box { border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); text-align: center; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+
+/* Insights content clusters (MARKETING-ECOSYSTEM-BRIEF.md, Section 3) */
+.insight-cluster { padding-block: var(--space-6); border-top: 1px solid var(--color-border); }
+.insight-cluster ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.insight-pillar-tag { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.insight-cluster-label { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.insight-key-takeaways { background: var(--color-bg-muted); border-radius: var(--radius-md); padding: var(--space-6); margin-block: var(--space-6); }

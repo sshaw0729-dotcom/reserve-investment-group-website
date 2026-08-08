@@ -1,0 +1,58 @@
+name: quality-gates
+
+on:
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Link check
+        run: npm run check:links
+
+      - name: Accessibility scan
+        run: npm run check:a11y
+
+      - name: SEO / structured data validation
+        run: npm run check:seo
+
+      - name: Secret scan
+        run: npm run check:secrets
+
+      - name: Dependency vulnerability scan
+        run: npm audit --audit-level=high
+
+      - name: Analytics schema validation
+        run: npm run check:analytics-schema
+
+      - name: Draft-annotation leak check
+        run: npm run check:draft-annotations
+
+      - name: Compliance manifest validation
+        run: npm run check:compliance-manifest
+
+  # Netlify Deploy Preview is generated automatically by the Netlify GitHub
+  # integration on every PR; it is not a step in this workflow but is a
+  # required check configured separately in branch protection.

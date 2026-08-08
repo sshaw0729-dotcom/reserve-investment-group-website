@@ -1,0 +1,36 @@
+{
+  "name": "greater-cleveland-financial-platform",
+  "version": "0.0.0",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:links": "echo 'TODO: implement link checker'",
+    "check:a11y": "echo 'TODO: implement axe-core scan'",
+    "check:seo": "echo 'TODO: implement metadata + structured-data validation'",
+    "check:secrets": "echo 'TODO: wire secret scanner (e.g. gitleaks)'",
+    "check:analytics-schema": "echo 'TODO: validate events against POSTHOG-EVENT-SCHEMA.ts'",
+    "check:draft-annotations": "echo 'TODO: fail build if [COMPLIANCE REVIEW REQUIRED]-style annotations render in output HTML'",
+    "check:compliance-manifest": "echo 'TODO: fail build if a page targeting main lacks a Production approved row in CONTENT-MANIFEST.csv'"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "posthog-js": "^1.161.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "vitest": "^1.6.0"
+  }
+}

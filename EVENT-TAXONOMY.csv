@@ -1,0 +1,17 @@
+event_name,description,allowed_properties,pii_risk,status
+page_viewed,Fires on route change,"page_type,page_slug,device_category",None — no query strings captured,Approved
+primary_cta_clicked,Primary CTA click (e.g. Schedule a Conversation),"cta_location,page_slug",None,Approved
+secondary_cta_clicked,Secondary CTA click,"cta_location,page_slug",None,Approved
+form_started,User interacts with first form field,"form_id,page_slug",None — no field values,Approved
+form_validation_error,Client/server validation failure,"form_id,page_slug",None — no field values,Approved
+form_submitted,Successful form submission,"form_id,page_slug",None — no field values,Approved
+appointment_link_clicked,Click on scheduling link,"page_slug,cta_location",None,Approved
+phone_link_clicked,Click on tel: link,"page_slug",None,Approved
+email_link_clicked,Click on mailto: link,"page_slug",None,Approved
+resource_downloaded,Download of an approved resource,"resource_id,page_slug",None,Approved
+faq_expanded,FAQ accordion opened,"page_slug",None,Approved
+disclosure_opened,Disclosure/disclaimer expanded,"page_slug",None,Approved
+scroll_depth_reached,25/50/75/100% scroll milestone,"page_slug,scroll_depth_percent",None,Approved
+video_started,Approved video playback started,"page_slug",None,Approved
+video_completed,Approved video playback completed,"page_slug",None,Approved
+consent_preference_updated,User updates analytics consent choice,"page_slug",None,Approved

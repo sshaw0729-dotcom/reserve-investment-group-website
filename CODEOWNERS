@@ -1,0 +1,15 @@
+# CODEOWNERS — draft proposal. Replace placeholder handles with actual
+# GitHub usernames/teams before enabling. Requires a human engineering
+# and compliance owner to be named; Claude cannot be a Code Owner.
+
+/src/**                    @ENGINEERING-OWNER
+/components/**              @ENGINEERING-OWNER @DESIGN-OWNER
+/content/**                  @MARKETING-OWNER @COMPLIANCE-OWNER
+/disclosures/**              @COMPLIANCE-OWNER
+/public/legal/**              @COMPLIANCE-OWNER @LEGAL-OWNER
+/analytics/**                 @ANALYTICS-OWNER @PRIVACY-OWNER
+/netlify/**                    @ENGINEERING-OWNER @SECURITY-OWNER
+POSTHOG-TRACKING-PLAN.md        @ANALYTICS-OWNER @PRIVACY-OWNER
+POSTHOG-EVENT-SCHEMA.ts          @ANALYTICS-OWNER @PRIVACY-OWNER
+COMPLIANCE-WORKFLOW.md            @COMPLIANCE-OWNER
+PRIVACY-DATA-MAP.md                @PRIVACY-OWNER

@@ -1,0 +1,50 @@
+asset_id,page_title,url,page_type,audience,draft_owner,date_created,status,required_disclosures,parent_hub
+CORE-001,Home,/,hub,General,Cowork,2026-08-06,Draft,Firm entity disclosure; Form CRS link,n/a
+CORE-002,About,/about/,hub,General,Cowork,2026-08-06,Draft,Firm entity disclosure,n/a
+CORE-003,Our Approach,/our-approach/,hub,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+CORE-004,Who We Help,/who-we-help/,hub,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+CORE-005,Services,/services/,hub,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+CORE-006,Insights,/insights/,hub,General,Cowork,2026-08-06,Draft,Editorial disclosure as needed,n/a
+CORE-007,Resources,/resources/,hub,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+CORE-008,FAQ,/faq/,hub,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+CORE-009,Contact,/contact/,utility,General,Cowork,2026-08-06,Draft,Privacy notice; do-not-submit-sensitive-info notice,n/a
+CORE-010,Schedule a Conversation,/schedule/,utility,General,Cowork,2026-08-06,Draft,Privacy notice,n/a
+CORE-011,Form CRS / Disclosures,/disclosures/,legal,General,Cowork,2026-08-06,Draft,Form CRS link required,n/a
+CORE-012,Privacy Policy,/privacy/,legal,General,Cowork,2026-08-06,Draft,Privacy review required,n/a
+CORE-013,Terms of Use,/terms/,legal,General,Cowork,2026-08-06,Draft,Legal review required,n/a
+CORE-014,Accessibility Statement,/accessibility/,legal,General,Cowork,2026-08-06,Draft,None identified yet,n/a
+SVC-001,Financial Planning,/services/financial-planning/,service,General,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-002,Wealth Management,/services/wealth-management/,service,General,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-003,Retirement Planning,/services/retirement-planning/,service,Pre-retirees; retirees,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-004,Investment Strategy,/services/investment-strategy/,service,General,Cowork,2026-08-06,Draft,Compliance review required; no performance content,Services
+SVC-005,Business-Owner Planning,/services/business-owner-planning/,service,Business owners,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-006,Executive Financial Planning,/services/executive-financial-planning/,service,Corporate executives,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-007,Business Succession Planning,/services/business-succession-planning/,service,Business owners,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-008,Estate-Planning Coordination,/services/estate-planning-coordination/,service,General; HNW families,Cowork,2026-08-06,Draft,Not legal advice disclaimer,Services
+SVC-009,Insurance and Risk Planning,/services/insurance-and-risk-planning/,service,General,Cowork,2026-08-06,Draft,Compliance review required,Services
+SVC-010,Tax-Aware Financial Planning,/services/tax-aware-financial-planning/,service,General,Cowork,2026-08-06,Draft,Not tax advice disclaimer,Services
+PER-001,Business Owners,/who-we-help/business-owners/,persona,Business owners,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-002,Healthcare Professionals,/who-we-help/healthcare-professionals/,persona,Healthcare professionals,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-003,Physicians,/who-we-help/physicians/,persona,Physicians,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-004,Manufacturing Leaders,/who-we-help/manufacturing-leaders/,persona,Manufacturing executives/owners,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-005,Contractors,/who-we-help/contractors/,persona,Contractors; trade-business owners,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-006,Corporate Executives,/who-we-help/corporate-executives/,persona,Corporate executives,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-007,Pre-Retirees,/who-we-help/pre-retirees/,persona,Pre-retirees,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-008,Retirees,/who-we-help/retirees/,persona,Retirees,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+PER-009,High-Net-Worth Families,/who-we-help/high-net-worth-families/,persona,HNW individuals/families,Cowork,2026-08-06,Draft,Compliance review required,Who We Help
+LOC-001,Cleveland,/locations/cleveland/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-002,Cleveland Heights,/locations/cleveland-heights/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-003,Shaker Heights,/locations/shaker-heights/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-004,Beachwood,/locations/beachwood/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-005,Solon,/locations/solon/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-006,Willoughby,/locations/willoughby/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+LOC-007,Mentor,/locations/mentor/,location,General,Cowork,2026-08-06,Draft,No fabricated office; schema review,Locations
+OFR-001,Financial Review,/financial-review/,offer,General,Cowork,2026-08-06,Draft,Not a complete financial plan disclaimer,n/a
+OFR-002,Retirement Review,/retirement-review/,offer,Pre-retirees; retirees,Cowork,2026-08-06,Draft,Compliance review required,n/a
+OFR-003,Business-Owner Financial Review,/business-owner-financial-review/,offer,Business owners,Cowork,2026-08-06,Draft,Compliance review required,n/a
+OFR-004,Retirement Readiness Checklist,/resources/retirement-readiness-checklist/,resource,Pre-retirees; retirees,Cowork,2026-08-06,Draft,Compliance review required,Resources
+OFR-005,Business-Owner Planning Checklist,/resources/business-owner-planning-checklist/,resource,Business owners,Cowork,2026-08-06,Draft,Compliance review required,Resources
+COMBO-001,Financial Planning for Physicians in Cleveland,/greater-cleveland/financial-planning-for-physicians/,combined,Physicians,Cowork,2026-08-06,Proposed — see KEYWORD-AND-INTENT-MAP,Compliance review required,Financial Planning + Physicians
+COMBO-002,Wealth Management for Business Owners in Greater Cleveland,/greater-cleveland/business-owner-financial-planning/,combined,Business owners,Cowork,2026-08-06,Proposed — see KEYWORD-AND-INTENT-MAP,Compliance review required,Wealth Management + Business Owners
+COMBO-003,Retirement Planning for Executives in Shaker Heights,/shaker-heights/retirement-planning-for-executives/,combined,Corporate executives,Cowork,2026-08-06,Proposed — see KEYWORD-AND-INTENT-MAP,Compliance review required,Retirement Planning + Executives + Shaker Heights
+EXT-001,Business Fee Audit — Home,businessfeeaudit.com/,offer,Business owners,Cowork,2026-08-06,Draft — gated on entity disclosure approval,Entity disclosure required; compensation disclosure required,n/a
