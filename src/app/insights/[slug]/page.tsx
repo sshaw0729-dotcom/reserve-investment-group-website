@@ -141,7 +141,8 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
         This content is educational and informational only. It is not
         individualized investment, tax, or legal advice, and it should
         not be relied on as the sole basis for any financial decision.
-        [COMPLIANCE REVIEW REQUIRED]
+        Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
+        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
     </main>
