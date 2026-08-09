@@ -27,8 +27,7 @@ export default function LocationsPage() {
         <p>
           We work with clients across Greater Cleveland. This is not a
           complete list of every community we can serve — reach out if
-          your area isn&apos;t listed. [FACT TO VERIFY — confirm accurate
-          service-area language before publishing]
+          your area isn&apos;t listed.
         </p>
       </section>
       <CardGrid items={items} />
