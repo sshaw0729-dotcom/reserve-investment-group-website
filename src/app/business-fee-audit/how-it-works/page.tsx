@@ -17,7 +17,7 @@ export default function HowItWorksPage() {
         <h1>How It Works</h1>
         <ol>
           <li>Share your recent processing statements — see the privacy notice below the form for what not to submit here</li>
-          <li>Our team reviews the statements to identify potential fee-reduction opportunities</li>
+          <li>Fiserv/CardConnect reviews the statements to identify potential fee-reduction opportunities</li>
           <li>Receive a summary of findings; savings are not guaranteed and any decision to switch processors is yours alone</li>
         </ol>
         <LeadForm formId="business-fee-audit" pageSlug="/business-fee-audit/how-it-works/" areaOfInterestDefault="other" />
