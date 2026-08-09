@@ -69,7 +69,7 @@ export const PERSONAS: PersonaContent[] = [
     relatedServiceSlugs: ["financial-planning", "insurance-and-risk-planning", "retirement-planning"],
     relatedLocationSlugs: ["cleveland", "beachwood"],
     faqs: [
-      { q: "Do you work with physicians at every career stage?", a: "We work with individuals at a range of career stages — an introductory conversation is the best way to determine fit. [SUBSTANTIATION REQUIRED]" },
+      { q: "Do you work with physicians at every career stage?", a: "We work with individuals at a range of career stages — an introductory conversation is the best way to determine fit." },
     ],
   },
   {
