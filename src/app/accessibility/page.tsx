@@ -21,7 +21,7 @@ export default function AccessibilityPage() {
         </p>
         <p>
           If you encounter an accessibility barrier on this site, contact us
-          at [APPROVED PHONE NUMBER] or through our <a href="/contact/">contact form</a>.
+          at 216-284-3615 or through our <a href="/contact/">contact form</a>.
         </p>
       </section>
     </main>
