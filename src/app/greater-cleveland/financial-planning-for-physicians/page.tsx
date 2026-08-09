@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Financial Planning for Physicians in Cleveland",
   description:
     "Financial planning considerations for physicians in the Cleveland area, including compensation structure, liability exposure, and retirement planning.",
+  alternates: { canonical: "/greater-cleveland/financial-planning-for-physicians/" },
 };
 
 const FAQS = [
