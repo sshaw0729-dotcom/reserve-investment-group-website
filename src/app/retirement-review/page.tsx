@@ -32,7 +32,8 @@ export default function RetirementReviewPage() {
       </section>
       <DisclosureBlock>
         This complimentary review is an introductory discussion and does
-        not constitute a complete financial plan. [COMPLIANCE REVIEW REQUIRED]
+        not constitute a complete financial plan. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
+        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
     </main>
   );
