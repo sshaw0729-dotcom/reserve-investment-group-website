@@ -9,6 +9,7 @@ import { INSIGHTS } from "../../lib/content/insights";
 export const metadata: Metadata = {
   title: "Insights",
   description: "Educational articles from Reserve Investment Group, Inc on financial planning topics.",
+  alternates: { canonical: "/insights/" },
 };
 
 export default function InsightsPage() {
