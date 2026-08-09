@@ -5,6 +5,7 @@ import { SiteHeader } from "../components/marketing/SiteHeader";
 import { SiteFooter } from "../components/marketing/SiteFooter";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://reserveinvestmentgroup.com"),
   title: {
     default: "Reserve Investment Group, Inc | Financial Planning, Greater Cleveland",
     template: "%s | Reserve Investment Group, Inc",
