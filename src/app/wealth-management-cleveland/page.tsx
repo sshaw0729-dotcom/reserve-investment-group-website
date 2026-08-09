@@ -10,7 +10,6 @@ import { BenefitsList } from "../../components/marketing/BenefitsList";
 import { ProblemSolution } from "../../components/marketing/ProblemSolution";
 import { ProcessSteps } from "../../components/marketing/ProcessSteps";
 import { TrustSignals } from "../../components/marketing/TrustSignals";
-import { TestimonialPlaceholder } from "../../components/marketing/TestimonialPlaceholder";
 import { AccordionItem } from "../../components/ui/Accordion";
 
 export const metadata: Metadata = {
@@ -94,8 +93,6 @@ export default function WealthManagementClevelandPage() {
           <li><a href="/locations/cleveland/">Cleveland</a></li>
         </ul>
       </section>
-
-      <TestimonialPlaceholder />
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
