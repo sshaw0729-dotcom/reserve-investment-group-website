@@ -1,94 +1,17 @@
-# Netlify configuration — scaffold only. No production secrets belong in
-# this file. All secret values are set in Netlify's environment-variable
-# UI, scoped per deploy context.
-
 [build]
   command = "npm run build"
-  publish = ".next"
-  functions = "netlify/functions"
+    publish = ".next"
+      functions = "netlify/functions"
 
-[build.environment]
-  NODE_VERSION = "20"
+      [build.environment]
+        NODE_VERSION = "20"
 
-[context.production]
-  command = "npm run build"
-
-[context.deploy-preview]
-  command = "npm run build"
-
-[context.branch-deploy]
-  command = "npm run build"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://us.i.posthog.com"
-    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-
-# Deploy Previews and branch deploys must not be indexed.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-  [context.deploy-preview]
-  [context.branch-deploy]
-
-# Redirects — populated from REDIRECT-MAP.csv as routes are finalized.
-
-# --- Campaign domain routing -------------------------------------------
-# [FACT TO VERIFY] against current Netlify documentation before relying
-# on this in production — see DOMAIN-STRATEGY.md "Routing Mechanism."
-# Assumes: (a) all campaign domains are added as domain aliases on this
-# same Netlify site, and (b) Netlify's redirect engine matches `from` as
-# a full external URL (including host) and proxies to an internal path
-# with `force = true`, keeping the campaign domain visible in the address
-# bar. If either assumption is wrong, fall back to a dedicated Netlify
-# site per campaign domain pointed at the same repository, per
-# DOMAIN-STRATEGY.md.
-#
-# businessfeeaudit.com and processingcostreview.com are intentionally NOT
-# routed below — that offer is still gated on entity/compensation
-# disclosure (MISSING-INFORMATION-REGISTER.md #23) and must not go live
-# by accident via a redirect rule. Add their [[redirects]] blocks only
-# after that gate clears.
-#
-# statefinancialadvisor.com and businessreviewohio.com were removed by
-# the user 2026-08-06 and replaced with greaterclevelandadvisors.com and
-# processingcostreview.com respectively — see DOMAIN-REGISTRY.md.
-
-[[redirects]]
-  from = "https://retirementplanningcleveland.com/*"
-  to = "/retirement-planning-cleveland/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "https://wealthmanagementcleveland.com/*"
-  to = "/wealth-management-cleveland/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "https://manufaturingbusinessadvisors.com/*"
-  to = "/manufacturing-business-advisors/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "https://physicianfinancialplans.com/*"
-  to = "/greater-cleveland/financial-planning-for-physicians/:splat"
-  status = 200
-  force = true
-
-# ASSUMPTION — purpose not specified by user, defaulted to a redirect to
-# the primary site root. Confirm or replace with a dedicated landing page
-# route if a specific purpose is intended instead. See DOMAIN-STRATEGY.md.
-[[redirects]]
-  from = "https://greaterclevelandadvisors.com/*"
-  to = "https://reserveinvestmentgroup.com/:splat"
-  status = 301
-  force = true
+        [[headers]]
+          for = "/*"
+            [headers.values]
+                X-Frame-Options = "DENY"
+                    X-Content-Type-Options = "nosniff"
+                        Referrer-Policy = "strict-origin-when-cross-origin"
+                            Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+                                Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+                                
