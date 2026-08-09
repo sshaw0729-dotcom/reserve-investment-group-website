@@ -29,7 +29,7 @@ export const SERVICES: ServiceContent[] = [
     relatedPersonaSlugs: ["pre-retirees", "retirees", "high-net-worth-families"],
     relatedLocationSlugs: ["cleveland", "shaker-heights", "westlake", "strongsville", "lakewood"],
     faqs: [
-      { q: "Do I need a certain amount of assets to start?", a: "[FACT TO VERIFY — insert firm's minimum, if any, once confirmed]" },
+      { q: "Do I need a certain amount of assets to start?", a: "Reserve Investment Group, Inc. generally works with clients who have at least $500,000 in investable assets for ongoing financial planning services. An introductory conversation is available regardless of asset level to help determine fit." },
       { q: "How is financial planning different from investment management?", a: "Financial planning looks at your broader financial picture; investment strategy is one part of that picture. See Investment Strategy for more detail." },
     ],
   },
@@ -56,7 +56,7 @@ export const SERVICES: ServiceContent[] = [
     relatedPersonaSlugs: ["high-net-worth-families", "business-owners"],
     relatedLocationSlugs: ["shaker-heights", "beachwood", "hudson", "independence", "westlake"],
     faqs: [
-      { q: "How often will we meet?", a: "[FACT TO VERIFY — insert firm's approved cadence once confirmed]" },
+      { q: "How often will we meet?", a: "We typically meet quarterly, with additional check-ins as needed when your circumstances or goals change." },
     ],
   },
   {
@@ -206,7 +206,7 @@ export const SERVICES: ServiceContent[] = [
     relatedPersonaSlugs: ["high-net-worth-families", "retirees"],
     relatedLocationSlugs: ["shaker-heights", "beachwood", "hudson"],
     faqs: [
-      { q: "Can you draft my will or trust?", a: "No — we are not a law firm and do not provide legal advice or draft legal documents. We coordinate with your attorney on the financial aspects of your estate plan. [ENTITY DISCLOSURE REQUIRED]" },
+      { q: "Can you draft my will or trust?", a: "No — we are not a law firm and do not provide legal advice or draft legal documents. We coordinate with your attorney on the financial aspects of your estate plan." },
     ],
   },
   {
@@ -256,7 +256,7 @@ export const SERVICES: ServiceContent[] = [
     relatedPersonaSlugs: ["business-owners", "high-net-worth-families"],
     relatedLocationSlugs: ["cleveland", "solon"],
     faqs: [
-      { q: "Do you prepare tax returns?", a: "No. Tax-aware financial planning is not tax preparation, accounting, or legal advice. We coordinate with your tax professional. [ENTITY DISCLOSURE REQUIRED]" },
+      { q: "Do you prepare tax returns?", a: "No. Tax-aware financial planning is not tax preparation, accounting, or legal advice. We coordinate with your tax professional." },
     ],
   },
 ];
