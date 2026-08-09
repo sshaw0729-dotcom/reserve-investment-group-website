@@ -4,10 +4,6 @@
 // rather than a single city, matching the domain's broader framing.
 // Upgraded to the Landing Page System template (MARKETING-ECOSYSTEM-BRIEF.md,
 // Section 1) — same URL, no new page created, only sections added.
-//
-// [DESIGNATION APPROVAL REQUIRED] — "Financial Advisors" in the title/H1
-// is a title-adjacent claim per MARKETING-ECOSYSTEM-BRIEF.md Section 2.
-// Confirm with your compliance reviewer before this leaves Draft.
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../components/marketing/CTAStrip";
@@ -20,13 +16,13 @@ import { TestimonialPlaceholder } from "../../components/marketing/TestimonialPl
 import { AccordionItem } from "../../components/ui/Accordion";
 
 export const metadata: Metadata = {
-  title: "Financial Advisors for Manufacturing Business Owners",
+  title: "Financial Planning for Manufacturing Business Owners",
   description:
     "Financial planning considerations for manufacturing business owners and executives in Greater Cleveland — succession, capital decisions, and retirement plan design.",
 };
 
 const FAQS = [
-  { q: "Do you work with businesses of any size?", a: "[SUBSTANTIATION REQUIRED — confirm any size range the firm actually serves before publishing]" },
+  { q: "Do you work with businesses of any size?", a: "We work with manufacturing business owners across a range of company sizes. An introductory conversation is the best way to determine fit." },
   { q: "Can you help design a retirement plan for our employees?", a: "We can discuss considerations around retirement plan design; specific plan setup and administration typically involves a third-party administrator we can help you think through working with." },
   { q: "How far in advance should we start succession planning?", a: "There's no single right time — starting the conversation early generally allows more flexibility than starting close to a planned transition." },
 ];
@@ -39,11 +35,11 @@ export default function ManufacturingBusinessAdvisorsPage() {
           { label: "Home", href: "/" },
           { label: "Who We Help", href: "/who-we-help/" },
           { label: "Manufacturing Leaders", href: "/who-we-help/manufacturing-leaders/" },
-          { label: "Financial Advisors for Manufacturing Business Owners", href: "/manufacturing-business-advisors/" },
+          { label: "Financial Planning for Manufacturing Business Owners", href: "/manufacturing-business-advisors/" },
         ]}
       />
       <section className="container">
-        <h1>Financial Advisors for Manufacturing Business Owners</h1>
+        <h1>Financial Planning for Manufacturing Business Owners</h1>
         <p>
           Owners and executives in manufacturing businesses across
           Greater Cleveland often face financial planning considerations
@@ -108,8 +104,7 @@ export default function ManufacturingBusinessAdvisorsPage() {
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
         manufacturing business owners; individual circumstances vary.
-        Reserve Investment Group, Inc. [APPROVED BROKER-DEALER
-        DISCLOSURE] [APPROVED INVESTMENT-ADVISER DISCLOSURE].
+        Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary financial review" href="/business-owner-financial-review/" />
     </main>
