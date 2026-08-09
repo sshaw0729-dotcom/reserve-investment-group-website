@@ -16,7 +16,7 @@ import { TestimonialPlaceholder } from "../../components/marketing/TestimonialPl
 import { AccordionItem } from "../../components/ui/Accordion";
 
 export const metadata: Metadata = {
-  title: "Financial Planning for Manufacturing Business Owners",
+  title: "Financial Advisors for Manufacturing Business Owners",
   description:
     "Financial planning considerations for manufacturing business owners and executives in Greater Cleveland — succession, capital decisions, and retirement plan design.",
 };
@@ -35,11 +35,11 @@ export default function ManufacturingBusinessAdvisorsPage() {
           { label: "Home", href: "/" },
           { label: "Who We Help", href: "/who-we-help/" },
           { label: "Manufacturing Leaders", href: "/who-we-help/manufacturing-leaders/" },
-          { label: "Financial Planning for Manufacturing Business Owners", href: "/manufacturing-business-advisors/" },
+          { label: "Financial Advisors for Manufacturing Business Owners", href: "/manufacturing-business-advisors/" },
         ]}
       />
       <section className="container">
-        <h1>Financial Planning for Manufacturing Business Owners</h1>
+        <h1>Financial Advisors for Manufacturing Business Owners</h1>
         <p>
           Owners and executives in manufacturing businesses across
           Greater Cleveland often face financial planning considerations
