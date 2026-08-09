@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Wealth Management for Business Owners in Greater Cleveland",
   description:
     "Wealth management considerations for business owners in Greater Cleveland, coordinating business and personal financial decisions.",
+  alternates: { canonical: "/greater-cleveland/business-owner-financial-planning/" },
 };
 
 export default function BusinessOwnerCombinedPage() {
