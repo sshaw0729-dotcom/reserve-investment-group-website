@@ -34,3 +34,17 @@ export default function OurApproachPage() {
           Financial planning is designed to help you organize your goals,
           understand your current financial picture, and identify areas
           that may need attention.
+        </p>
+        <ol className="approach-steps">
+          {STEPS.map((step) => (
+            <li key={step.title}>
+              <h2>{step.title}</h2>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <CTAStrip label="Discuss your planning priorities" href="/schedule/" />
+    </main>
+  );
+}
