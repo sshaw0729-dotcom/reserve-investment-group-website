@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Reserve Investment Group, Inc",
   },
   description:
-    "[COMPLIANCE REVIEW REQUIRED] We help individuals, families, and business owners identify financial inefficiencies, address unmanaged risks, and coordinate their financial decisions around the goals that matter to them.",
+    "We help individuals, families, and business owners identify financial inefficiencies, address unmanaged risks, and coordinate their financial decisions around the goals that matter to them.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
