@@ -11,19 +11,23 @@ export default function BfaPrivacyPage() {
     <main>
       <Breadcrumbs items={[{ label: "Business Fee Audit", href: "/business-fee-audit/" }, { label: "Privacy", href: "/business-fee-audit/privacy/" }]} />
       <p>
-          Please do not upload payment processing statements through the
-          contact form on this site. After you reach out, we will provide
-          instructions for sharing your statements through a secure channel.
-        </p>
+        Please do not upload payment processing statements through the
+        contact form on this site. After you reach out, we will provide
+        instructions for sharing your statements directly with
+        Fiserv/CardConnect, who performs this audit, through a secure
+        channel.
+      </p>
       <section className="container">
         <h1>Privacy</h1>
         <p>
-          We use the payment processing statements you share with us solely
-          to identify potential fee-reduction opportunities as part of this
-          complimentary audit. We do not sell your statements or share them
-          with third parties other than as necessary to complete the audit,
-          and we retain them only as long as necessary to complete the
-          review and communicate the results to you.
+          The payment processing statements you share are provided to
+          Fiserv/CardConnect, who performs this audit and uses them
+          solely to identify potential fee-reduction opportunities as
+          part of this complimentary review. We do not sell your
+          statements, and we do not share them with any third party
+          other than Fiserv/CardConnect for this purpose. Fiserv/CardConnect
+          retains your statements only as long as necessary to complete
+          the review and communicate the results to you.
         </p>
       </section>
     </main>
