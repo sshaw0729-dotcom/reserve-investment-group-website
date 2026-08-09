@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Our Approach",
   description:
     "How Reserve Investment Group, Inc approaches financial planning: identifying inefficiencies, addressing unmanaged risks, and coordinating decisions around your goals.",
+  alternates: { canonical: "/our-approach/" },
 };
 
 const STEPS = [
