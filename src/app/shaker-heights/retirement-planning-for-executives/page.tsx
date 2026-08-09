@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Retirement Planning for Executives in Shaker Heights",
   description:
     "Retirement planning considerations for corporate executives in Shaker Heights, including equity compensation and deferred-income timing.",
+  alternates: { canonical: "/shaker-heights/retirement-planning-for-executives/" },
 };
 
 export default function ExecutiveRetirementCombinedPage() {
