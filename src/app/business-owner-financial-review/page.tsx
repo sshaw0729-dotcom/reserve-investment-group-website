@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Complimentary Business-Owner Financial Review",
   description:
     "A high-level review of the relationship between your business, personal finances, risk planning, retirement objectives, and succession considerations.",
+  alternates: { canonical: "/business-owner-financial-review/" },
 };
 
 export default function BusinessOwnerFinancialReviewPage() {
