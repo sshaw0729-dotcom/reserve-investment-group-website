@@ -5,6 +5,7 @@ import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Accessibility Statement",
   description: "Accessibility statement for the Reserve Investment Group, Inc website.",
+  alternates: { canonical: "/accessibility/" },
 };
 
 export default function AccessibilityPage() {
