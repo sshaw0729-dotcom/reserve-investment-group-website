@@ -3,7 +3,6 @@
 // statements, which is more sensitive than the standard lead-form data.
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
-import { AlertBlock } from "../../../components/ui/AlertBlock";
 
 export const metadata: Metadata = { title: "Privacy", description: "Privacy practices for the Business Fee Audit offer." };
 
@@ -11,15 +10,21 @@ export default function BfaPrivacyPage() {
   return (
     <main>
       <Breadcrumbs items={[{ label: "Business Fee Audit", href: "/business-fee-audit/" }, { label: "Privacy", href: "/business-fee-audit/privacy/" }]} />
-      <AlertBlock tone="warning">
-        [PRIVACY REVIEW REQUIRED] — placeholder. Statement review likely
-        involves more sensitive data than the standard lead form; do not
-        route processing statements through the public form. Use a
-        separately approved secure-upload channel once one is selected.
-      </AlertBlock>
+      <p>
+          Please do not upload payment processing statements through the
+          contact form on this site. After you reach out, we will provide
+          instructions for sharing your statements through a secure channel.
+        </p>
       <section className="container">
         <h1>Privacy</h1>
-        <p>[PRIVACY REVIEW REQUIRED — full policy pending, including retention period for any statements reviewed]</p>
+        <p>
+          We use the payment processing statements you share with us solely
+          to identify potential fee-reduction opportunities as part of this
+          complimentary audit. We do not sell your statements or share them
+          with third parties other than as necessary to complete the audit,
+          and we retain them only as long as necessary to complete the
+          review and communicate the results to you.
+        </p>
       </section>
     </main>
   );
