@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Financial planning, wealth management, retirement planning, and related services offered by Reserve Investment Group, Inc.",
+  alternates: { canonical: "/services/" },
 };
 
 const SERVICES = [
