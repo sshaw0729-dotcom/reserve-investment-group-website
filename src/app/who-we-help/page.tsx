@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Who We Help",
   description:
     "Reserve Investment Group, Inc works with a range of individuals, families, and business owners across Greater Cleveland on financial planning considerations.",
+  alternates: { canonical: "/who-we-help/" },
 };
 
 const PERSONAS = [
