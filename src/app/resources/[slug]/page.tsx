@@ -107,7 +107,8 @@ export default function LeadMagnetPage({ params }: { params: { slug: string } })
         This checklist is educational and informational only. It is not
         individualized investment, tax, or legal advice, is not a
         complete financial plan, and should not be relied on as the sole
-        basis for any financial decision. [COMPLIANCE REVIEW REQUIRED]
+        basis for any financial decision. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
+        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
     </main>
   );
