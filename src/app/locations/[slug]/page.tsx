@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const location = LOCATIONS.find((l) => l.slug === params.slug);
   if (!location) return {};
-  return { title: location.title, description: location.metaDescription };
+  return { title: location.title, description: location.metaDescription, alternates: { canonical: `/locations/${location.slug}/` } };
 }
 
 export default function LocationPage({ params }: { params: { slug: string } }) {
