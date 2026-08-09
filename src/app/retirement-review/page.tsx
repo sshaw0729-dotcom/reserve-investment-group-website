@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Complimentary Retirement Review",
   description:
     "A preliminary discussion regarding retirement goals, income considerations, risk tolerance, time horizon, and planning priorities.",
+  alternates: { canonical: "/retirement-review/" },
 };
 
 export default function RetirementReviewPage() {
