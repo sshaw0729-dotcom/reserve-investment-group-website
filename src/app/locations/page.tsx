@@ -10,6 +10,7 @@ import { LOCATIONS } from "../../lib/content/locations";
 export const metadata: Metadata = {
   title: "Locations",
   description: "Areas Reserve Investment Group, Inc serves across Greater Cleveland.",
+  alternates: { canonical: "/locations/" },
 };
 
 export default function LocationsPage() {
