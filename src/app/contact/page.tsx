@@ -7,6 +7,7 @@ import { DisclosureBlock } from "../../components/marketing/DisclosureBlock";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact Reserve Investment Group, Inc.",
+  alternates: { canonical: "/contact/" },
 };
 
 export default function ContactPage() {
