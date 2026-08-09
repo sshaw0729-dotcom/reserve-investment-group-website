@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Wealth Management in Cleveland",
   description:
     "Ongoing wealth management for individuals and families in the Cleveland area, coordinating investments and planning as circumstances change.",
+  alternates: { canonical: "/wealth-management-cleveland/" },
 };
 
 const FAQS = [
