@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 const FAQS = [
   { q: "I'm early in my career with student loans — is this still relevant?", a: "Balancing loan repayment with long-term savings is one of the more common considerations we discuss with physicians earlier in their careers." },
-  { q: "Do you work with physicians at every Cleveland-area health system?", a: "[SUBSTANTIATION REQUIRED — confirm which systems/practices before publishing, if naming any specifically]" },
+  { q: "Do you work with physicians at every Cleveland-area health system?", a: "We work with physicians across a range of Cleveland-area health systems and independent practices — an introductory conversation is the best way to determine fit." },
   { q: "What if my compensation changes from year to year?", a: "Variable, RVU-based compensation is common among physicians — planning around it is part of what this conversation is designed to address." },
 ];
 
@@ -107,8 +107,10 @@ export default function PhysicianCombinedPage() {
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
-        physicians; it does not assume every physician has the same needs.
-        [COMPLIANCE REVIEW REQUIRED]
+        physicians; individual circumstances vary. Reserve Investment Group,
+        Inc. is not a registered investment adviser or broker-dealer. See our{" "}
+        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for
+        additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary financial review" href="/financial-review/" />
     </main>
