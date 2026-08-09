@@ -8,6 +8,7 @@ import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Form CRS & Disclosures",
   description: "Regulatory disclosures for Reserve Investment Group, Inc.",
+  alternates: { canonical: "/disclosures/" },
 };
 
 export default function DisclosuresPage() {
