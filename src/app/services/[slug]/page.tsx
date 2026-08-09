@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const service = SERVICES.find((s) => s.slug === params.slug);
   if (!service) return {};
-  return { title: service.title, description: service.metaDescription };
+  return { title: service.title, description: service.metaDescription, alternates: { canonical: `/services/${service.slug}/` } };
 }
 
 export default function ServicePage({ params }: { params: { slug: string } }) {
