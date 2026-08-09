@@ -7,6 +7,7 @@ import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: "Terms of use for the Reserve Investment Group, Inc website.",
+  alternates: { canonical: "/terms/" },
 };
 
 export default function TermsPage() {
