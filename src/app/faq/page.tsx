@@ -6,6 +6,7 @@ import { AccordionItem } from "../../components/ui/Accordion";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description: "Answers to common questions about working with Reserve Investment Group, Inc.",
+  alternates: { canonical: "/faq/" },
 };
 
 const FAQS = [
