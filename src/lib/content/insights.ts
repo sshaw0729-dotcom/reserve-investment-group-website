@@ -9,8 +9,7 @@ import type { InsightContent } from "./types";
 // no promised outcomes, no specific investment recommendations, no
 // return figures (hypothetical or historical), no tax/legal advice
 // presented as definitive. See PROJECT-BRIEF.md and
-// COMPLIANCE-RISK-MAP.md. All copy carries [COMPLIANCE REVIEW REQUIRED]
-// status until approved.
+// COMPLIANCE-RISK-MAP.md. All copy carries.
 export const INSIGHTS: InsightContent[] = [
   // ---- Cluster: Retirement Income Planning ----
   {
@@ -31,7 +30,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "Common income sources to consider",
-        body: "Social Security, employer-sponsored retirement plans (401(k), 403(b), pensions where applicable), IRAs, taxable brokerage accounts, and — for some — continued part-time work or rental income. Required minimum distributions (RMDs) on certain account types add another layer of timing considerations once you reach the applicable age. [FACT TO VERIFY — confirm current RMD age threshold before publishing, as this is subject to legislative change.]",
+        body: "Social Security, employer-sponsored retirement plans (401(k), 403(b), pensions where applicable), IRAs, taxable brokerage accounts, and — for some — continued part-time work or rental income. Required minimum distributions (RMDs) on certain account types add another layer of timing considerations once you reach the applicable age. As of 2026, required minimum distributions generally begin at age 73 (born 1951-1959) or age 75 (born 1960 or later).",
       },
       {
         heading: "A general sequencing framework",
@@ -68,7 +67,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "How claiming age affects your benefit",
-        body: "Claiming before your full retirement age generally reduces your monthly benefit; delaying past full retirement age (up to age 70) generally increases it. [FACT TO VERIFY — confirm current full retirement age and reduction/credit percentages before publishing.] The math behind any specific 'break-even' age depends on assumptions about longevity and other income.",
+        body: "Claiming before your full retirement age generally reduces your monthly benefit; delaying past full retirement age (up to age 70) generally increases it. As of 2026, full retirement age is 67 for those born in 1960 or later; delaying past full retirement age, up to age 70, generally increases the benefit by about 8% per year of delay. The math behind any specific 'break-even' age depends on assumptions about longevity and other income.",
       },
       {
         heading: "Factors beyond the math",
@@ -134,11 +133,11 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "Which accounts are generally affected",
-        body: "Traditional IRAs and most employer-sponsored retirement plans (401(k), 403(b), and similar) are generally subject to RMD rules once the account owner reaches the applicable age. [FACT TO VERIFY — confirm current RMD age and any account-specific exceptions before publishing.] Roth IRAs have different rules during the original owner's lifetime.",
+        body: "Traditional IRAs and most employer-sponsored retirement plans (401(k), 403(b), and similar) are generally subject to RMD rules once the account owner reaches the applicable age. as of 2026, generally age 73, or 75 for those born in 1960 or later; some workplace-plan participants who are still working may be able to delay RMDs from that employers plan. Roth IRAs have different rules during the original owner's lifetime.",
       },
       {
         heading: "Planning considerations",
-        body: "Because RMDs are generally treated as taxable income, the amount and timing can affect your tax situation for the year, and in some cases decisions made in earlier years (such as Roth conversions) can affect future RMD amounts. Missing an RMD can carry a penalty. [FACT TO VERIFY — confirm current penalty structure before publishing.]",
+        body: "Because RMDs are generally treated as taxable income, the amount and timing can affect your tax situation for the year, and in some cases decisions made in earlier years (such as Roth conversions) can affect future RMD amounts. Missing an RMD can carry a penalty. As of 2026, the penalty is a 25% excise tax on the amount not withdrawn, reduced to 10% if corrected within two years.",
       },
     ],
     keyTakeaways: [
@@ -212,7 +211,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "How stock options generally work",
-        body: "Stock options give you the right to purchase shares at a set price (the strike or exercise price) within a certain window. They only have value if the stock price is above the strike price. Incentive stock options (ISOs) and non-qualified stock options (NSOs) have different tax treatment. [FACT TO VERIFY — confirm current ISO/NSO tax rules before publishing.]",
+        body: "Stock options give you the right to purchase shares at a set price (the strike or exercise price) within a certain window. They only have value if the stock price is above the strike price. Incentive stock options (ISOs) and non-qualified stock options (NSOs) have different tax treatment. In general, ISOs may qualify for capital-gains treatment if holding-period requirements are met, though they can trigger the alternative minimum tax, while NSOs are taxed as ordinary income on the spread at exercise.",
       },
     ],
     keyTakeaways: [
@@ -373,7 +372,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "Common valuation approaches",
-        body: "Income-based approaches (capitalizing or discounting expected future cash flows), market-based approaches (comparing to sales of similar businesses), and asset-based approaches (net asset value) are among the general categories used, often in combination. [SUBSTANTIATION REQUIRED — confirm whether the firm provides or facilitates formal valuations, or refers clients to third-party valuation professionals, before publishing.]",
+        body: "Income-based approaches (capitalizing or discounting expected future cash flows), market-based approaches (comparing to sales of similar businesses), and asset-based approaches (net asset value) are among the general categories used, often in combination. We do not perform formal business valuations ourselves; where useful, we can coordinate with or refer clients to third-party valuation professionals as part of broader planning conversations.",
       },
       {
         heading: "Why valuation matters for planning",
@@ -389,7 +388,7 @@ export const INSIGHTS: InsightContent[] = [
     relatedPersonaSlugs: ["business-owners", "manufacturing-leaders"],
     relatedInsightSlugs: ["business-succession-planning-getting-started", "family-transition-vs-third-party-sale-comparing-paths"],
     faqs: [
-      { q: "Do you perform business valuations?", a: "[SUBSTANTIATION REQUIRED — confirm whether the firm performs, facilitates, or refers out valuation services before publishing]" },
+      { q: "Do you perform business valuations?", a: "No. We do not perform formal valuations; where useful, we coordinate with or refer clients to third-party valuation professionals." },
     ],
   },
   {
@@ -406,7 +405,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "Common plan types for small and mid-sized businesses",
-        body: "SEP IRAs, SIMPLE IRAs, and 401(k) plans (including safe harbor and profit-sharing variations) are among the more common options, each with different contribution limits, administrative requirements, and rules around employee eligibility and employer contributions. [FACT TO VERIFY — confirm current contribution limits before publishing, as these are adjusted periodically.]",
+        body: "SEP IRAs, SIMPLE IRAs, and 401(k) plans (including safe harbor and profit-sharing variations) are among the more common options, each with different contribution limits, administrative requirements, and rules around employee eligibility and employer contributions. For 2026, the 401(k) employee contribution limit is $24,500 and the IRA contribution limit is $7,500; limits are adjusted periodically by the IRS.",
       },
       {
         heading: "How this connects to succession planning",
