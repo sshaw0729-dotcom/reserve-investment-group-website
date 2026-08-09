@@ -6,9 +6,10 @@ import { CTAStrip } from "../../components/marketing/CTAStrip";
 import { DisclosureBlock } from "../../components/marketing/DisclosureBlock";
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "About Reserve Investment Group, Inc — how we work with individuals, families, and business owners on financial planning. [COMPLIANCE REVIEW REQUIRED]",
+    title: "About",
+    description:
+          "About Reserve Investment Group, Inc — how we work with individuals, families, and business owners on financial planning.",
+    alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {
