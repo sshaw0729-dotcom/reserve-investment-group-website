@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const magnet = LEAD_MAGNETS.find((m) => m.slug === params.slug);
   if (!magnet) return {};
-  return { title: magnet.title, description: magnet.metaDescription };
+  return { title: magnet.title, description: magnet.metaDescription, alternates: { canonical: `/resources/${magnet.slug}/` } };
 }
 
 export default function LeadMagnetPage({ params }: { params: { slug: string } }) {
