@@ -99,9 +99,7 @@ export default function WealthManagementClevelandPage() {
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
-        individuals; individual circumstances vary. Reserve Investment
-        Group, Inc. [APPROVED BROKER-DEALER DISCLOSURE] [APPROVED
-        INVESTMENT-ADVISER DISCLOSURE].
+        individuals; individual circumstances vary. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
     </main>
