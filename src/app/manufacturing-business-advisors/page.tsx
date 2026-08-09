@@ -12,7 +12,6 @@ import { BenefitsList } from "../../components/marketing/BenefitsList";
 import { ProblemSolution } from "../../components/marketing/ProblemSolution";
 import { ProcessSteps } from "../../components/marketing/ProcessSteps";
 import { TrustSignals } from "../../components/marketing/TrustSignals";
-import { TestimonialPlaceholder } from "../../components/marketing/TestimonialPlaceholder";
 import { AccordionItem } from "../../components/ui/Accordion";
 
 export const metadata: Metadata = {
@@ -98,8 +97,6 @@ export default function ManufacturingBusinessAdvisorsPage() {
           <li><a href="/services/business-succession-planning/">Business Succession Planning</a></li>
         </ul>
       </section>
-
-      <TestimonialPlaceholder />
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
