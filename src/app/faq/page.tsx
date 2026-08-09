@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "What does an introductory conversation involve?",
-    a: "It's a no-obligation discussion about your goals and current planning so we can determine whether working together makes sense. [COMPLIANCE REVIEW REQUIRED]",
+    a: "It's a no-obligation discussion about your goals and current planning so we can determine whether working together makes sense.",
   },
   {
     q: "Do you provide tax or legal advice?",
-    a: "No. We coordinate with your tax and legal professionals where appropriate, but we do not provide tax or legal advice unless that authority is separately confirmed. [ENTITY DISCLOSURE REQUIRED]",
+    a: "No. We coordinate with your tax and legal professionals where appropriate, but we do not provide tax or legal advice unless that authority is separately confirmed.",
   },
   {
     q: "Is the complimentary financial review a full financial plan?",
