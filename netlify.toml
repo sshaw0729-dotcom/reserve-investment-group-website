@@ -13,4 +13,43 @@
                         Referrer-Policy = "strict-origin-when-cross-origin"
                             Permissions-Policy = "camera=(), microphone=(), geolocation=()"
                                 Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+# Redirects for the old reserveinvestmentgroup.com site. Old-site URLs were
+# identified via search-engine cache (Wayback Machine is not reachable from
+# this environment); this is a best-effort list, not a full crawl. See
+# REDIRECT-MAP.csv for the human-readable audit trail with reasons/dates.
+[[redirects]]
+  from = "/contact-us/"
+    to = "/contact/"
+      status = 301
+
+      [[redirects]]
+        from = "/contact-us"
+          to = "/contact/"
+            status = 301
+
+            [[redirects]]
+              from = "/financial-software"
+                to = "/"
+                  status = 301
+
+                  [[redirects]]
+                    from = "/m/login"
+                      to = "/"
+                        status = 301
+
+                        [[redirects]]
+                          from = "/m/*"
+                            to = "/"
+                              status = 301
+
+                              [[redirects]]
+                                from = "/rons-resources/*"
+                                  to = "/insights/"
+                                    status = 301
+
+                                    [[redirects]]
+                                      from = "/real-wealth-weekly"
+                                        to = "/insights/"
+                                          status = 301
                                 
