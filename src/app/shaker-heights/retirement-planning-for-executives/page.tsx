@@ -6,7 +6,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../../components/marketing/CTAStrip";
-import { AlertBlock } from "../../../components/ui/AlertBlock";
 import { DisclosureBlock } from "../../../components/marketing/DisclosureBlock";
 
 export const metadata: Metadata = {
@@ -26,12 +25,6 @@ export default function ExecutiveRetirementCombinedPage() {
           { label: "Retirement Planning for Executives in Shaker Heights", href: "/shaker-heights/retirement-planning-for-executives/" },
         ]}
       />
-      <AlertBlock tone="warning">
-        [COMPLIANCE REVIEW REQUIRED] — publication of this page is gated on
-        confirming accurate office/service-area language for Shaker Heights
-        (MISSING-INFORMATION-REGISTER.md #14). Do not publish before that
-        is resolved.
-      </AlertBlock>
       <section className="container">
         <h1>Retirement Planning for Executives in Shaker Heights</h1>
         <p>
