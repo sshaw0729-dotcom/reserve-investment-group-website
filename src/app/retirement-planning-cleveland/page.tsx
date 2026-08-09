@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Retirement Planning in Cleveland",
   description:
     "Retirement planning considerations for individuals and couples in the Cleveland area — income timing, Social Security, and spending considerations.",
+  alternates: { canonical: "/retirement-planning-cleveland/" },
 };
 
 const FAQS = [
