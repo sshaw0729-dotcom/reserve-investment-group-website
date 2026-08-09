@@ -5,6 +5,7 @@ import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Schedule a Conversation",
   description: "Schedule an introductory conversation with Reserve Investment Group, Inc.",
+  alternates: { canonical: "/schedule/" },
 };
 
 export default function SchedulePage() {
