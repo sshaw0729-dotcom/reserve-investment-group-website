@@ -16,7 +16,7 @@ const STEPS = [
   },
   {
     title: "Identify considerations",
-    body: "We review your current financial picture to help identify inefficiencies and unmanaged risks that may be worth addressing. [SUBSTANTIATION REQUIRED]",
+    body: "We review your current financial picture to help identify inefficiencies and unmanaged risks that may be worth addressing.",
   },
   {
     title: "Coordinate a plan",
@@ -33,18 +33,4 @@ export default function OurApproachPage() {
         <p>
           Financial planning is designed to help you organize your goals,
           understand your current financial picture, and identify areas
-          that may need attention. [COMPLIANCE REVIEW REQUIRED]
-        </p>
-        <ol className="approach-steps">
-          {STEPS.map((step) => (
-            <li key={step.title}>
-              <h2>{step.title}</h2>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <CTAStrip label="Discuss your planning priorities" href="/schedule/" />
-    </main>
-  );
-}
+          that may need attention.
