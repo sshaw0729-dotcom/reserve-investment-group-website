@@ -15,8 +15,8 @@ export default function BfaContactPage() {
         <LeadForm formId="business-fee-audit-contact" pageSlug="/business-fee-audit/contact/" areaOfInterestDefault="other" />
       </section>
       <DisclosureBlock>
-          This audit is conducted by Reserve Investment Group, Inc. It is provided at no cost. If you choose to switch your payment processing to Fiserv/CardConnect as a result, Reserve Investment Group, Inc. and/or its agents may receive a referral fee or other compensation from Fiserv/CardConnect.
-        </DisclosureBlock>
+        This audit is conducted by Fiserv/CardConnect. Reserve Investment Group, Inc&apos;s agents introduce clients to Fiserv/CardConnect for this service; it is provided at no cost. If you choose to switch your payment processing to Fiserv/CardConnect as a result, Reserve Investment Group, Inc. and/or its agents may receive a referral fee or other compensation from Fiserv/CardConnect.
+      </DisclosureBlock>
     </main>
   );
 }
