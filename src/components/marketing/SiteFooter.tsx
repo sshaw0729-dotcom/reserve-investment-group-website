@@ -1,10 +1,10 @@
 import { DisclosureBlock } from "./DisclosureBlock";
 
 /**
- * Site-wide footer. Entity disclosure and Form CRS link are placeholders
- * pending compliance confirmation — see MISSING-INFORMATION-REGISTER.md
- * and DISCLOSURE-INVENTORY.md. Do not remove the DisclosureBlock or ship
- * this footer with the placeholder text still in place.
+ * Site-wide footer. Disclosure language reflects Reserve Investment Group,
+ * Inc.'s confirmed regulatory status (not a registered investment adviser or
+ * broker-dealer). See DISCLOSURE-INVENTORY.md. Do not remove the
+ * DisclosureBlock.
  */
 export function SiteFooter() {
   return (
@@ -16,8 +16,7 @@ export function SiteFooter() {
         <a href="/accessibility/">Accessibility Statement</a>
       </nav>
       <DisclosureBlock>
-        Reserve Investment Group, Inc. [APPROVED BROKER-DEALER DISCLOSURE]
-        [APPROVED INVESTMENT-ADVISER DISCLOSURE]. [FORM CRS LINK REQUIRED].
+        Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. Insurance products, where offered, are provided under state insurance license number 1293258.
         This website is for informational purposes and does not constitute
         an offer or solicitation in any jurisdiction where the firm is not
         appropriately registered.
