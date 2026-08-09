@@ -36,13 +36,14 @@ export default function BusinessFeeAuditHomePage() {
           considerations.
         </p>
         <h2>Provided by</h2>
-        <p>Reserve Investment Group, Inc&apos;s own agents, together with Fiserv/CardConnect.</p>
+        <p>Fiserv/CardConnect, introduced through Reserve Investment Group, Inc&apos;s agents.</p>
         <h2>Relationship to Reserve Investment Group, Inc</h2>
         <p>
-          This audit is performed directly by Reserve Investment Group,
-          Inc&apos;s agents, working alongside Fiserv/CardConnect on the
-          technical review of your payment processing statements and rates.
-          {/* FACT TO VERIFY — scope not yet explicitly confirmed by practice owner; inferred from page context. */}
+          Reserve Investment Group, Inc&apos;s agents introduce interested
+          business owners to Fiserv/CardConnect for this audit. The
+          technical review of your payment processing statements and
+          rates is performed by Fiserv/CardConnect, not by Reserve
+          Investment Group, Inc or its agents directly.
         </p>
         <h2>Scope</h2>
         <p>A review of your recent payment processing statements, rates, and fee structures to identify potential cost savings.</p>
