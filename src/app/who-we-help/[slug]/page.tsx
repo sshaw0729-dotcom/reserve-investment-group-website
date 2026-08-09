@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const persona = PERSONAS.find((p) => p.slug === params.slug);
   if (!persona) return {};
-  return { title: persona.title, description: persona.metaDescription };
+  return { title: persona.title, description: persona.metaDescription, alternates: { canonical: `/who-we-help/${persona.slug}/` } };
 }
 
 export default function PersonaPage({ params }: { params: { slug: string } }) {
