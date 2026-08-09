@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Complimentary Financial Review",
   description:
     "A complimentary introductory financial review to discuss your goals, current planning, and areas that may benefit from further analysis.",
+  alternates: { canonical: "/financial-review/" },
 };
 
 export default function FinancialReviewPage() {
