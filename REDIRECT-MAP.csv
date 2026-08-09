@@ -1,1 +1,8 @@
 from_path,to_path,type,reason,date_added
+/contact-us/,/contact/,301,"Old site contact page; confirmed indexed via search engine cache 2026-08-09 (Wayback Machine not accessible in this environment; no full old-site export was available).",2026-08-09
+/contact-us,/contact/,301,"Non-trailing-slash variant of the above.",2026-08-09
+/financial-software,/,301,"Old Personal Financial Management software/portal. Confirmed no active subscribers and feature discontinued (MISSING-INFORMATION-REGISTER.md #18); redirected to homepage rather than left to 404.",2026-08-09
+/m/login,/,301,"Old client portal login page. Portal discontinued, no active subscribers (MISSING-INFORMATION-REGISTER.md #18).",2026-08-09
+/m/*,/,301,"Wildcard catch-all for other old portal sub-pages under /m/ (login-gated area, e.g. /m/login?r=/real-wealth-weekly).",2026-08-09
+/rons-resources/*,/insights/,301,"Old blog/resource hub (e.g. /rons-resources/f/5-fixed-indexed-annuity-myths-busted, found via search cache). No equivalent article exists yet on the new site; redirected to the closest live content hub rather than a specific article.",2026-08-09
+/real-wealth-weekly,/insights/,301,"Old gated newsletter/webinar area. Feature discontinued; redirected to closest live content hub.",2026-08-09
