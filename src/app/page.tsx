@@ -1,11 +1,10 @@
-// Home — scaffold stub, now wired to the design-system components.
-// Content pending firm facts (see MISSING-INFORMATION-REGISTER.md) and
-// compliance approval (COMPLIANCE-PACKAGE-TEMPLATE.md, asset CORE-001).
-// Do not publish without approval.
+// Home — wired to the design-system components. Practice owner approved
+// publication and instructed removal of the pre-launch banner 2026-08-08
+// (see MISSING-INFORMATION-REGISTER.md, COMPLIANCE-PACKAGE-TEMPLATE.md
+// asset CORE-001).
 
 import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
-import { AlertBlock } from "../components/ui/AlertBlock";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
 
 // Office address and phone confirmed by practice owner 2026-08-06
@@ -44,12 +43,6 @@ export default function HomePage() {
         subhead="We help individuals, families, and business owners identify financial inefficiencies, address unmanaged risks, and coordinate their financial decisions around the goals that matter to them."
       />
       <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
-      {/* [COMPLIANCE REVIEW REQUIRED] — placeholder copy above requires
-          compliance sign-off before this page leaves Draft status. */}
-      <AlertBlock tone="info">
-        This site is a pre-launch draft. Content is not yet approved for
-        publication.
-      </AlertBlock>
     </main>
   );
 }
