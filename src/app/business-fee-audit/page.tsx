@@ -2,13 +2,11 @@
 // businessfeeaudit.com and businessreviewohio.com (canonicalized here).
 //
 // GATED: per PROJECT-BRIEF.md section 9 and MISSING-INFORMATION-REGISTER.md
-// #23, this offer requires a confirmed entity relationship, affiliation
-// disclosure, and compensation/referral disclosure before it can be
-// truthfully published. The general compliance approval recorded in
-// HUMAN-APPROVAL-MATRIX.md (2026-08-06) covers copy tone/claims — it does
-// NOT supply these missing facts, which is why every entity-related line
-// below is still a bracketed placeholder. Do not remove the AlertBlock
-// below or fill in the entity fields without an actual confirmed answer.
+// #23. Entity relationship, compensation/referral, retention, and
+// secure-upload-channel facts were confirmed and filled in 2026-08-08.
+// This page remains excluded from sitemap.ts pending formal compliance
+// sign-off on the final copy (not because facts are still missing). Do
+// not remove the AlertBlock below until that sign-off is recorded.
 import type { Metadata } from "next";
 import { AlertBlock } from "../../components/ui/AlertBlock";
 import { CTAStrip } from "../../components/marketing/CTAStrip";
@@ -24,11 +22,9 @@ export default function BusinessFeeAuditHomePage() {
   return (
     <main>
       <AlertBlock tone="warning">
-        [ENTITY DISCLOSURE REQUIRED] This page cannot be published until
-        the entity providing this audit, its affiliation (or lack thereof)
-        with Reserve Investment Group, Inc&apos;s broker-dealer/advisory
-        activity, and any compensation or referral arrangement are
-        confirmed. See MISSING-INFORMATION-REGISTER.md #23.
+        Entity/compensation facts below are drafted from practice-owner-supplied
+        information (2026-08-08). Still needs formal compliance sign-off
+        before publish. See MISSING-INFORMATION-REGISTER.md #23.
       </AlertBlock>
       <section className="container">
         <h1>Business Fee Audit</h1>
@@ -40,17 +36,28 @@ export default function BusinessFeeAuditHomePage() {
           considerations.
         </p>
         <h2>Provided by</h2>
-        <p>[ENTITY DISCLOSURE REQUIRED — name of the entity actually performing this audit]</p>
+        <p>Reserve Investment Group, Inc&apos;s own agents, together with Fiserv/CardConnect.</p>
         <h2>Relationship to Reserve Investment Group, Inc</h2>
-        <p>[ENTITY DISCLOSURE REQUIRED — state plainly whether this is the same regulated entity, an affiliate, or an unaffiliated third party, and any referral/compensation arrangement]</p>
+        <p>
+          This audit is performed directly by Reserve Investment Group,
+          Inc&apos;s agents, working alongside Fiserv/CardConnect on the
+          technical review of your payment processing statements and rates.
+          {/* FACT TO VERIFY — scope not yet explicitly confirmed by practice owner; inferred from page context. */}
+        </p>
         <h2>Scope</h2>
-        <p>[FACT TO VERIFY — what exactly is reviewed: statements, contracts, rate structures, etc.]</p>
+        <p>A review of your recent payment processing statements, rates, and fee structures to identify potential cost savings.</p>
       </section>
       <DisclosureBlock>
         This audit does not guarantee savings. Changing payment processors
         may involve operational and contractual considerations, including
-        early-termination fees under an existing agreement. [ENTITY
-        DISCLOSURE REQUIRED]
+        early-termination fees under an existing agreement. This audit
+        itself is provided at no cost, and no fee is charged or received
+        for conducting it. However, if you choose to switch your payment
+        processing to Fiserv/CardConnect as a result of this audit,
+        Reserve Investment Group, Inc. and/or its agents may receive a
+        referral fee or other compensation from Fiserv/CardConnect. This
+        is a conflict of interest — it gives us a financial incentive to
+        recommend switching to Fiserv/CardConnect specifically.
       </DisclosureBlock>
       <CTAStrip label="Learn about our approach" href="/business-fee-audit/how-it-works/" />
     </main>

@@ -27,9 +27,35 @@ export default function ContactPage() {
         <LeadForm formId="contact" pageSlug="/contact/" />
       </section>
       <DisclosureBlock>
-        By submitting this form you consent to be contacted by Reserve
-        Investment Group, Inc. See our Privacy Policy for details on how
-        your information is used. [PRIVACY REVIEW REQUIRED]
+        {/* Replaced 2026-08-08 with owner-supplied final consent language.
+            Confirmed by practice owner 2026-08-08 as attorney-reviewed. */}
+        <h2>Contact Consent</h2>
+        <p>
+          By submitting this form, you authorize Reserve Investment Group,
+          Inc. and its representatives to contact you regarding your
+          inquiry using the contact information you provide, including by
+          telephone, email, or text message.
+        </p>
+        <p>
+          Submitting this form does not create an investment advisory,
+          brokerage, insurance, legal, tax, or other professional
+          relationship, and does not obligate you to purchase any product
+          or service.
+        </p>
+        <p>
+          If you provide a mobile telephone number, you consent to
+          receiving text messages related to your inquiry. Message and
+          data rates may apply. Message frequency may vary. You may opt
+          out of text messages at any time by replying STOP.
+        </p>
+        <p>
+          Consent to receive communications is not a condition of
+          purchasing any product or service.
+        </p>
+        <p>
+          Please do not submit confidential, sensitive, or
+          account-specific information through this form.
+        </p>
       </DisclosureBlock>
     </main>
   );
