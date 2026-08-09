@@ -1,3 +1,5 @@
+# One-off helper: generate package-lock.json via Actions (npm registry is reachable
+# here but not from the local dev sandbox). Safe to delete once the lockfile is committed.
 name: generate-lockfile
 on:
   workflow_dispatch:
