@@ -6,6 +6,11 @@
 import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // Office address and phone confirmed by practice owner 2026-08-06
 // (MISSING-INFORMATION-REGISTER.md #14/#15) — this is the first page in
