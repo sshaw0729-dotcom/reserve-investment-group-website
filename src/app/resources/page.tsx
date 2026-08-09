@@ -10,6 +10,7 @@ import { LEAD_MAGNETS } from "../../lib/content/leadmagnets";
 export const metadata: Metadata = {
   title: "Resources",
   description: "Educational resources and checklists from Reserve Investment Group, Inc.",
+  alternates: { canonical: "/resources/" },
 };
 
 export default function ResourcesPage() {
