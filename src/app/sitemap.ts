@@ -11,11 +11,15 @@ import { LEAD_MAGNETS } from "../lib/content/leadmagnets";
 // filtered to status: "Published" only — an unpublished Draft page
 // should never appear here in a real deploy.
 //
+// /shaker-heights/retirement-planning-for-executives/ (COMBO-003) added
+// back 2026-08-09: office/service-area gate (MISSING-INFORMATION-REGISTER.md
+// #14) is resolved and the page copy contains no local-office claim for
+// Shaker Heights specifically — verified against KEYWORD-AND-INTENT-MAP.csv's
+// "no implied local office" condition.
+//
 // Deliberately EXCLUDED, do not add back without clearing the named gate:
-// - /shaker-heights/retirement-planning-for-executives/ (COMBO-003) —
-//   gated on office/service-area confirmation, KEYWORD-AND-INTENT-MAP.csv
 // - /business-fee-audit/** (all 5 pages) — gated on entity/compensation
-//   disclosure, MISSING-INFORMATION-REGISTER.md #23
+// disclosure, MISSING-INFORMATION-REGISTER.md #23
 const STATIC_ROUTES: { path: string; priority: number }[] = [
   { path: "/", priority: 1 },
   { path: "/about/", priority: 0.8 },
@@ -40,6 +44,7 @@ const STATIC_ROUTES: { path: string; priority: number }[] = [
   { path: "/retirement-planning-cleveland/", priority: 0.6 },
   { path: "/wealth-management-cleveland/", priority: 0.6 },
   { path: "/manufacturing-business-advisors/", priority: 0.6 },
+  { path: "/shaker-heights/retirement-planning-for-executives/", priority: 0.6 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
