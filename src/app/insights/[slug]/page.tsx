@@ -22,7 +22,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const insight = INSIGHTS.find((i) => i.slug === params.slug);
   if (!insight) return {};
-  return { title: insight.title, description: insight.metaDescription };
+  return { title: insight.title, description: insight.metaDescription, alternates: { canonical: `/insights/${insight.slug}/` } };
 }
 
 export default function InsightPage({ params }: { params: { slug: string } }) {
