@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Financial Advisors for Manufacturing Business Owners",
   description:
     "Financial planning considerations for manufacturing business owners and executives in Greater Cleveland — succession, capital decisions, and retirement plan design.",
+  alternates: { canonical: "/manufacturing-business-advisors/" },
 };
 
 const FAQS = [
