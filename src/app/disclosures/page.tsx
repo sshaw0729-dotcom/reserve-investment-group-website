@@ -82,6 +82,75 @@ export default function DisclosuresPage() {
           broker-dealer or investment-adviser registration and does not
           have its own Form CRS.
         </p>
+        <p>
+          Insurance products, where offered through Reserve Investment Group,
+          Inc., are offered under state insurance license number 1293258.
+        </p>
+        <h2>Unpaid, Unaffiliated Referrals and Third-Party Professionals</h2>
+        <p>
+          Reserve Investment Group, Inc. may occasionally introduce
+          individuals to independent professionals, businesses, service
+          providers, or other third-party resources when we believe an
+          introduction may be helpful.
+        </p>
+        <p>
+          Unless specifically disclosed otherwise, these third parties are
+          independent of and unaffiliated with Reserve Investment Group,
+          Inc. They are not employees, agents, representatives, partners, or
+          joint ventures of Reserve Investment Group, Inc.
+        </p>
+        <p>
+          Reserve Investment Group, Inc. does not receive or pay referral
+          fees, commissions, transaction-based compensation, revenue
+          sharing, or other compensation in connection with the unpaid
+          referrals described on this website.
+        </p>
+        <p>
+          Any introduction is provided solely as a convenience and should
+          not be interpreted as a guarantee or representation regarding the
+          qualifications, licensing, services, advice, products,
+          performance, or results of any third party. Individuals are
+          encouraged to independently evaluate any professional or service
+          provider before engaging them.
+        </p>
+        <p>
+          Third-party professionals are responsible for their own services,
+          recommendations, licensing, regulatory obligations,
+          representations, fees, and business practices. Reserve Investment
+          Group, Inc. does not control and is not responsible for services
+          independently provided by an unaffiliated third party.
+        </p>
+        <p>
+          An individual is never required to use a professional or service
+          provider introduced by Reserve Investment Group, Inc., and
+          choosing or declining to work with a referred third party will not
+          affect the services otherwise available to that individual.
+        </p>
+        <p>
+          Individuals who make unpaid introductions to Reserve Investment
+          Group, Inc. are not authorized, solely by virtue of making an
+          introduction, to provide investment advice, recommend securities
+          or investment strategies, solicit or negotiate securities
+          transactions, sell or solicit insurance, discuss specific
+          insurance policy terms or conditions, make representations on
+          behalf of Reserve Investment Group, Inc., or bind Reserve
+          Investment Group, Inc. in any manner.
+        </p>
+        <p>
+          Where applicable, securities, investment advisory, insurance,
+          legal, tax, accounting, or other regulated services are offered
+          only through appropriately licensed or registered persons or
+          entities and are subject to the laws, regulations, licensing
+          requirements, and professional standards applicable to those
+          persons or entities.
+        </p>
+        <p>
+          A referral or introduction does not create an advisory,
+          fiduciary, agency, brokerage, insurance, attorney-client,
+          accounting, or other professional relationship between Reserve
+          Investment Group, Inc., the individual making the referral, the
+          third-party professional, and the person receiving the referral.
+        </p>
         {/* Designation field deleted 2026-08-08 per owner instruction: no
             verified, currently-authorized professional designation (e.g.
             CFP®, ChFC®) has been confirmed for any named individual, and
