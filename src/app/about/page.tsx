@@ -170,7 +170,8 @@ export default function AboutPage() {
                 </p>
       </section>
       <DisclosureBlock>
-        [APPROVED BROKER-DEALER DISCLOSURE] [APPROVED INVESTMENT-ADVISER DISCLOSURE]. [FORM CRS LINK REQUIRED].
+                Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. Insurance products, where offered, are provided under state insurance license number 1293258. Reserve Investment Group, Inc. does not receive compensation for introducing clients to unaffiliated third-party professionals. See our{" "}
+        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
     </main>
