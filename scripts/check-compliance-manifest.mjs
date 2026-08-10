@@ -76,8 +76,15 @@ function normalizeRoute(route) {
     return route.endsWith("/") ? route : route + "/";
 }
 
-const requiredRoutes = Array.from(new Set(staticRoutes.map(normalizeRoute)));
+// Generated technical files, not marketing pages -- they don't need
+// compliance content or manifest sign-off.
+const NON_PAGE_ROUTES = new Set(["/robots.txt/", "/sitemap.xml/"]);
 
+const requiredRoutes = Array.from(new Set(staticRoutes.map(normalizeRoute))).filter(
+        function (route) {
+                    return !NON_PAGE_ROUTES.has(route);
+        }
+    );
 const csvRows = parseCsv(readFileSync(CONTENT_MANIFEST, "utf8"));
 const header = csvRows[0];
 const dataRows = csvRows.slice(1);
