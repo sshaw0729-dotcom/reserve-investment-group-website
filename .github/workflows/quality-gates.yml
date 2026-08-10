@@ -57,5 +57,3 @@ jobs:
 # Netlify Deploy Preview is generated automatically by the Netlify GitHub
 # integration on every PR; it is not a step in this workflow but is a
 # required check configured separately in branch protection.
-  # integration on every PR; it is not a step in this workflow but is a
-  # required check configured separately in branch protection.
