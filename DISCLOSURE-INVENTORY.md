@@ -6,7 +6,7 @@ here with an approved final version.
 
 | Disclosure | Applies to | Current text | Status |
 |---|---|---|---|
-| Firm entity disclosure | All pages (footer) | `[APPROVED FIRM NAME]`, `[APPROVED BROKER-DEALER DISCLOSURE]`, `[APPROVED INVESTMENT-ADVISER DISCLOSURE]` | Open |
+| Firm entity disclosure | All pages (footer) | "Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. Insurance products, where offered, are provided under state insurance license number 1293258." (live in `SiteFooter.tsx`; fuller version live on `/disclosures/`) | Approved — attorney-reviewed, confirmed by practice owner 2026-08-10 |
 | Form CRS link | Footer, About, Disclosures page | `[FORM CRS LINK REQUIRED]` | Open |
 | Not tax/legal advice | Tax-Aware Financial Planning, Estate-Planning Coordination | "This information is educational and is not tax or legal advice. Please consult your tax and legal professionals regarding your specific situation." | Draft — needs compliance sign-off |
 | No guarantee of outcomes | Any service/offer page describing planning benefits | "Planning services described here are designed to help identify considerations and options; they do not guarantee any particular outcome." | Draft — needs compliance sign-off |
