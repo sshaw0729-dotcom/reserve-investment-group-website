@@ -64,10 +64,9 @@ export default function DisclosuresPage() {
         </p>
         <p>Firm: Reserve Investment Group, Inc.</p>
         {/*
-          Filled 2026-08-08 per practice-owner confirmation: Reserve
-          Investment Group, Inc. is not itself a separately registered
-          broker-dealer or investment adviser. Still needs formal
-          compliance sign-off before publish.
+          Filled 2026-08-08 per practice-owner confirmation; attorney-reviewed
+          and confirmed final by practice owner 2026-08-10. See
+          DISCLOSURE-INVENTORY.md and MISSING-INFORMATION-REGISTER.md item 3.
         */}
         <p>
           Reserve Investment Group, Inc. is not itself a registered
