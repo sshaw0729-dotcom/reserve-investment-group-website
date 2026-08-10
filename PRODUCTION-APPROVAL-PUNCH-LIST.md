@@ -30,9 +30,9 @@ All 12 already carry standing draft-copy approval per `HUMAN-APPROVAL-MATRIX.md`
 
 Same pattern as the insights articles -- standing draft-copy approval covers tone, still need blockers 1 and 2: `/resources/retirement-readiness-checklist/`, `/resources/business-owner-planning-checklist/`, `/resources/equity-compensation-checklist/`.
 
-## One page with a stale gate worth rechecking
+## One page with a previously stale gate (now corrected)
 
-`/shaker-heights/retirement-planning-for-executives/` (COMBO-003) is excluded from `sitemap.ts` and marked as gated on office/service-area confirmation, citing `MISSING-INFORMATION-REGISTER.md` item 14. That item is now marked Resolved in the register (office confirmed: 1414 S. Green Rd., Suite 105, South Euclid, OH 44121, confirmed 2026-08-06) -- the manifest note and sitemap exclusion appear to just not have been updated after that resolution. Worth a deliberate look at whether this page can be re-added to the sitemap now, subject to the same blockers 1 and 2 as everything else.
+`/shaker-heights/retirement-planning-for-executives/` (COMBO-003) is included in `sitemap.ts` -- this was already fixed 2026-08-09 (see inline comment in `sitemap.ts`), before this punch list was even written. An earlier draft of this note claimed the route was still excluded; that claim was itself stale and is now corrected. Office/service-area confirmation (`MISSING-INFORMATION-REGISTER.md` item 14) is Resolved as of 2026-08-06. No further action needed here beyond blockers 1 and 2 like every other page.
 
 ## /manufacturing-business-advisors/ (COMBO-006)
 
