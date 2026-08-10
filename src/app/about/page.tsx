@@ -116,7 +116,7 @@ export default function AboutPage() {
         <p>Through clear communication.</p>
         <p>Through doing what you say you will do.</p>
         <p>Through explaining both the advantages and limitations of a financial strategy.</p>
-        <p>Through being willing to say, "That may not be the right approach."</p>
+        <p>Through being willing to say, &ldquo;That may not be the right approach.&rdquo;</p>
         <p>And through recognizing that financial decisions have real consequences for the people making them.</p>
         <p>We take that responsibility seriously.</p>
         <h2>What Reserve Stands For</h2>
@@ -131,7 +131,7 @@ export default function AboutPage() {
         <h2>Our Guiding Principles</h2>
         <p>Our work is grounded in a few straightforward principles.</p>
         <p><strong>Understand the situation before discussing solutions.</strong> Financial recommendations should be connected to a real need or objective.</p>
-        <p><strong>Explain the "why."</strong> People should understand why a strategy is being considered, not simply be told what to do.</p>
+        <p><strong>Explain the &ldquo;why.&rdquo;</strong> People should understand why a strategy is being considered, not simply be told what to do.</p>
         <p><strong>Respect uncertainty.</strong> Financial planning should acknowledge risk rather than pretend it does not exist.</p>
         <p><strong>Keep things understandable.</strong> Complex financial concepts should be explained as clearly as possible.</p>
         <p><strong>Consider the whole picture.</strong> Investments are important, but they are only one part of a financial life.</p>
