@@ -15,8 +15,8 @@
     "check:seo": "echo 'TODO: implement metadata + structured-data validation'",
     "check:secrets": "echo 'TODO: wire secret scanner (e.g. gitleaks)'",
     "check:analytics-schema": "echo 'TODO: validate events against POSTHOG-EVENT-SCHEMA.ts'",
-    "check:draft-annotations": "echo 'TODO: fail build if [COMPLIANCE REVIEW REQUIRED]-style annotations render in output HTML'",
-    "check:compliance-manifest": "echo 'TODO: fail build if a page targeting main lacks a Production approved row in CONTENT-MANIFEST.csv'"
+    "check:draft-annotations": "node scripts/check-draft-annotations.mjs",
+    "check:compliance-manifest": "node scripts/check-compliance-manifest.mjs"
   },
   "dependencies": {
     "next": "^14.2.0",
