@@ -1,7 +1,8 @@
-// Fails the build if unresolved compliance placeholder annotations (for
-// example "[COMPLIANCE REVIEW REQUIRED]") render into the built HTML
-// output. See src/components/marketing/DisclosureBlock.tsx, which
-// documents this check. Run this after `next build` -- it scans
+// Fails the build if unresolved draft/compliance placeholder annotations
+// (for example "[COMPLIANCE REVIEW REQUIRED]", "[ENTITY DISCLOSURE
+// REQUIRED]", or "[PERFORMANCE CONTENT -- DO NOT PUBLISH]") render into
+// the built HTML output. See src/components/marketing/DisclosureBlock.tsx,
+// which documents this check. Run this after `next build` -- it scans
 // .next/server/app for the static HTML Next.js already generated.
 
 import { readdirSync, statSync, readFileSync, existsSync } from "node:fs";
@@ -9,9 +10,12 @@ import { join } from "node:path";
 
 const BUILD_DIR = join(process.cwd(), ".next", "server", "app");
 
-// Matches "[COMPLIANCE REVIEW REQUIRED]" and similarly shaped bracketed
-// compliance-placeholder annotations used across this codebase.
-const FORBIDDEN_PATTERN = /\[COMPLIANCE[^\]]*REQUIRED\]/gi;
+// Matches "[COMPLIANCE REVIEW REQUIRED]" and any other bracketed
+// ALL-CAPS annotation (two or more consecutive all-caps words), which is
+// the shape every draft/compliance placeholder in this codebase uses --
+// e.g. "[ENTITY DISCLOSURE REQUIRED]", "[FACT TO VERIFY]",
+// "[PERFORMANCE CONTENT -- DO NOT PUBLISH: ...]", "[TESTIMONIAL PLACEHOLDER]".
+const FORBIDDEN_PATTERN = /\[[A-Z]{2,}(?:[ _-][A-Z0-9]{2,})+\b[^\]]*\]/g;
 
 function walk(dir, out) {
     out = out || [];
