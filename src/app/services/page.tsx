@@ -31,9 +31,7 @@ export default function ServicesPage() {
       <section className="container">
         <h1>Services</h1>
         <p>
-          Our services are designed to help identify financial
-          inefficiencies, address unmanaged risks, and coordinate your
-          financial decisions around your goals. [COMPLIANCE REVIEW REQUIRED]
+                    Our services cover financial planning, wealth management, retirement planning, and related considerations for individuals, families, and business owners. Learn more about each service below.
         </p>
       </section>
       <CardGrid items={SERVICES} />
