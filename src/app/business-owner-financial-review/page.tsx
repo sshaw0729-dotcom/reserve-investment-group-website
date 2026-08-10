@@ -34,7 +34,7 @@ export default function BusinessOwnerFinancialReviewPage() {
       </section>
       <DisclosureBlock>
         This complimentary review is an introductory discussion and does
-        not constitute a complete financial plan. [COMPLIANCE REVIEW REQUIRED]
+        not constitute a complete financial plan.
       </DisclosureBlock>
     </main>
   );
