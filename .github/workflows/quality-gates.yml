@@ -42,9 +42,6 @@ jobs:
       - name: Secret scan
         run: npm run check:secrets
 
-      - name: Dependency vulnerability scan
-        run: npm audit --audit-level=high
-
       - name: Analytics schema validation
         run: npm run check:analytics-schema
 
@@ -54,6 +51,11 @@ jobs:
       - name: Compliance manifest validation
         run: npm run check:compliance-manifest
 
-  # Netlify Deploy Preview is generated automatically by the Netlify GitHub
+      - name: Dependency vulnerability scan
+        run: npm audit --audit-level=high
+
+# Netlify Deploy Preview is generated automatically by the Netlify GitHub
+# integration on every PR; it is not a step in this workflow but is a
+# required check configured separately in branch protection.
   # integration on every PR; it is not a step in this workflow but is a
   # required check configured separately in branch protection.
