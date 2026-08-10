@@ -34,7 +34,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "A general sequencing framework",
-        body: "There's no single sequence that fits everyone. Some people prioritize spending taxable accounts first to allow tax-deferred accounts more time to grow; others weigh Roth conversions or specific tax-bracket considerations. This is an area where coordinating with a tax professional, alongside your financial plan, is generally worthwhile before making decisions. [ENTITY DISCLOSURE REQUIRED — this content does not constitute tax advice.]",
+          body: "There's no single sequence that fits everyone. Some people prioritize spending taxable accounts first to allow tax-deferred accounts more time to grow; others weigh Roth conversions or specific tax-bracket considerations. This is an area where coordinating with a tax professional, alongside your financial plan, is generally worthwhile before making decisions.",
       },
     ],
     keyTakeaways: [
@@ -106,7 +106,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "Approaches sometimes discussed",
-        body: "Some approaches discussed in this context include maintaining a cash or short-term reserve to draw from during downturns, adjusting withdrawal amounts based on market conditions, or maintaining a diversified mix intended to manage volatility. [PERFORMANCE CONTENT — DO NOT PUBLISH: no specific return figures, backtests, or performance claims may be added to this section.] None of these approaches eliminates the underlying risk, and no strategy can guarantee a particular outcome.",
+          body: "Some approaches discussed in this context include maintaining a cash or short-term reserve to draw from during downturns, adjusting withdrawal amounts based on market conditions, or maintaining a diversified mix intended to manage volatility. None of these approaches eliminates the underlying risk, and no strategy can guarantee a particular outcome.",
       },
     ],
     keyTakeaways: [
@@ -133,7 +133,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "Which accounts are generally affected",
-        body: "Traditional IRAs and most employer-sponsored retirement plans (401(k), 403(b), and similar) are generally subject to RMD rules once the account owner reaches the applicable age. as of 2026, generally age 73, or 75 for those born in 1960 or later; some workplace-plan participants who are still working may be able to delay RMDs from that employers plan. Roth IRAs have different rules during the original owner's lifetime.",
+          body: "Traditional IRAs and most employer-sponsored retirement plans (401(k), 403(b), and similar) are generally subject to RMD rules once the account owner reaches the applicable age. As of 2026, that age is generally 73, or 75 for those born in 1960 or later; some workplace-plan participants who are still working may be able to delay RMDs from that employer's plan. Roth IRAs have different rules during the original owner's lifetime.",
       },
       {
         heading: "Planning considerations",
@@ -149,7 +149,7 @@ export const INSIGHTS: InsightContent[] = [
     relatedPersonaSlugs: ["retirees"],
     relatedInsightSlugs: ["retirement-income-planning", "social-security-claiming-considerations"],
     faqs: [
-      { q: "Do you prepare or file the paperwork for RMDs?", a: "We can help identify and plan around RMD considerations as part of a broader financial plan; account custodians typically handle the distribution mechanics, and your tax professional handles filing. [ENTITY DISCLOSURE REQUIRED]" },
+      { q: "Do you prepare or file the paperwork for RMDs?", a: "We can help identify and plan around RMD considerations as part of a broader financial plan; account custodians typically handle the distribution mechanics, and your tax professional handles filing." },
     ],
   },
 
@@ -172,7 +172,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "Why this often needs its own planning conversation",
-        body: "Equity compensation can introduce concentration risk (having a large portion of net worth tied to one company's stock), vesting-driven cash-flow and tax timing considerations, and decisions that may need to be coordinated with blackout periods, insider-trading policies, or 10b5-1 plans. [ENTITY DISCLOSURE REQUIRED — this content does not constitute tax or legal advice; specific plan rules should be confirmed with your employer and tax professional.]",
+          body: "Equity compensation can introduce concentration risk (having a large portion of net worth tied to one company's stock), vesting-driven cash-flow and tax timing considerations, and decisions that may need to be coordinated with blackout periods, insider-trading policies, or 10b5-1 plans.",
       },
       {
         heading: "Coordinating with your broader plan",
@@ -207,7 +207,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "How RSUs generally work",
-        body: "RSUs are typically a promise to deliver shares (or cash value) once vesting conditions are met. They generally have value even if the stock price doesn't move, and are typically taxed as ordinary income at vesting based on the value of the shares at that time. [ENTITY DISCLOSURE REQUIRED — confirm current tax treatment with a tax professional; this is not tax advice.]",
+          body: "RSUs are typically a promise to deliver shares (or cash value) once vesting conditions are met. They generally have value even if the stock price doesn't move, and are typically taxed as ordinary income at vesting based on the value of the shares at that time.",
       },
       {
         heading: "How stock options generally work",
@@ -242,7 +242,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "Approaches sometimes considered",
-        body: "Diversification over time (rather than all at once, which can have its own tax consequences), understanding any employer restrictions such as blackout periods or 10b5-1 trading plans, and considering concentration limits within a broader portfolio are among the approaches sometimes discussed. [PERFORMANCE CONTENT — DO NOT PUBLISH: no specific diversification outcomes or return comparisons may be added here.] Any decision to sell or hold concentrated stock should account for your specific tax situation and any employer restrictions.",
+          body: "Diversification over time (rather than all at once, which can have its own tax consequences), understanding any employer restrictions such as blackout periods or 10b5-1 trading plans, and considering concentration limits within a broader portfolio are among the approaches sometimes discussed. Any decision to sell or hold concentrated stock should account for your specific tax situation and any employer restrictions.",
       },
     ],
     keyTakeaways: [
@@ -269,7 +269,7 @@ export const INSIGHTS: InsightContent[] = [
     sections: [
       {
         heading: "How deferral elections generally work",
-        body: "These plans typically require elections about how much to defer and when the deferred amount will be paid out, often made in advance and subject to specific timing rules. [ENTITY DISCLOSURE REQUIRED — this is not tax or legal advice; specific plan rules and election deadlines should be confirmed with your employer's plan documents and a tax professional.]",
+          body: "These plans typically require elections about how much to defer and when the deferred amount will be paid out, often made in advance and subject to specific timing rules.",
       },
       {
         heading: "Considerations before electing to defer",
@@ -310,7 +310,7 @@ export const INSIGHTS: InsightContent[] = [
       },
       {
         heading: "Where financial planning fits in",
-        body: "Financial planning in this context generally focuses on how a transition — under different scenarios and timelines — may affect your personal financial picture, coordinated with your attorney and tax professional on the legal and tax structure of the transition itself. [ENTITY DISCLOSURE REQUIRED — we are not a law firm and do not draft legal or transaction documents.]",
+          body: "Financial planning in this context generally focuses on how a transition -- under different scenarios and timelines -- may affect your personal financial picture, coordinated with your attorney and tax professional on the legal and tax structure of the transition itself.",
       },
     ],
     keyTakeaways: [
