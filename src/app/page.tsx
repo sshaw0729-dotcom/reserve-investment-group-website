@@ -19,6 +19,7 @@ import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
 import { ApproachTabs } from "../components/marketing/ApproachTabs";
 import { HomeConversationStarter } from "../components/marketing/HomeConversationStarter";
+import { HeroGraphic } from "../components/marketing/HeroGraphic";
 import { AccordionItem } from "../components/ui/Accordion";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
 import type { Metadata } from "next";
@@ -126,39 +127,6 @@ const HOME_FAQS = [
     a: "The best way to find out is an introductory conversation—we'll discuss your goals and situation, and you can decide whether it makes sense to move forward.",
   },
 ];
-
-// Decorative gradient orb + three floating value-prop cards from the hero
-// of the approved Canva concept. Purely qualitative copy (no numeric or
-// factual claims), so no compliance sign-off is required beyond the
-// qualified-language convention already used sitewide.
-function HeroGraphic() {
-  return (
-    <div className="hero-orb">
-      <div className="hero-orb-shape" aria-hidden="true" />
-      <div className="hero-float-card hero-float-card-1">
-        <p className="hero-float-card-title">Clarity first</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Understand the whole picture
-        </p>
-      </div>
-      <div className="hero-float-card hero-float-card-2">
-        <p className="hero-float-card-title">Your priorities</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Plan around real life
-        </p>
-      </div>
-      <div className="hero-float-card hero-float-card-3">
-        <p className="hero-float-card-title">Long-term focus</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Decisions with perspective
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function HomePage() {
   return (
@@ -327,4 +295,3 @@ export default function HomePage() {
     </main>
   );
 }
-
