@@ -6,45 +6,55 @@ import { LeadForm } from "../forms/LeadForm";
 type StartingPoint = {
   id: string;
   label: string;
+  heading: string;
   description: string;
   areaOfInterest: string;
 };
 
+// Matches the four starting points shown in the approved Canva
+// "Conversion Website v2" prototype. The prototype only exposed the
+// "I'm preparing to retire" option's revealed copy ("Retirement
+// readiness") in its default state; the other three follow the same
+// qualified, non-promissory language already used across the site.
 const STARTING_POINTS: StartingPoint[] = [
   {
-    id: "just-starting",
-    label: "I'm just getting started",
+    id: "preparing-to-retire",
+    label: "I'm preparing to retire",
+    heading: "Retirement readiness",
     description:
-      "We'll walk through your current financial picture and help you organize a plan around your goals.",
-    areaOfInterest: "financial-planning",
-  },
-  {
-    id: "approaching-retirement",
-    label: "I'm approaching retirement",
-    description:
-      "We'll talk through income sources, timing, and spending considerations as retirement gets closer.",
+      "Start by clarifying timing, desired lifestyle, income sources, cash reserves, and how the investment portfolio needs to support the transition.",
     areaOfInterest: "retirement-planning",
   },
   {
-    id: "own-a-business",
-    label: "I own a business",
+    id: "investment-strategy",
+    label: "I need an investment strategy",
+    heading: "Investment strategy",
     description:
-      "We'll discuss how your business and personal finances relate to one another.",
-    areaOfInterest: "business-owner-planning",
+      "We'll discuss your goals, time horizon, and risk considerations, and how your investments might fit within your broader financial picture.",
+    areaOfInterest: "wealth-management",
   },
   {
-    id: "managing-wealth",
-    label: "I'm managing significant wealth",
+    id: "idle-cash",
+    label: "I have too much cash sitting idle",
+    heading: "Idle cash",
     description:
-      "We'll talk through ongoing coordination across investments, planning, and periodic check-ins.",
+      "We'll talk through your liquidity needs, upcoming plans, and options for putting extra cash to work toward your goals.",
     areaOfInterest: "wealth-management",
+  },
+  {
+    id: "life-or-work-changing",
+    label: "Life or work is changing",
+    heading: "Life and work transitions",
+    description:
+      "We'll discuss how a change in income, career, or family circumstances might affect your financial plan and priorities.",
+    areaOfInterest: "financial-planning",
   },
 ];
 
 /**
  * Homepage "what's on your mind" branching selector, matching the
  * approved Canva "Conversion Website v2" concept. Selecting a starting
- * point reveals a short qualifier and the standard LeadForm with
+ * point reveals a short heading, qualifier, and the standard LeadForm with
  * areaOfInterest pre-set — reuses the existing LeadForm/submit-lead
  * pipeline (FORM-DATA-FLOW.md); no new backend logic.
  */
@@ -54,7 +64,11 @@ export function HomeConversationStarter() {
 
   return (
     <div className="conversation-starter">
-      <div className="conversation-starter-options" role="group" aria-label="What's on your mind?">
+      <div
+        className="conversation-starter-options"
+        role="group"
+        aria-label="What financial decision is taking up the most space in your mind?"
+      >
         {STARTING_POINTS.map((point) => (
           <button
             key={point.id}
@@ -74,6 +88,7 @@ export function HomeConversationStarter() {
 
       {selected && (
         <div className="conversation-starter-form">
+          <p className="conversation-starter-heading">{selected.heading}</p>
           <p className="conversation-starter-description">{selected.description}</p>
           <LeadForm
             formId="home-conversation-request"
