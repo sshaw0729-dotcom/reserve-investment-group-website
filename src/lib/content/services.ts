@@ -107,9 +107,7 @@ export const SERVICES: ServiceContent[] = [
     ],
     relatedPersonaSlugs: ["high-net-worth-families", "corporate-executives"],
     relatedLocationSlugs: ["cleveland", "beachwood"],
-    faqs: [
-      { q: "Do you publish past performance figures?", a: "No. [PERFORMANCE CONTENT — DO NOT PUBLISH] We do not publish hypothetical, backtested, or past performance figures on this site." },
-    ],
+                faqs: [],
   },
   {
     assetId: "SVC-005",
