@@ -6,7 +6,18 @@
 // MISSING-INFORMATION-REGISTER.md #21). Rebuilt again 2026-08-11 (later
 // same day, per practice owner feedback) to restore the concept's hero
 // gradient/floating-card graphic, numbered process sections, and section
-// copy that the first pass had simplified away. All new section copy
+// copy that the first pass had simplified away. Reconciled again
+// 2026-08-11 against a newer Canva reference, "Reserve Investment Group —
+// Interactive Website Concept," per practice owner instruction to match
+// it exactly: refreshed hero/section copy, replaced the numbered process
+// cards' titles and descriptions, removed the separate four-pillar
+// "About Reserve Investment Group" section (not present in this concept),
+// and updated the "Why Reserve" and FAQ content. Per practice owner
+// decision, the "Do you provide tax or legal advice?" compliance
+// disclosure FAQ was dropped in favor of matching the concept's four
+// questions exactly. The site's real navigation (not the concept's
+// fictional simplified nav) and the LeadForm/submit-lead backend pipeline
+// are intentionally unchanged — see FORM-DATA-FLOW.md. All section copy
 // below mirrors the qualified, non-promissory language already used in
 // src/lib/content/services.ts and src/app/faq/page.tsx — no new claims
 // about returns, savings, or guaranteed outcomes. The three hero
@@ -56,59 +67,67 @@ const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
 
 // Compact three-step teaser strip that appears directly under the hero in
 // the Canva concept, ahead of the fuller numbered card section below.
+// Content confirmed unchanged against the newer "Interactive Website
+// Concept" reference (exact match, 2026-08-11).
 const HOME_MINI_STEPS = [
   { number: "01", label: "Start with what matters" },
   { number: "02", label: "Build a coordinated plan" },
   { number: "03", label: "Review and adapt" },
 ];
 
-// Numbered process cards. hrefs point at the real service pages (or the
-// schedule page for the third card, matching the Canva concept's "Start a
-// conversation" link) rather than the Canva prototype's placeholder hrefs.
+// Numbered process cards. Titles/descriptions match the "Interactive
+// Website Concept" Canva reference (2026-08-11); hrefs point at the real
+// service pages (or the schedule page for the third card, matching the
+// concept's "Start a conversation" link) rather than a Canva prototype
+// placeholder href.
 const HOME_PROCESS_CARDS = [
   {
     number: "01",
-    title: "Financial planning",
+    title: "Retirement & income",
     description:
-      "Explore financial planning topics and services that may be relevant to your goals and circumstances—including retirement, cash flow, major decisions, and the financial information that connects them.",
+      "Bring retirement timing, income needs, cash reserves, Social Security considerations, and investment strategy into one coordinated conversation.",
     linkLabel: "See the planning path",
     href: "/services/financial-planning/",
   },
   {
     number: "02",
-    title: "Wealth management",
+    title: "Investment strategy",
     description:
-      "Discuss how investments, liquidity, time horizon, risk considerations, and account structure may fit within your broader financial picture.",
+      "Build an investment approach around your goals, time horizon, risk comfort, liquidity needs, and the role each account plays.",
     linkLabel: "Explore your priorities",
     href: "/services/wealth-management/",
   },
   {
     number: "03",
-    title: "Business owners & changing priorities",
+    title: "Life transitions",
     description:
-      "Business decisions, retirement, career changes, family responsibilities, and other transitions can change which financial questions deserve attention next.",
+      "Retirement, career changes, business decisions, inheritance, or family responsibilities can reshape the plan. The strategy should evolve with you.",
     linkLabel: "Start a conversation",
     href: "/schedule/",
   },
 ];
 
-const HOME_ABOUT_ITEMS = [
-  { title: "Clarity", description: "Make the information easier to understand before making the decision." },
-  { title: "Preparedness", description: "Think through important questions before timing becomes urgent." },
-  { title: "Flexibility", description: "Recognize that goals, markets, work, family, and priorities can change." },
-  { title: "Options", description: "Understand tradeoffs so you can make a more informed choice." },
-];
-
+// "Why Reserve" pillars — replaces the earlier "About Reserve Investment
+// Group" four-pillar section (Clarity/Preparedness/Flexibility/Options),
+// which is not present in the "Interactive Website Concept" reference and
+// was removed 2026-08-11 per practice owner instruction to match it
+// exactly.
 const HOME_WHY_ITEMS = [
-  { title: "Understandable", description: "Clear language and organized financial information." },
-  { title: "Practical", description: "Focus on the decisions that are relevant to your goals and circumstances." },
-  { title: "Prepared", description: "Consider tradeoffs before a decision becomes urgent." },
-  { title: "Personal", description: "Begin with what matters to you." },
+  { title: "Understandable", description: "Clear language before financial jargon." },
+  { title: "Coordinated", description: "Decisions considered as part of the whole plan." },
+  { title: "Disciplined", description: "Long-term thinking over short-term noise." },
+  { title: "Personal", description: "A relationship built around your priorities." },
 ];
 
-// Question phrasing matches the approved Canva concept; answers reuse the
-// qualified language already established in src/app/faq/page.tsx rather
-// than introducing new claims.
+// Question phrasing matches the "Interactive Website Concept" Canva
+// reference (2026-08-11). The reference's prototype accordion did not
+// expose answer text (Canva's click-through prototype interactions
+// aren't visible outside Presentation mode, which did not render in this
+// session), so the two new answers reuse the qualified, non-promissory
+// language already established in src/app/faq/page.tsx rather than
+// introducing new claims. Per practice owner decision, the previous
+// "Do you provide tax or legal advice?" compliance-disclosure question
+// was dropped in favor of matching the reference's four questions exactly.
 const HOME_FAQS = [
   {
     q: "What happens in the first conversation?",
@@ -119,12 +138,12 @@ const HOME_FAQS = [
     a: "No. We help you organize the relevant financial information as part of the conversation—you don't need to have it organized in advance.",
   },
   {
-    q: "Do you provide tax or legal advice?",
-    a: "No. We coordinate with your tax and legal professionals where appropriate, but we do not provide tax or legal advice unless that authority is separately confirmed.",
+    q: "Is this only about investments?",
+    a: "No. While investment management is often part of the conversation, we also discuss retirement income, cash flow, major financial decisions, and how those pieces fit together—based on what's relevant to your goals and circumstances.",
   },
   {
-    q: "How do I know whether your services are a fit?",
-    a: "The best way to find out is an introductory conversation—we'll discuss your goals and situation, and you can decide whether it makes sense to move forward.",
+    q: "How do we know whether working together makes sense?",
+    a: "The best way to find out is an introductory conversation—we'll discuss your goals and situation, and you can decide together whether it makes sense to move forward.",
   },
 ];
 
@@ -134,8 +153,8 @@ export default function HomePage() {
       <JsonLd data={HOME_LOCAL_BUSINESS_SCHEMA} />
 
       <Hero
-        eyebrow="Clarity for the decisions that matter."
-        title="Make financial decisions feel more understandable."
+        eyebrow="Thoughtful guidance. Built around your life."
+        title="Plan with clarity. Invest with purpose."
         subhead="Financial planning and investment guidance should feel understandable, personal, and connected to what matters most to you—not built from a template."
         graphic={<HeroGraphic />}
       >
@@ -176,13 +195,12 @@ export default function HomePage() {
 
       <section className="home-section container">
         <div className="home-section-heading">
-          <p className="home-section-eyebrow">Financial planning should start with you</p>
-          <h2>A clearer way to organize the decisions in front of you.</h2>
+          <p className="home-section-eyebrow">Your life is not a template</p>
+          <h2>Advice should connect the pieces, not treat them separately.</h2>
           <p>
-            We begin by learning what matters to you and organizing the
-            financial information relevant to your goals. From there, we
-            discuss the areas that may deserve further attention based on
-            your goals and circumstances.
+            We organize complex decisions into a clearer framework so you
+            can understand where you are, what matters next, and how each
+            decision fits the larger picture.
           </p>
         </div>
         <div className="home-process-cards">
@@ -199,38 +217,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="home-section container">
-        <div className="home-section-heading">
-          <p className="home-section-eyebrow">About Reserve Investment Group</p>
-          <h2>Built to make financial decisions feel more understandable.</h2>
-          <p>
-            Reserve Investment Group is centered on clarity, practical
-            planning, preparedness, flexibility, resilience, and options. We
-            begin by learning what matters to you, organizing the financial
-            information relevant to your goals, and discussing areas that
-            may deserve further attention based on your goals and
-            circumstances.
-          </p>
-        </div>
-        <div className="home-feature-row">
-          {HOME_ABOUT_ITEMS.map((item) => (
-            <div className="home-feature-row-item" key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="home-approach" id="approach">
         <div className="container">
           <div className="home-section-heading">
-            <p className="home-section-eyebrow">Our approach</p>
-            <h2>Start with what matters. Organize what connects. Decide what comes next.</h2>
+            <p className="home-section-eyebrow">A clear planning experience</p>
+            <h2>Three conversations. One connected direction.</h2>
             <p>
-              A relationship-driven process designed to make the financial
-              information around your goals easier to understand and
-              discuss.
+              Inspired by the lowest-friction digital journeys in financial
+              services—but designed for a relationship-driven advisory
+              experience.
             </p>
           </div>
           <ApproachTabs />
@@ -239,6 +234,7 @@ export default function HomePage() {
 
       <section className="home-section container">
         <div className="home-section-heading">
+          <p className="home-section-eyebrow">Find your starting point</p>
           <h2>What financial decision is taking up the most space in your mind?</h2>
           <p>
             Select the closest fit. The page will tailor the next
@@ -251,7 +247,7 @@ export default function HomePage() {
       <section className="home-section container">
         <div className="home-section-heading">
           <p className="home-section-eyebrow">Why Reserve</p>
-          <h2>No hype. No predictions. No false certainty.</h2>
+          <h2>Institutional discipline. Personal conversation.</h2>
         </div>
         <div className="home-feature-row">
           {HOME_WHY_ITEMS.map((item) => (
@@ -283,11 +279,11 @@ export default function HomePage() {
       <section className="home-closing-cta">
         <span className="home-closing-cta-watermark" aria-hidden="true">R</span>
         <div className="container">
+          <p className="home-section-eyebrow">A conversation can create clarity</p>
           <h2>Start with the decision that matters most.</h2>
           <p>
-            Start with the financial question, decision, or transition that
-            matters most to you. We can begin there and discuss what
-            information may be relevant next.
+            You do not need to solve everything before reaching out.
+            Bring the question. We&rsquo;ll start there.
           </p>
           <CTAStrip label="Schedule a Conversation" href="/schedule/" />
         </div>
