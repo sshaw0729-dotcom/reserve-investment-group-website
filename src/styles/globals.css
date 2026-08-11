@@ -393,6 +393,7 @@ table {
 .home-closing-cta { position: relative; background: var(--color-primary); padding-block: var(--space-16); text-align: center; overflow: hidden; }
 .home-closing-cta h2 { color: #fff; }
 .home-closing-cta p { color: var(--color-text-inverse-muted); font-size: var(--font-size-lg); max-width: 60ch; margin-inline: auto; }
+.home-closing-cta .home-section-eyebrow { color: var(--color-accent); margin-bottom: var(--space-2); }
 .home-closing-cta .cta-strip { position: relative; z-index: 1; display: flex; justify-content: center; }
 .home-closing-cta .btn-primary { background: var(--color-accent); }
 .home-closing-cta .btn-primary:hover { background: var(--color-accent-hover); }
