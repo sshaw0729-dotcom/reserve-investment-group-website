@@ -87,7 +87,7 @@ export function HomeConversationStarter() {
       </div>
 
       {selected && (
-        <div className="conversation-starter-form">
+        <div key={selected.id} className="conversation-starter-form">
           <p className="conversation-starter-heading">{selected.heading}</p>
           <p className="conversation-starter-description">{selected.description}</p>
           <LeadForm
