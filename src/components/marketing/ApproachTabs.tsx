@@ -94,6 +94,7 @@ export function ApproachTabs() {
         ))}
       </div>
       <div
+        key={active.id}
         className="approach-tab-panel"
         role="tabpanel"
         id={`approach-panel-${active.id}`}
