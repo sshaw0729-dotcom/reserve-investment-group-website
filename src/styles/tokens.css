@@ -1,28 +1,34 @@
 /**
  * Design tokens — single source of truth for spacing, type, color, and
  * layout. Do not hard-code values that duplicate these in components;
- * reference the variables. Palette values below are neutral placeholders
- * pending brand-standard confirmation (MISSING-INFORMATION-REGISTER.md
- * item #21) — swap them, don't add parallel ad hoc colors.
+ * reference the variables. Palette and type reflect the approved brand
+ * direction (Canva "Conversion Website v2" concept, confirmed by the
+ * practice owner 2026-08-11) — see MISSING-INFORMATION-REGISTER.md item
+ * #21, now resolved.
  */
 
 :root {
-  /* Color — neutral, calm, professional placeholder palette */
-  --color-bg: #ffffff;
-  --color-bg-muted: #f6f7f8;
+  /* Color */
+  --color-bg: #f6f1e6;
+  --color-bg-muted: #efe7d4;
   --color-text: #1c2430;
-  --color-text-muted: #4b5563;
-  --color-primary: #1e3a5f;
-  --color-primary-hover: #16293f;
-  --color-accent: #2f6f4e;
-  --color-border: #d8dde3;
-  --color-focus-ring: #2f6f4e;
+  --color-text-muted: #5b6472;
+  --color-primary: #14213d;
+  --color-primary-hover: #0d1730;
+  --color-accent: #c79a45;
+  --color-accent-hover: #ad8339;
+  --color-border: #e1d9c7;
+  --color-focus-ring: #c79a45;
   --color-error: #b3261e;
   --color-success: #2f6f4e;
-  --color-disclosure-bg: #f0f2f4;
+  --color-disclosure-bg: #efe7d4;
+  --color-bg-inverse: #101a2e;
+  --color-text-inverse: #f3efe3;
+  --color-text-inverse-muted: #b9c2d1;
 
   /* Typography */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -66,4 +72,5 @@
 }
 
 /* Breakpoints (reference only — used in component media queries) */
-/* xs: 320px  sm: 375px  md: 430px  lg: 768px  xl: 1024px  2xl: 1280px  3xl: 1440px */
+/* xs: 320px sm: 375px md: 430px lg: 768px xl: 1024px 2xl: 1280px 3xl: 1440px */
+
