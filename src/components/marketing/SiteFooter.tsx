@@ -1,11 +1,5 @@
 import { DisclosureBlock } from "./DisclosureBlock";
 
-/**
- * Site-wide footer. Disclosure language reflects Reserve Investment Group,
- * Inc.'s confirmed regulatory status (not a registered investment adviser or
- * broker-dealer). See DISCLOSURE-INVENTORY.md. Do not remove the
- * DisclosureBlock.
- */
 export function SiteFooter() {
   return (
     <footer className="site-footer container">
