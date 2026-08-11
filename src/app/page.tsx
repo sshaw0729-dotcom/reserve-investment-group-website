@@ -1,16 +1,22 @@
 // Home — wired to the design-system components. Practice owner approved
 // publication and instructed removal of the pre-launch banner 2026-08-08
 // (see MISSING-INFORMATION-REGISTER.md, COMPLIANCE-PACKAGE-TEMPLATE.md
-// asset CORE-001). Layout and visual language rebuilt 2026-08-11 to
-// match the approved Canva "Conversion Website v2" concept (see
-// MISSING-INFORMATION-REGISTER.md #21). All new section copy below
-// mirrors the qualified, non-promissory language already used in
+// asset CORE-001). Layout and visual language rebuilt 2026-08-11 to match
+// the approved Canva "Conversion Website v2" concept (see
+// MISSING-INFORMATION-REGISTER.md #21). Rebuilt again 2026-08-11 (later
+// same day, per practice owner feedback) to restore the concept's hero
+// gradient/floating-card graphic, numbered process sections, and section
+// copy that the first pass had simplified away. All new section copy
+// below mirrors the qualified, non-promissory language already used in
 // src/lib/content/services.ts and src/app/faq/page.tsx — no new claims
-// about returns, savings, or guaranteed outcomes.
+// about returns, savings, or guaranteed outcomes. The three hero
+// floating-card phrases ("Clarity first," "Your priorities," "Long-term
+// focus") are qualitative value statements with no numeric or factual
+// claims, so they carry the same compliance posture as the value-pillar
+// copy elsewhere on this page.
 
 import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
-import { CardGrid } from "../components/marketing/CardGrid";
 import { ApproachTabs } from "../components/marketing/ApproachTabs";
 import { HomeConversationStarter } from "../components/marketing/HomeConversationStarter";
 import { AccordionItem } from "../components/ui/Accordion";
@@ -47,65 +53,112 @@ const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
   areaServed: ["South Euclid", "Cleveland", "Cleveland Heights", "Shaker Heights", "Beachwood", "Solon", "Willoughby", "Mentor"],
 });
 
-const VALUE_PILLARS = [
-  {
-    title: "Coordinated, not siloed",
-    description:
-      "Your investments, planning, and goals are considered together, rather than as separate, disconnected decisions.",
-  },
-  {
-    title: "Built around your goals",
-    description:
-      "We start with what you're working toward, then help you organize the pieces of your financial life around it.",
-  },
-  {
-    title: "An ongoing relationship",
-    description:
-      "Designed to check in and adjust as your circumstances, goals, and the broader environment change over time.",
-  },
+// Compact three-step teaser strip that appears directly under the hero in
+// the Canva concept, ahead of the fuller numbered card section below.
+const HOME_MINI_STEPS = [
+  { number: "01", label: "Start with what matters" },
+  { number: "02", label: "Build a coordinated plan" },
+  { number: "03", label: "Review and adapt" },
 ];
 
-// Titles, descriptions, and hrefs pulled directly from the approved
-// src/lib/content/services.ts entries (metaDescription copy) rather than
-// newly written — keeps homepage service claims identical to the
-// already-reviewed service pages.
-const HOME_SERVICES = [
+// Numbered process cards. hrefs point at the real service pages (or the
+// schedule page for the third card, matching the Canva concept's "Start a
+// conversation" link) rather than the Canva prototype's placeholder hrefs.
+const HOME_PROCESS_CARDS = [
   {
-    title: "Financial Planning",
+    number: "01",
+    title: "Financial planning",
     description:
-      "Financial planning designed to help organize your goals and current financial picture into a coordinated plan.",
+      "Explore financial planning topics and services that may be relevant to your goals and circumstances—including retirement, cash flow, major decisions, and the financial information that connects them.",
+    linkLabel: "See the planning path",
     href: "/services/financial-planning/",
   },
   {
-    title: "Wealth Management",
+    number: "02",
+    title: "Wealth management",
     description:
-      "Ongoing coordination of your financial decisions as circumstances, goals, and markets change.",
+      "Discuss how investments, liquidity, time horizon, risk considerations, and account structure may fit within your broader financial picture.",
+    linkLabel: "Explore your priorities",
     href: "/services/wealth-management/",
   },
   {
-    title: "Business-Owner Planning",
+    number: "03",
+    title: "Business owners & changing priorities",
     description:
-      "Planning considerations that balance business and personal financial decisions.",
-    href: "/services/business-owner-planning/",
+      "Business decisions, retirement, career changes, family responsibilities, and other transitions can change which financial questions deserve attention next.",
+    linkLabel: "Start a conversation",
+    href: "/schedule/",
   },
 ];
 
-// Reused verbatim from src/app/faq/page.tsx (approved copy) rather than
-// duplicated with new wording.
+const HOME_ABOUT_ITEMS = [
+  { title: "Clarity", description: "Make the information easier to understand before making the decision." },
+  { title: "Preparedness", description: "Think through important questions before timing becomes urgent." },
+  { title: "Flexibility", description: "Recognize that goals, markets, work, family, and priorities can change." },
+  { title: "Options", description: "Understand tradeoffs so you can make a more informed choice." },
+];
+
+const HOME_WHY_ITEMS = [
+  { title: "Understandable", description: "Clear language and organized financial information." },
+  { title: "Practical", description: "Focus on the decisions that are relevant to your goals and circumstances." },
+  { title: "Prepared", description: "Consider tradeoffs before a decision becomes urgent." },
+  { title: "Personal", description: "Begin with what matters to you." },
+];
+
+// Question phrasing matches the approved Canva concept; answers reuse the
+// qualified language already established in src/app/faq/page.tsx rather
+// than introducing new claims.
 const HOME_FAQS = [
   {
-    q: "What does an introductory conversation involve?",
+    q: "What happens in the first conversation?",
     a: "It's a no-obligation discussion about your goals and current planning so we can determine whether working together makes sense.",
+  },
+  {
+    q: "Do I need to have everything organized first?",
+    a: "No. We help you organize the relevant financial information as part of the conversation—you don't need to have it organized in advance.",
   },
   {
     q: "Do you provide tax or legal advice?",
     a: "No. We coordinate with your tax and legal professionals where appropriate, but we do not provide tax or legal advice unless that authority is separately confirmed.",
   },
   {
-    q: "Is the complimentary financial review a full financial plan?",
-    a: "No. It's an introductory discussion and does not constitute a complete financial plan.",
+    q: "How do I know whether your services are a fit?",
+    a: "The best way to find out is an introductory conversation—we'll discuss your goals and situation, and you can decide whether it makes sense to move forward.",
   },
 ];
+
+// Decorative gradient orb + three floating value-prop cards from the hero
+// of the approved Canva concept. Purely qualitative copy (no numeric or
+// factual claims), so no compliance sign-off is required beyond the
+// qualified-language convention already used sitewide.
+function HeroGraphic() {
+  return (
+    <div className="hero-orb">
+      <div className="hero-orb-shape" aria-hidden="true" />
+      <div className="hero-float-card hero-float-card-1">
+        <p className="hero-float-card-title">Clarity first</p>
+        <p className="hero-float-card-item">
+          <span className="hero-float-card-dot" aria-hidden="true" />
+          Understand the whole picture
+        </p>
+      </div>
+      <div className="hero-float-card hero-float-card-2">
+        <p className="hero-float-card-title">Your priorities</p>
+        <p className="hero-float-card-item">
+          <span className="hero-float-card-dot" aria-hidden="true" />
+          Plan around real life
+        </p>
+      </div>
+      <div className="hero-float-card hero-float-card-3">
+        <p className="hero-float-card-title">Long-term focus</p>
+        <p className="hero-float-card-item">
+          <span className="hero-float-card-dot" aria-hidden="true" />
+          Decisions with perspective
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -113,48 +166,104 @@ export default function HomePage() {
       <JsonLd data={HOME_LOCAL_BUSINESS_SCHEMA} />
 
       <Hero
-        eyebrow="Reserve Investment Group, Inc"
-        title="Financial planning built around your goals"
-        subhead="We help individuals, families, and business owners identify financial inefficiencies, address unmanaged risks, and coordinate their financial decisions around the goals that matter to them."
+        eyebrow="Clarity for the decisions that matter."
+        title="Make financial decisions feel more understandable."
+        subhead="Financial planning and investment guidance should feel understandable, personal, and connected to what matters most to you—not built from a template."
+        graphic={<HeroGraphic />}
       >
         <div className="home-hero-cta-row">
           <a href="/schedule/" className="btn btn-primary">
-            Schedule an introductory conversation
+            Schedule a Private Conversation <span aria-hidden="true">→</span>
           </a>
           <a href="#approach" className="btn btn-secondary">
-            See how we work
+            Explore Our Approach
           </a>
         </div>
+        <ul className="home-hero-trust-row">
+          <li>
+            <span aria-hidden="true">✓</span> No-pressure first conversation
+          </li>
+          <li>
+            <span aria-hidden="true">✓</span> Clear next steps
+          </li>
+          <li>
+            <span aria-hidden="true">✓</span> Personalized guidance
+          </li>
+        </ul>
       </Hero>
 
       <section className="home-section container">
-        <div className="home-pillars">
-          {VALUE_PILLARS.map((pillar) => (
-            <div className="home-pillar" key={pillar.title}>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.description}</p>
+        <div className="home-mini-steps">
+          <p className="home-mini-steps-lead">A more personal way to think about your financial life.</p>
+          <div className="home-mini-steps-list">
+            {HOME_MINI_STEPS.map((step) => (
+              <div key={step.number}>
+                <p className="home-mini-step-number">{step.number}</p>
+                <p className="home-mini-step-label">{step.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section container">
+        <div className="home-section-heading">
+          <p className="home-section-eyebrow">Financial planning should start with you</p>
+          <h2>A clearer way to organize the decisions in front of you.</h2>
+          <p>
+            We begin by learning what matters to you and organizing the
+            financial information relevant to your goals. From there, we
+            discuss the areas that may deserve further attention based on
+            your goals and circumstances.
+          </p>
+        </div>
+        <div className="home-process-cards">
+          {HOME_PROCESS_CARDS.map((card) => (
+            <div className="home-process-card" key={card.number}>
+              <p className="home-process-card-number">{card.number}</p>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <a href={card.href}>
+                {card.linkLabel} <span aria-hidden="true">→</span>
+              </a>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="home-section home-services container">
+      <section className="home-section container">
         <div className="home-section-heading">
-          <p className="home-section-eyebrow">What we help with</p>
-          <h2>Planning built around how you actually live</h2>
+          <p className="home-section-eyebrow">About Reserve Investment Group</p>
+          <h2>Built to make financial decisions feel more understandable.</h2>
           <p>
-            A few of the areas we most often help clients organize. See the
-            full list of services for more detail.
+            Reserve Investment Group is centered on clarity, practical
+            planning, preparedness, flexibility, resilience, and options. We
+            begin by learning what matters to you, organizing the financial
+            information relevant to your goals, and discussing areas that
+            may deserve further attention based on your goals and
+            circumstances.
           </p>
         </div>
-        <CardGrid items={HOME_SERVICES} />
+        <div className="home-feature-row">
+          {HOME_ABOUT_ITEMS.map((item) => (
+            <div className="home-feature-row-item" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="home-approach" id="approach">
         <div className="container">
           <div className="home-section-heading">
             <p className="home-section-eyebrow">Our approach</p>
-            <h2>How we work together</h2>
+            <h2>Start with what matters. Organize what connects. Decide what comes next.</h2>
+            <p>
+              A relationship-driven process designed to make the financial
+              information around your goals easier to understand and
+              discuss.
+            </p>
           </div>
           <ApproachTabs />
         </div>
@@ -162,20 +271,34 @@ export default function HomePage() {
 
       <section className="home-section container">
         <div className="home-section-heading">
-          <p className="home-section-eyebrow">Get started</p>
-          <h2>What&apos;s on your mind?</h2>
+          <h2>What financial decision is taking up the most space in your mind?</h2>
           <p>
-            Tell us where you&apos;re starting from, and we&apos;ll follow up
-            to schedule an introductory conversation.
+            Select the closest fit. The page will tailor the next
+            step—without asking you for information first.
           </p>
         </div>
         <HomeConversationStarter />
       </section>
 
+      <section className="home-section container">
+        <div className="home-section-heading">
+          <p className="home-section-eyebrow">Why Reserve</p>
+          <h2>No hype. No predictions. No false certainty.</h2>
+        </div>
+        <div className="home-feature-row">
+          {HOME_WHY_ITEMS.map((item) => (
+            <div className="home-feature-row-item" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="home-section home-faq container">
         <div className="home-section-heading">
           <p className="home-section-eyebrow">Common questions</p>
-          <h2>Frequently asked questions</h2>
+          <h2>Before we talk.</h2>
         </div>
         <div className="accordion">
           {HOME_FAQS.map((item) => (
@@ -192,14 +315,16 @@ export default function HomePage() {
       <section className="home-closing-cta">
         <span className="home-closing-cta-watermark" aria-hidden="true">R</span>
         <div className="container">
-          <h2>Ready to talk through your financial picture?</h2>
+          <h2>Start with the decision that matters most.</h2>
           <p>
-            Schedule a no-obligation introductory conversation to see whether
-            working together makes sense.
+            Start with the financial question, decision, or transition that
+            matters most to you. We can begin there and discuss what
+            information may be relevant next.
           </p>
-          <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
+          <CTAStrip label="Schedule a Conversation" href="/schedule/" />
         </div>
       </section>
     </main>
   );
 }
+

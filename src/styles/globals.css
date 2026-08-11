@@ -70,9 +70,53 @@ table {
 
 /* Hero / CTA (shared with the WHTML build in Webflow) */
 .hero { padding-block: var(--space-16) var(--space-8); }
-.hero-eyebrow { color: var(--color-text-muted); font-weight: 600; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--space-2); }
+.hero-content { max-width: 60ch; }
+@media (min-width: 900px) {
+  .hero-with-graphic { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--space-12); align-items: center; }
+  .hero-with-graphic .hero-content { max-width: none; }
+}
+.hero-eyebrow { color: var(--color-accent-hover); font-weight: 600; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--space-2); }
 .hero-subhead { font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 60ch; }
 .cta-strip { padding-block: var(--space-4) var(--space-8); }
+
+/* Hero graphic — gradient orb + floating cards, matching the approved
+   Canva "Conversion Website v2" hero treatment. Decorative on small
+   screens (hidden below 900px) since the layout has no room for it once
+   the two-column grid collapses. */
+.hero-graphic { position: relative; display: none; min-height: 440px; }
+@media (min-width: 900px) { .hero-graphic { display: block; } }
+.hero-orb { position: relative; width: 100%; height: 100%; min-height: 440px; }
+.hero-orb-shape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f7ecd8 45%, #ecd9b4 100%);
+  box-shadow: 0 40px 80px rgba(199, 154, 69, 0.18);
+}
+.hero-float-card {
+  position: absolute;
+  max-width: 230px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: 0 20px 40px rgba(20, 33, 61, 0.16);
+}
+.hero-float-card-title { font-family: var(--font-serif); font-size: var(--font-size-lg); color: var(--color-text); margin: 0 0 var(--space-2); }
+.hero-float-card-item { display: flex; align-items: center; gap: var(--space-2); margin: 0; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.hero-float-card-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+.hero-float-card-1 { top: 4%; left: -2%; }
+.hero-float-card-2 { top: 44%; right: -6%; }
+.hero-float-card-3 { top: 72%; left: 6%; }
+
+/* Home hero CTA row + trust row */
+.home-hero-cta-row { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-6); }
+.home-hero-trust-row { display: flex; gap: var(--space-2) var(--space-6); flex-wrap: wrap; margin-top: var(--space-6); padding: 0; list-style: none; }
+.home-hero-trust-row li { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.home-hero-trust-row li span { color: var(--color-accent); font-weight: 700; }
 
 /* Approach steps */
 .approach-steps { list-style: decimal; padding-left: var(--space-6); display: flex; flex-direction: column; gap: var(--space-6); }
@@ -98,6 +142,7 @@ table {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   min-height: var(--touch-target-min);
   padding: var(--space-2) var(--space-6);
   border-radius: var(--radius-sm);
@@ -204,33 +249,78 @@ table {
 /* Homepage (Canva "Conversion Website v2" rebuild, approved 2026-08-11 —
    see MISSING-INFORMATION-REGISTER.md #21). Section-specific styles for
    src/app/page.tsx; kept in globals.css to match the existing single-
-   stylesheet pattern used for site-header/site-footer above. */
-.home-hero-cta-row { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-6); }
-
+   stylesheet pattern used for site-header/site-footer above. Revised
+   later the same day to restore the concept's numbered process sections
+   and richer "Our Approach" step panels. */
 .home-section { padding-block: var(--space-12); }
 .home-section-eyebrow { color: var(--color-accent-hover); font-weight: 600; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2); }
 .home-section-heading { max-width: 60ch; margin-bottom: var(--space-8); }
 .home-section-heading p { color: var(--color-text-muted); font-size: var(--font-size-lg); }
 
-/* Value pillars */
-.home-pillars { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
-@media (min-width: 768px) { .home-pillars { grid-template-columns: repeat(3, 1fr); } }
-.home-pillar { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); background: #fff; }
+/* Compact "01 / 02 / 03" teaser strip directly under the hero */
+.home-mini-steps { display: flex; flex-direction: column; gap: var(--space-8); border-top: 1px solid var(--color-border); padding-top: var(--space-8); }
+@media (min-width: 900px) { .home-mini-steps { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: var(--space-12); } }
+.home-mini-steps-lead { font-family: var(--font-serif); font-size: var(--font-size-2xl); max-width: 22ch; margin: 0; flex-shrink: 0; }
+.home-mini-steps-list { display: flex; flex-direction: column; gap: var(--space-6); flex: 1; }
+@media (min-width: 640px) { .home-mini-steps-list { flex-direction: row; } }
+.home-mini-step-number { font-family: var(--font-serif); font-size: var(--font-size-xl); font-weight: 700; color: var(--color-text); margin: 0 0 var(--space-1); }
+.home-mini-step-label { color: var(--color-text-muted); margin: 0; }
 
-/* Services */
-.home-services .card-grid { padding-block: 0; }
+/* Numbered process cards ("A clearer way to organize...") */
+.home-process-cards { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 900px) { .home-process-cards { grid-template-columns: repeat(3, 1fr); } }
+.home-process-card { background: #fff; border-radius: var(--radius-lg); padding: var(--space-8) var(--space-6); box-shadow: 0 20px 40px rgba(20, 33, 61, 0.08); display: flex; flex-direction: column; }
+.home-process-card-number { font-family: var(--font-serif); font-size: var(--font-size-2xl); color: var(--color-accent); margin: 0 0 var(--space-4); }
+.home-process-card h3 { margin: 0 0 var(--space-3); font-size: var(--font-size-xl); }
+.home-process-card p { color: var(--color-text-muted); flex: 1; margin: 0 0 var(--space-4); }
+.home-process-card a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+.home-process-card a:hover { text-decoration: underline; }
+
+/* Four-column feature row, reused for the "About" and "Why Reserve"
+   sections — matches the divider-line list treatment in the Canva
+   concept (no card border/background, just a top rule). */
+.home-feature-row { display: grid; grid-template-columns: 1fr; gap: var(--space-8); margin-top: var(--space-8); }
+@media (min-width: 768px) { .home-feature-row { grid-template-columns: repeat(4, 1fr); } }
+.home-feature-row-item { border-top: 1px solid var(--color-border); padding-top: var(--space-6); }
+.home-feature-row-item h3 { font-size: var(--font-size-xl); margin: 0 0 var(--space-2); }
+.home-feature-row-item p { color: var(--color-text-muted); margin: 0; }
 
 /* Our Approach (dark section + tabs) */
 .home-approach { background: var(--color-bg-inverse); padding-block: var(--space-16); }
 .home-approach .home-section-eyebrow { color: var(--color-accent); }
-.home-approach h2 { color: var(--color-text-inverse); }
+.home-approach h2 { color: var(--color-text-inverse); max-width: 22ch; }
 .home-approach .home-section-heading p { color: var(--color-text-inverse-muted); }
-.approach-tabs-list { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-8); border-bottom: 1px solid rgba(243, 239, 227, 0.2); }
-.approach-tab { background: none; border: none; color: var(--color-text-inverse-muted); font-size: var(--font-size-base); font-weight: 600; padding: var(--space-3) var(--space-2); cursor: pointer; min-height: var(--touch-target-min); border-bottom: 3px solid transparent; }
-.approach-tab-active { color: var(--color-text-inverse); border-bottom-color: var(--color-accent); }
-.approach-tab-panel { max-width: 60ch; }
-.approach-tab-panel h3 { color: var(--color-text-inverse); margin-top: 0; }
-.approach-tab-panel p { color: var(--color-text-inverse-muted); font-size: var(--font-size-lg); }
+
+.approach-tabs { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 900px) { .approach-tabs { grid-template-columns: 300px 1fr; align-items: start; } }
+
+.approach-tabs-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.approach-tab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-align: left;
+  background: rgba(243, 239, 227, 0.03);
+  border: 1px solid rgba(243, 239, 227, 0.15);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  min-height: var(--touch-target-min);
+  transition: border-color var(--motion-duration) var(--motion-easing), background-color var(--motion-duration) var(--motion-easing);
+}
+.approach-tab:hover { border-color: rgba(199, 154, 69, 0.4); }
+.approach-tab-active { background: rgba(243, 239, 227, 0.06); border-color: var(--color-accent); }
+.approach-tab-label { color: var(--color-accent); font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.approach-tab-title { color: var(--color-text-inverse); font-family: var(--font-serif); font-size: var(--font-size-xl); }
+
+.approach-tab-panel { background: rgba(0, 0, 0, 0.18); border: 1px solid rgba(243, 239, 227, 0.1); border-radius: var(--radius-lg); padding: var(--space-8); }
+.approach-tab-step { color: var(--color-accent); font-weight: 700; font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 var(--space-2); }
+.approach-tab-panel h3 { color: var(--color-text-inverse); margin-top: 0; font-size: var(--font-size-3xl); }
+.approach-tab-panel > p { color: var(--color-text-inverse-muted); font-size: var(--font-size-lg); max-width: 55ch; }
+.approach-tab-bullets { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+@media (min-width: 640px) { .approach-tab-bullets { grid-template-columns: repeat(2, 1fr); } }
+.approach-tab-bullet { display: flex; align-items: center; gap: var(--space-2); background: rgba(243, 239, 227, 0.06); border-radius: var(--radius-sm); padding: var(--space-3) var(--space-4); color: var(--color-text-inverse); font-size: var(--font-size-base); }
+.approach-tab-bullet::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
 
 /* Conversation starter */
 .conversation-starter-options { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
@@ -239,6 +329,7 @@ table {
 .conversation-starter-option:hover { border-color: var(--color-accent); }
 .conversation-starter-option-active { border-color: var(--color-primary); background: var(--color-bg-muted); }
 .conversation-starter-form { margin-top: var(--space-8); border-top: 1px solid var(--color-border); padding-top: var(--space-8); }
+.conversation-starter-heading { font-family: var(--font-serif); font-size: var(--font-size-xl); color: var(--color-text); margin: 0 0 var(--space-2); }
 .conversation-starter-description { font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 60ch; margin-bottom: var(--space-2); }
 
 /* Closing CTA band */
