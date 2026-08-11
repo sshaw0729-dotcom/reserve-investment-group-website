@@ -9,12 +9,15 @@ import { DisclosureBlock } from "./DisclosureBlock";
 export function SiteFooter() {
   return (
     <footer className="site-footer container">
-      <nav aria-label="Legal">
-        <a href="/disclosures/">Form CRS &amp; Disclosures</a>
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/terms/">Terms of Use</a>
-        <a href="/accessibility/">Accessibility Statement</a>
-      </nav>
+      <div className="site-footer-top">
+        <p className="site-footer-brand">Reserve Investment Group, Inc.</p>
+        <nav aria-label="Legal">
+          <a href="/disclosures/">Form CRS &amp; Disclosures</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Use</a>
+          <a href="/accessibility/">Accessibility Statement</a>
+        </nav>
+      </div>
       <DisclosureBlock>
         Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. Insurance products, where offered, are provided under state insurance license number 1293258.
         This website is for informational purposes and does not constitute
