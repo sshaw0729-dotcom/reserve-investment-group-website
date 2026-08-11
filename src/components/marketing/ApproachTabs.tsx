@@ -33,6 +33,8 @@ const TABS: Tab[] = [
   },
 ];
 
+const DEFAULT_TAB: Tab = TABS[0]!;
+
 /**
  * Homepage "Our Approach" tabs (Understand / Organize / Act & adapt),
  * matching the approved Canva "Conversion Website v2" concept. Content
@@ -40,8 +42,8 @@ const TABS: Tab[] = [
  * src/lib/content/services.ts — no claims about returns or outcomes.
  */
 export function ApproachTabs() {
-  const [activeId, setActiveId] = useState(TABS[0].id);
-  const active = TABS.find((tab) => tab.id === activeId) ?? TABS[0];
+  const [activeId, setActiveId] = useState(DEFAULT_TAB.id);
+  const active = TABS.find((tab) => tab.id === activeId) ?? DEFAULT_TAB;
 
   return (
     <div className="approach-tabs">
