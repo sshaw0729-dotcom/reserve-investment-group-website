@@ -200,7 +200,17 @@ table {
    in the approved "Production Website Package v2026-08-09-v1" prototype
    (see WEBSITE-PROTOTYPE-REFERENCE.md). Per practice owner instruction,
    only the visual treatment changed — the real multi-page navigation
-   (NAV_ITEMS in SiteHeader.tsx) was intentionally left as-is. */
+   (NAV_ITEMS in SiteHeader.tsx) was intentionally left as-is. Mobile
+   breakpoint added later the same day: the initial restyle set
+   `.site-header-nav` to an unconditional `display: flex`, which — being
+   an author rule with a class selector — beat the `[hidden]` UA
+   stylesheet rule at every viewport width, so the nav never actually
+   collapsed on small screens and the disclosure toggle button
+   (SiteHeader.tsx's mobileOpen state) had no way to show itself. Below
+   now gates the desktop flex layout behind the same 900px breakpoint
+   already used elsewhere on this page (hero-with-graphic, mini-steps,
+   approach-tabs), and gives the toggle button and the open/closed nav
+   states real mobile styling instead of `display: none`. */
 .site-header {
   position: sticky;
   top: var(--space-4);
@@ -226,11 +236,48 @@ table {
   text-decoration: none;
   letter-spacing: 0.01em;
 }
-.site-header-nav { display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: center; flex: 1 1 auto; justify-content: flex-end; }
+.site-header-nav { gap: var(--space-6); flex-wrap: wrap; align-items: center; flex: 1 1 auto; justify-content: flex-end; }
 .site-header-nav ul { list-style: none; display: flex; gap: var(--space-6); padding: 0; margin: 0; flex-wrap: wrap; }
 .site-header-nav a { color: var(--color-text-muted); text-decoration: none; font-size: var(--font-size-sm); font-weight: 600; min-height: var(--touch-target-min); display: inline-flex; align-items: center; transition: color var(--motion-duration) var(--motion-easing); }
 .site-header-nav a:hover { color: var(--color-accent-hover); }
-.site-header-toggle { display: none; }
+.site-header-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target-min);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--motion-duration) var(--motion-easing), color var(--motion-duration) var(--motion-easing);
+}
+.site-header-toggle:hover { border-color: var(--color-accent); color: var(--color-accent-hover); }
+@media (min-width: 900px) {
+  .site-header-nav { display: flex; }
+}
+@media (max-width: 899px) {
+  .site-header { padding: var(--space-3) var(--space-4); }
+  .site-header-toggle { display: inline-flex; }
+  .site-header-nav[hidden] { display: none; }
+  .site-header-nav:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    flex-basis: 100%;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .site-header-nav ul { flex-direction: column; gap: var(--space-1); }
+  .site-header-nav a { width: 100%; }
+  .site-header-nav .site-header-cta { width: 100%; }
+}
 .site-header-cta {
   display: inline-flex;
   align-items: center;
