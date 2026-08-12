@@ -54,13 +54,9 @@ const STARTING_POINTS: StartingPoint[] = [
 /**
  * Homepage "what's on your mind" branching selector, matching the
  * approved Canva "Conversion Website v2" concept. Selecting a starting
- * point reveals a "Suggested starting point" eyebrow (added 2026-08-11 to
- * match the newer "Interactive Website Concept" Canva reference), a short
- * heading, qualifier, and the standard LeadForm with areaOfInterest
- * pre-set — reuses the existing LeadForm/submit-lead pipeline
- * (FORM-DATA-FLOW.md); no new backend logic. The reference's own form
- * mockup (name/email/phone/goal fields) is a static prototype
- * representation only and is not used to redesign this component.
+ * point reveals a short heading, qualifier, and the standard LeadForm with
+ * areaOfInterest pre-set — reuses the existing LeadForm/submit-lead
+ * pipeline (FORM-DATA-FLOW.md); no new backend logic.
  */
 export function HomeConversationStarter() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -92,7 +88,6 @@ export function HomeConversationStarter() {
 
       {selected && (
         <div key={selected.id} className="conversation-starter-form">
-          <p className="home-section-eyebrow">Suggested starting point</p>
           <p className="conversation-starter-heading">{selected.heading}</p>
           <p className="conversation-starter-description">{selected.description}</p>
           <LeadForm
