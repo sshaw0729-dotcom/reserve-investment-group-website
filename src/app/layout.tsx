@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "../styles/globals.css";
+import "../styles/production-parity.css";
 import "../components/ui/button.css";
 import { SiteHeader } from "../components/marketing/SiteHeader";
 import { SiteFooter } from "../components/marketing/SiteFooter";
