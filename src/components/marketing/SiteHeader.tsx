@@ -43,7 +43,7 @@ export function SiteHeader() {
           ))}
         </ul>
         <a href="/schedule/" className="site-header-cta">
-          Schedule a Conversation
+          Schedule an introductory conversation
         </a>
       </nav>
     </header>
