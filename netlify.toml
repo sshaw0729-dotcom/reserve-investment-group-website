@@ -16,6 +16,7 @@
                                 Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 
 # Production redeploy trigger after PR #18; no runtime behavior change.
+# Second production redeploy trigger after auto-publish was unlocked; no runtime behavior change.
 # Redirects for the old reserveinvestmentgroup.com site. Old-site URLs were
 # identified via search-engine cache (Wayback Machine is not reachable from
 # this environment); this is a best-effort list, not a full crawl. See
