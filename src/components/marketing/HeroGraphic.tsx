@@ -3,12 +3,10 @@
 import { useRef } from "react";
 
 /**
- * Decorative gradient orb + three floating value-prop cards from the hero
- * of the approved Canva concept. Adds the concept's "3-D" feel via a
- * mouse-parallax tilt (desktop pointer only — touch/pen pointers are
- * ignored) and a slow idle float on each card. Purely presentational, no
- * data fetching. Motion is skipped entirely for prefers-reduced-motion via
- * the media query in globals.css.
+ * Premium hero composition: dominant RIG monogram, warm orb and three
+ * floating value cards. The visual treatment mirrors the approved
+ * production visual master while keeping motion pointer-only and
+ * reduced-motion friendly.
  */
 export function HeroGraphic() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -21,7 +19,7 @@ export function HeroGraphic() {
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     el.style.setProperty("--tilt-x", `${(y * -8).toFixed(2)}deg`);
-    el.style.setProperty("--tilt-y", `${(x * 8).toFixed(2)}deg`);
+    el.style.setProperty("--tilt-y", `${(x * 10).toFixed(2)}deg`);
     el.style.setProperty("--shift-x", `${(x * 16).toFixed(2)}px`);
     el.style.setProperty("--shift-y", `${(y * 16).toFixed(2)}px`);
   }
@@ -41,28 +39,26 @@ export function HeroGraphic() {
       className="hero-orb"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
+      aria-label="Reserve Investment Group monogram with planning themes"
+      role="img"
     >
       <div className="hero-orb-shape" aria-hidden="true" />
+      <div className="hero-rig-mark" aria-hidden="true">
+        <span className="hero-rig-mark-shadow">R</span>
+        <span className="hero-rig-mark-face">R</span>
+        <span className="hero-rig-mark-caption">RIG</span>
+      </div>
       <div className="hero-float-card hero-float-card-1">
         <p className="hero-float-card-title">Clarity first</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Understand the whole picture
-        </p>
+        <p className="hero-float-card-item"><span className="hero-float-card-dot" aria-hidden="true" />Understand the whole picture</p>
       </div>
       <div className="hero-float-card hero-float-card-2">
         <p className="hero-float-card-title">Your priorities</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Plan around real life
-        </p>
+        <p className="hero-float-card-item"><span className="hero-float-card-dot" aria-hidden="true" />Plan around real life</p>
       </div>
       <div className="hero-float-card hero-float-card-3">
         <p className="hero-float-card-title">Long-term focus</p>
-        <p className="hero-float-card-item">
-          <span className="hero-float-card-dot" aria-hidden="true" />
-          Decisions with perspective
-        </p>
+        <p className="hero-float-card-item"><span className="hero-float-card-dot" aria-hidden="true" />Decisions with perspective</p>
       </div>
     </div>
   );
