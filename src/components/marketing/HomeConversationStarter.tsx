@@ -11,53 +11,41 @@ type StartingPoint = {
   areaOfInterest: string;
 };
 
-// Matches the four starting points shown in the approved Canva
-// "Conversion Website v2" prototype. The prototype only exposed the
-// "I'm preparing to retire" option's revealed copy ("Retirement
-// readiness") in its default state; the other three follow the same
-// qualified, non-promissory language already used across the site.
 const STARTING_POINTS: StartingPoint[] = [
   {
     id: "preparing-to-retire",
-    label: "I'm preparing to retire",
+    label: "Preparing for retirement",
     heading: "Retirement readiness",
     description:
-      "Start by clarifying timing, desired lifestyle, income sources, cash reserves, and how the investment portfolio needs to support the transition.",
+      "Start by clarifying timing, desired lifestyle, income sources, cash reserves, and how your investment portfolio may need to support the transition.",
     areaOfInterest: "retirement-planning",
   },
   {
     id: "investment-strategy",
-    label: "I need an investment strategy",
+    label: "Organizing investments",
     heading: "Investment strategy",
     description:
-      "We'll discuss your goals, time horizon, and risk considerations, and how your investments might fit within your broader financial picture.",
+      "Discuss your goals, time horizon, risk considerations, liquidity, and how investments may fit within your broader financial picture.",
     areaOfInterest: "wealth-management",
   },
   {
     id: "idle-cash",
-    label: "I have too much cash sitting idle",
-    heading: "Idle cash",
+    label: "Cash & liquidity",
+    heading: "Cash and liquidity",
     description:
-      "We'll talk through your liquidity needs, upcoming plans, and options for putting extra cash to work toward your goals.",
+      "Consider liquidity needs, upcoming plans, time horizon, and the role excess cash or maturing CDs may play within your broader financial picture.",
     areaOfInterest: "wealth-management",
   },
   {
     id: "life-or-work-changing",
-    label: "Life or work is changing",
-    heading: "Life and work transitions",
+    label: "Business or life transition",
+    heading: "Changing priorities",
     description:
-      "We'll discuss how a change in income, career, or family circumstances might affect your financial plan and priorities.",
+      "A change in work, business, income, or family circumstances can be a natural time to revisit how your financial decisions fit together.",
     areaOfInterest: "financial-planning",
   },
 ];
 
-/**
- * Homepage "what's on your mind" branching selector, matching the
- * approved Canva "Conversion Website v2" concept. Selecting a starting
- * point reveals a short heading, qualifier, and the standard LeadForm with
- * areaOfInterest pre-set — reuses the existing LeadForm/submit-lead
- * pipeline (FORM-DATA-FLOW.md); no new backend logic.
- */
 export function HomeConversationStarter() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = STARTING_POINTS.find((point) => point.id === selectedId) ?? null;
@@ -67,9 +55,9 @@ export function HomeConversationStarter() {
       <div
         className="conversation-starter-options"
         role="group"
-        aria-label="What financial decision is taking up the most space in your mind?"
+        aria-label="Choose the financial topic closest to what is on your mind"
       >
-        {STARTING_POINTS.map((point) => (
+        {STARTING_POINTS.map((point, index) => (
           <button
             key={point.id}
             type="button"
@@ -81,19 +69,26 @@ export function HomeConversationStarter() {
             aria-pressed={point.id === selectedId}
             onClick={() => setSelectedId(point.id)}
           >
-            {point.label}
+            <span className="conversation-starter-option-number" aria-hidden="true">0{index + 1}</span>
+            <span>{point.label}</span>
           </button>
         ))}
       </div>
 
       {selected && (
         <div key={selected.id} className="conversation-starter-form">
-          <p className="conversation-starter-heading">{selected.heading}</p>
-          <p className="conversation-starter-description">{selected.description}</p>
+          <div className="conversation-starter-form-copy">
+            <p className="conversation-starter-kicker">A useful place to start</p>
+            <p className="conversation-starter-heading">{selected.heading}</p>
+            <p className="conversation-starter-description">{selected.description}</p>
+            <p className="conversation-starter-description">Share your name and email and a member of our team can follow up about an introductory conversation.</p>
+          </div>
           <LeadForm
             formId="home-conversation-request"
             pageSlug="/"
             areaOfInterestDefault={selected.areaOfInterest}
+            variant="compact"
+            submitLabel="Request an introductory conversation"
           />
         </div>
       )}
