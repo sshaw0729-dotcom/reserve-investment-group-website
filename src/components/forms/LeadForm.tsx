@@ -8,14 +8,17 @@ type LeadFormProps = {
   areaOfInterestDefault?: string;
   downloadHref?: string;
   downloadLabel?: string;
+  variant?: "full" | "compact";
+  submitLabel?: string;
 };
 
 type FieldErrors = Partial<Record<"firstName" | "lastName" | "email" | "consent", string>>;
 
-export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref, downloadLabel }: LeadFormProps) {
+export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref, downloadLabel, variant = "full", submitLabel }: LeadFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
   const startedRef = useRef(false);
+  const compact = variant === "compact";
 
   function handleFocus() {
     if (!startedRef.current) {
@@ -57,7 +60,7 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
           email,
           phone: formData.get("phone") ?? "",
           areaOfInterest: formData.get("areaOfInterest") ?? "",
-          preferredContactMethod: formData.get("preferredContactMethod") ?? "",
+          preferredContactMethod: formData.get("preferredContactMethod") ?? "email",
           consent,
           formId,
           pageSlug,
@@ -92,7 +95,7 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
   }
 
   return (
-    <form onSubmit={handleSubmit} onFocus={handleFocus} noValidate className="lead-form">
+    <form onSubmit={handleSubmit} onFocus={handleFocus} noValidate className={compact ? "lead-form lead-form-compact" : "lead-form"}>
       <p className="lead-form-privacy-notice">
         Do not submit confidential account information, Social Security
         numbers, passwords, tax documents, investment statements, or other
@@ -122,30 +125,39 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
         {errors.email && <span id={`${formId}-email-error`} className="form-error">{errors.email}</span>}
       </div>
 
-      <div className="form-field">
-        <label htmlFor={`${formId}-phone`}>Phone (optional)</label>
-        <input id={`${formId}-phone`} name="phone" type="tel" autoComplete="tel" />
-      </div>
+      {compact ? (
+        <>
+          <input type="hidden" name="areaOfInterest" value={areaOfInterestDefault ?? ""} />
+          <input type="hidden" name="preferredContactMethod" value="email" />
+        </>
+      ) : (
+        <>
+          <div className="form-field">
+            <label htmlFor={`${formId}-phone`}>Phone (optional)</label>
+            <input id={`${formId}-phone`} name="phone" type="tel" autoComplete="tel" />
+          </div>
 
-      <div className="form-field">
-        <label htmlFor={`${formId}-areaOfInterest`}>General area of interest</label>
-        <select id={`${formId}-areaOfInterest`} name="areaOfInterest" defaultValue={areaOfInterestDefault ?? ""}>
-          <option value="">Select one</option>
-          <option value="financial-planning">Financial Planning</option>
-          <option value="retirement-planning">Retirement Planning</option>
-          <option value="business-owner-planning">Business Owner Planning</option>
-          <option value="wealth-management">Wealth Management</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
+          <div className="form-field">
+            <label htmlFor={`${formId}-areaOfInterest`}>General area of interest</label>
+            <select id={`${formId}-areaOfInterest`} name="areaOfInterest" defaultValue={areaOfInterestDefault ?? ""}>
+              <option value="">Select one</option>
+              <option value="financial-planning">Financial Planning</option>
+              <option value="retirement-planning">Retirement Planning</option>
+              <option value="business-owner-planning">Business Owner Planning</option>
+              <option value="wealth-management">Wealth Management</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-      <div className="form-field">
-        <label htmlFor={`${formId}-preferredContactMethod`}>Preferred contact method</label>
-        <select id={`${formId}-preferredContactMethod`} name="preferredContactMethod" defaultValue="email">
-          <option value="email">Email</option>
-          <option value="phone">Phone</option>
-        </select>
-      </div>
+          <div className="form-field">
+            <label htmlFor={`${formId}-preferredContactMethod`}>Preferred contact method</label>
+            <select id={`${formId}-preferredContactMethod`} name="preferredContactMethod" defaultValue="email">
+              <option value="email">Email</option>
+              <option value="phone">Phone</option>
+            </select>
+          </div>
+        </>
+      )}
 
       <div className="form-field form-field-checkbox">
         <input id={`${formId}-consent`} name="consent" type="checkbox" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? `${formId}-consent-error` : undefined} />
@@ -156,7 +168,7 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === "submitting"}>
-        {status === "submitting" ? "Submitting…" : "Submit"}
+        {status === "submitting" ? "Submitting…" : (submitLabel ?? "Submit")}
       </button>
 
       {status === "error" && <p role="alert" className="form-error">Something went wrong. Please try again, or contact us directly.</p>}
