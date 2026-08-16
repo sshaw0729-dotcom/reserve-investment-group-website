@@ -17,9 +17,6 @@ const PRERENDER_MANIFEST = join(process.cwd(), ".next", "prerender-manifest.json
 const CONTENT_MANIFEST = join(process.cwd(), "CONTENT-MANIFEST.csv");
 const APPROVAL_OVERLAY = join(process.cwd(), "CONTENT-MANIFEST-APPROVALS.csv");
 
-// Minimal RFC4180-ish CSV parser: handles quoted fields, embedded commas,
-// and doubled-quote escaping (two double-quotes become one). This is
-// scoped to parsing these known files, not a general-purpose library.
 function parseCsv(text) {
     const rows = [];
     let row = [];
@@ -82,11 +79,12 @@ function normalizeRoute(route) {
     return route.endsWith("/") ? route : route + "/";
 }
 
-// Generated technical files and framework error routes, not marketing
-// pages -- they don't need compliance content or manifest sign-off.
+// Generated technical files, metadata assets, and framework error routes,
+// not visitor-facing marketing pages requiring page-level content approval.
 const NON_PAGE_ROUTES = new Set([
     "/robots.txt/",
     "/sitemap.xml/",
+    "/opengraph-image/",
     "/_global-error/",
     "/_not-found/",
 ]);
