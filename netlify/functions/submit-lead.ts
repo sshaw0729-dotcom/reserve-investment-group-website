@@ -1,4 +1,4 @@
-import type { Handler, Config } from "@netlify/functions";
+import type { Handler } from "@netlify/functions";
 import { createHmac } from "node:crypto";
 import {
   folkFindPersonByEmail,
@@ -157,13 +157,4 @@ export const handler: Handler = async (event) => {
   } catch {
     return { statusCode: 400, body: JSON.stringify({ ok: false }) };
   }
-};
-
-export const config: Config = {
-  path: "/.netlify/functions/submit-lead",
-  rateLimit: {
-    windowLimit: 10,
-    windowSize: 60,
-    aggregateBy: ["ip", "domain"],
-  },
 };
