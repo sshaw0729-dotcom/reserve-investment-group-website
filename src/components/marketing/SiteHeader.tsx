@@ -23,8 +23,11 @@ export function SiteHeader() {
 
   return (
     <header className="site-header container">
-      <Link href="/" className="site-header-logo">
-        Reserve Investment Group, Inc
+      <Link href="/" className="site-header-logo" aria-label="Reserve Investment Group, Inc. home">
+        <span className="site-brand-mark" aria-hidden="true">
+          <span className="site-brand-r">R</span><span className="site-brand-i">I</span><span className="site-brand-g">G</span>
+        </span>
+        <span className="site-brand-name">Reserve Investment Group, Inc.</span>
       </Link>
       <button
         type="button"
