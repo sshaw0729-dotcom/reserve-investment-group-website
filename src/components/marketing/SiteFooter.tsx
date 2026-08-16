@@ -1,15 +1,21 @@
+import Link from "next/link";
 import { DisclosureBlock } from "./DisclosureBlock";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer container">
       <div className="site-footer-top">
-        <p className="site-footer-brand">Reserve Investment Group, Inc.</p>
+        <Link href="/" className="site-footer-brand" aria-label="Reserve Investment Group, Inc. home">
+          <span className="site-brand-mark site-brand-mark-footer" aria-hidden="true">
+            <span className="site-brand-r">R</span><span className="site-brand-i">I</span><span className="site-brand-g">G</span>
+          </span>
+          <span>Reserve Investment Group, Inc.</span>
+        </Link>
         <nav aria-label="Legal">
-          <a href="/disclosures/">Form CRS &amp; Disclosures</a>
-          <a href="/privacy/">Privacy Policy</a>
-          <a href="/terms/">Terms of Use</a>
-          <a href="/accessibility/">Accessibility Statement</a>
+          <Link href="/disclosures/">Form CRS &amp; Disclosures</Link>
+          <Link href="/privacy/">Privacy Policy</Link>
+          <Link href="/terms/">Terms of Use</Link>
+          <Link href="/accessibility/">Accessibility Statement</Link>
         </nav>
       </div>
       <DisclosureBlock>
