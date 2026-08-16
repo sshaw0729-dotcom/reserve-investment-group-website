@@ -4,16 +4,22 @@
 // `next build` -- it reads .next/prerender-manifest.json, the
 // authoritative list of statically generated routes Next.js itself
 // produces during the build, rather than guessing at file layout.
+//
+// Explicit page-level approvals that must not overwrite the historical
+// manifest are recorded in CONTENT-MANIFEST-APPROVALS.csv. That file is
+// treated as a narrow approval overlay and must include a non-empty
+// approval reference and approval date for every route it clears.
 
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const PRERENDER_MANIFEST = join(process.cwd(), ".next", "prerender-manifest.json");
 const CONTENT_MANIFEST = join(process.cwd(), "CONTENT-MANIFEST.csv");
+const APPROVAL_OVERLAY = join(process.cwd(), "CONTENT-MANIFEST-APPROVALS.csv");
 
 // Minimal RFC4180-ish CSV parser: handles quoted fields, embedded commas,
 // and doubled-quote escaping (two double-quotes become one). This is
-// scoped to parsing this one known file, not a general-purpose library.
+// scoped to parsing these known files, not a general-purpose library.
 function parseCsv(text) {
     const rows = [];
     let row = [];
@@ -105,6 +111,48 @@ for (const row of dataRows) {
     if (url) manifestByUrl.set(url, status);
 }
 
+if (existsSync(APPROVAL_OVERLAY)) {
+    const approvalRows = parseCsv(readFileSync(APPROVAL_OVERLAY, "utf8"));
+    const approvalHeader = approvalRows[0] || [];
+    const approvalUrlIndex = approvalHeader.indexOf("url");
+    const approvalStatusIndex = approvalHeader.indexOf("status");
+    const approvalReferenceIndex = approvalHeader.indexOf("approval_reference");
+    const approvalDateIndex = approvalHeader.indexOf("approval_date");
+
+    if (
+        approvalUrlIndex === -1 ||
+        approvalStatusIndex === -1 ||
+        approvalReferenceIndex === -1 ||
+        approvalDateIndex === -1
+    ) {
+        console.error(
+            "check:compliance-manifest: CONTENT-MANIFEST-APPROVALS.csv must include url, status, approval_reference, and approval_date columns."
+        );
+        process.exit(1);
+    }
+
+    for (const row of approvalRows.slice(1)) {
+        const url = (row[approvalUrlIndex] || "").trim();
+        const status = (row[approvalStatusIndex] || "").trim();
+        const approvalReference = (row[approvalReferenceIndex] || "").trim();
+        const approvalDate = (row[approvalDateIndex] || "").trim();
+        if (!url) continue;
+        if (!approvalReference || !approvalDate) {
+            console.error(
+                "check:compliance-manifest: approval overlay row for " + url + " lacks an approval reference or approval date."
+            );
+            process.exit(1);
+        }
+        if (!/^production approved/i.test(status)) {
+            console.error(
+                "check:compliance-manifest: approval overlay row for " + url + " is not Production approved."
+            );
+            process.exit(1);
+        }
+        manifestByUrl.set(url, status);
+    }
+}
+
 const missing = [];
 const notApproved = [];
 
@@ -119,7 +167,7 @@ for (const route of requiredRoutes) {
 
 if (missing.length > 0 || notApproved.length > 0) {
     console.error(
-          "check:compliance-manifest: not every page targeting production has a Production-approved row in CONTENT-MANIFEST.csv:\n"
+          "check:compliance-manifest: not every page targeting production has a Production-approved row in CONTENT-MANIFEST.csv or an explicit approval overlay:\n"
         );
     if (missing.length > 0) {
           console.error("  No manifest row at all:");
@@ -134,12 +182,12 @@ if (missing.length > 0 || notApproved.length > 0) {
           }
     }
     console.error(
-          "\n" + (missing.length + notApproved.length) + " page(s) not cleared for production. Update CONTENT-MANIFEST.csv once each page has real compliance sign-off."
+          "\n" + (missing.length + notApproved.length) + " page(s) not cleared for production. Record real page-level sign-off before clearing the gate."
         );
     process.exit(1);
 }
 
 console.log(
-    "check:compliance-manifest: all " + requiredRoutes.length + " statically built page(s) have a Production-approved row in CONTENT-MANIFEST.csv."
+    "check:compliance-manifest: all " + requiredRoutes.length + " statically built page(s) have a Production-approved manifest or explicit page-level approval record."
   );
 process.exit(0);
