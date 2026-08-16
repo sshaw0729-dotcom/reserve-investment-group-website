@@ -1,4 +1,4 @@
-import type { Handler } from "@netlify/functions";
+import type { Handler, Config } from "@netlify/functions";
 import { createHmac } from "node:crypto";
 import {
   folkFindPersonByEmail,
@@ -69,8 +69,6 @@ export const handler: Handler = async (event) => {
       if (field in raw) submission[field] = raw[field];
     }
 
-    // Honeypot: bots commonly fill hidden fields. Return success so the
-    // endpoint does not reveal the spam rule, but do not forward anything.
     const website = cleanString(submission.website, 200);
     if (website) {
       console.log("[submit-lead] rejected honeypot submission");
@@ -159,4 +157,13 @@ export const handler: Handler = async (event) => {
   } catch {
     return { statusCode: 400, body: JSON.stringify({ ok: false }) };
   }
+};
+
+export const config: Config = {
+  path: "/.netlify/functions/submit-lead",
+  rateLimit: {
+    windowLimit: 10,
+    windowSize: 60,
+    aggregateBy: ["ip", "domain"],
+  },
 };
