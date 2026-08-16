@@ -25,12 +25,14 @@
 // claims, so they carry the same compliance posture as the value-pillar
 // copy elsewhere on this page.
 
+import Image from "next/image";
 import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
 import { ApproachTabs } from "../components/marketing/ApproachTabs";
 import { HomeConversationStarter } from "../components/marketing/HomeConversationStarter";
 import { HeroGraphic } from "../components/marketing/HeroGraphic";
 import { AccordionItem } from "../components/ui/Accordion";
+import { referenceRigArtwork } from "../lib/brand/referenceRigArtwork";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
 import type { Metadata } from "next";
 
@@ -273,7 +275,15 @@ export default function HomePage() {
       </section>
 
       <section className="home-closing-cta">
-        <span className="home-closing-cta-watermark" aria-hidden="true">R</span>
+        <Image
+          className="home-closing-cta-watermark"
+          src={referenceRigArtwork}
+          alt=""
+          width={335}
+          height={315}
+          unoptimized
+          aria-hidden="true"
+        />
         <div className="container">
           <h2>Start with the decision that matters most.</h2>
           <p>
