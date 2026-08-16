@@ -1,6 +1,8 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { referenceRigArtwork } from "../../lib/brand/referenceRigArtwork";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about/" },
@@ -25,7 +27,14 @@ export function SiteHeader() {
     <header className="site-header container">
       <Link href="/" className="site-header-logo" aria-label="Reserve Investment Group, Inc. home">
         <span className="site-brand-mark" aria-hidden="true">
-          <span className="site-brand-r">R</span><span className="site-brand-i">I</span><span className="site-brand-g">G</span>
+          <Image
+            className="site-brand-mark-image"
+            src={referenceRigArtwork}
+            alt=""
+            width={335}
+            height={315}
+            unoptimized
+          />
         </span>
         <span className="site-brand-name">Reserve Investment Group, Inc.</span>
       </Link>
