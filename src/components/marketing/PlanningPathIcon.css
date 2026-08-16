@@ -1,4 +1,4 @@
-.home-process-icon {
+.planning-path-icon {
   position: relative;
   width: 48px;
   height: 48px;
@@ -10,33 +10,33 @@
   place-items: center;
 }
 
-.home-process-icon svg {
+.planning-path-icon svg {
   width: 34px;
   height: 34px;
   overflow: visible;
 }
 
-.home-process-icon-navy,
-.home-process-icon-gold {
+.planning-path-icon-navy,
+.planning-path-icon-gold {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.home-process-icon-navy {
+.planning-path-icon-navy {
   stroke: #12233f;
   stroke-width: 1.8;
 }
 
-.home-process-icon-gold {
+.planning-path-icon-gold {
   stroke: #d1b46a;
   stroke-width: 2;
 }
 
-.home-process-icon-gold-fill {
+.planning-path-icon-gold-fill {
   fill: #d1b46a;
 }
 
-.home-process-icon-navy-fill {
+.planning-path-icon-navy-fill {
   fill: #12233f;
 }
