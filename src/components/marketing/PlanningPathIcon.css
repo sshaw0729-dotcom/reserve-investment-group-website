@@ -1,0 +1,42 @@
+.home-process-icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(185,150,77,.28);
+  background: rgba(209,180,106,.08);
+  display: grid;
+  place-items: center;
+}
+
+.home-process-icon svg {
+  width: 34px;
+  height: 34px;
+  overflow: visible;
+}
+
+.home-process-icon-navy,
+.home-process-icon-gold {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.home-process-icon-navy {
+  stroke: #12233f;
+  stroke-width: 1.8;
+}
+
+.home-process-icon-gold {
+  stroke: #d1b46a;
+  stroke-width: 2;
+}
+
+.home-process-icon-gold-fill {
+  fill: #d1b46a;
+}
+
+.home-process-icon-navy-fill {
+  fill: #12233f;
+}
