@@ -1,0 +1,4 @@
+asset_id,page_title,url,reviewer,approval_reference,approval_date,status
+CORE-013,Terms of Use,/terms/,Practice Owner,CHATGPT-APPROVAL-2026-08-15,2026-08-15,"Production approved -- explicit page-level approval granted by the practice owner on 2026-08-15 in ChatGPT for the current production Terms of Use."
+CORE-012,Privacy Policy,/privacy/,Practice Owner,CHATGPT-APPROVAL-2026-08-15,2026-08-15,"Production approved -- explicit page-level approval granted by the practice owner on 2026-08-15 in ChatGPT for the current production Privacy Policy."
+CORE-014,Accessibility Statement,/accessibility/,Practice Owner,CHATGPT-APPROVAL-2026-08-15,2026-08-15,"Production approved -- explicit page-level approval granted by the practice owner on 2026-08-15 in ChatGPT for the current production Accessibility Statement."
