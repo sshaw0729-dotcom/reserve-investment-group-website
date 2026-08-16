@@ -32,6 +32,7 @@ import { HomeConversationStarter } from "../components/marketing/HomeConversatio
 import { HeroGraphic } from "../components/marketing/HeroGraphic";
 import { AccordionItem } from "../components/ui/Accordion";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -273,7 +274,7 @@ export default function HomePage() {
       </section>
 
       <section className="home-closing-cta">
-        <span className="home-closing-cta-watermark" aria-hidden="true">R</span>
+        <Image src="/brand/rig-3d.png" alt="" width={335} height={315} className="home-closing-cta-watermark" aria-hidden="true" />
         <div className="container">
           <h2>Start with the decision that matters most.</h2>
           <p>
