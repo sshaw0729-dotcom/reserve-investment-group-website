@@ -1,6 +1,7 @@
 // COMBO-002 — Wealth Management for Business Owners in Greater Cleveland.
 // Validated "Build (Wave 1)" recommendation. Dual parent: Wealth
 // Management (service) + Business Owners (persona).
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../../components/marketing/CTAStrip";
@@ -43,15 +44,15 @@ export default function BusinessOwnerCombinedPage() {
         </ul>
         <h2>Related reading</h2>
         <ul>
-          <li><a href="/services/wealth-management/">Wealth Management</a></li>
-          <li><a href="/services/business-succession-planning/">Business Succession Planning</a></li>
-          <li><a href="/who-we-help/business-owners/">Business Owners</a></li>
+          <li><Link href="/services/wealth-management/">Wealth Management</Link></li>
+          <li><Link href="/services/business-succession-planning/">Business Succession Planning</Link></li>
+          <li><Link href="/who-we-help/business-owners/">Business Owners</Link></li>
         </ul>
       </section>
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
         business owners; individual circumstances vary. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
-        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
+        <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary financial review" href="/business-owner-financial-review/" />
     </main>
