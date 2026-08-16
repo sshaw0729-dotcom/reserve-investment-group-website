@@ -82,9 +82,14 @@ function normalizeRoute(route) {
     return route.endsWith("/") ? route : route + "/";
 }
 
-// Generated technical files, not marketing pages -- they don't need
-// compliance content or manifest sign-off.
-const NON_PAGE_ROUTES = new Set(["/robots.txt/", "/sitemap.xml/"]);
+// Generated technical files and framework error routes, not marketing
+// pages -- they don't need compliance content or manifest sign-off.
+const NON_PAGE_ROUTES = new Set([
+    "/robots.txt/",
+    "/sitemap.xml/",
+    "/_global-error/",
+    "/_not-found/",
+]);
 
 const requiredRoutes = Array.from(new Set(staticRoutes.map(normalizeRoute))).filter(
         function (route) {
