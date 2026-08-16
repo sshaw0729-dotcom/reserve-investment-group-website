@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
+import { referenceRigArtwork } from "../../lib/brand/referenceRigArtwork";
 
 /**
  * Premium hero composition: dimensional RIG monogram, warm orb and three
@@ -42,9 +44,14 @@ export function HeroGraphic() {
     >
       <div className="hero-orb-shape" aria-hidden="true" />
       <div className="hero-rig-mark" aria-hidden="true">
-        <span className="hero-rig-letter hero-rig-r">R</span>
-        <span className="hero-rig-letter hero-rig-i">I</span>
-        <span className="hero-rig-letter hero-rig-g">G</span>
+        <Image
+          className="hero-rig-mark-image"
+          src={referenceRigArtwork}
+          alt=""
+          width={335}
+          height={315}
+          unoptimized
+        />
       </div>
       <div className="hero-float-card hero-float-card-1">
         <p className="hero-float-card-title">Clarity first</p>
