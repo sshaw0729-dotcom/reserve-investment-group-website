@@ -4,6 +4,7 @@ import { CTAStrip } from "../components/marketing/CTAStrip";
 import { ApproachTabs } from "../components/marketing/ApproachTabs";
 import { HomeConversationStarter } from "../components/marketing/HomeConversationStarter";
 import { HeroGraphic } from "../components/marketing/HeroGraphic";
+import { PlanningPathIcon } from "../components/marketing/PlanningPathIcon";
 import { AccordionItem } from "../components/ui/Accordion";
 import { referenceRigArtwork } from "../lib/brand/referenceRigArtwork";
 import { JsonLd, localBusinessJsonLd } from "../lib/seo/jsonld";
@@ -45,7 +46,7 @@ const HOME_MINI_STEPS = [
 const HOME_PROCESS_CARDS = [
   {
     number: "01",
-    icon: "plan",
+    icon: "plan" as const,
     title: "Financial planning",
     description:
       "Explore financial planning topics and services that may be relevant to your goals and circumstances—including retirement, cash flow, major decisions, and the financial information that connects them.",
@@ -54,7 +55,7 @@ const HOME_PROCESS_CARDS = [
   },
   {
     number: "02",
-    icon: "wealth",
+    icon: "wealth" as const,
     title: "Wealth management",
     description:
       "Discuss how investments, liquidity, time horizon, risk considerations, and account structure may fit within your broader financial picture.",
@@ -63,7 +64,7 @@ const HOME_PROCESS_CARDS = [
   },
   {
     number: "03",
-    icon: "change",
+    icon: "change" as const,
     title: "Business owners & changing priorities",
     description:
       "Business decisions, retirement, career changes, family responsibilities, and other transitions can change which financial questions deserve attention next.",
@@ -170,7 +171,7 @@ export default function HomePage() {
         <div className="home-process-cards">
           {HOME_PROCESS_CARDS.map((card) => (
             <div className="home-process-card" key={card.number}>
-              <div className={`home-process-icon home-process-icon-${card.icon}`} aria-hidden="true"><span /></div>
+              <PlanningPathIcon type={card.icon} />
               <p className="home-process-card-number">{card.number}</p>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
