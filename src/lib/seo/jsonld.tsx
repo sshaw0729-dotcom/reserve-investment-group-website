@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import type { Faq } from "../content/types";
 
 /**
@@ -33,8 +34,6 @@ export function breadcrumbJsonLd(items: { label: string; href: string }[], siteU
 }
 
 export function articleJsonLd(params: { headline: string; description: string; url: string; datePublished: string; dateModified: string; publisherName: string }) {
-  // Educational/informational article schema for Insights content-cluster
-  // pages. No author-credential claims, ratings, or performance figures.
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -47,14 +46,6 @@ export function articleJsonLd(params: { headline: string; description: string; u
   };
 }
 
-// LocalBusiness/FinancialService schema — LOCAL-SEO-OPERATIONS.md
-// Section 4. Deliberately requires the caller to supply real address
-// and telephone data; there is no default/placeholder NAP baked in
-// here. Do not call this with fabricated or approximate address data —
-// SEO-STRATEGY.md prohibits fabricated office locations in structured
-// data. As of 2026-08-06 no page in this codebase calls this function;
-// it is gated on MISSING-INFORMATION-REGISTER.md #14 (office/service
-// area) and #15 (phone number).
 export function localBusinessJsonLd(params: {
   name: string;
   description: string;
@@ -95,10 +86,8 @@ export function serviceJsonLd(params: { name: string; description: string; url: 
 
 export function JsonLd({ data }: { data: object | null }) {
   if (!data) return null;
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return createElement("script", {
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: { __html: JSON.stringify(data) },
+  });
 }
