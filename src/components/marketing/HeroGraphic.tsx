@@ -3,10 +3,8 @@
 import { useRef } from "react";
 
 /**
- * Premium hero composition: dominant RIG monogram, warm orb and three
- * floating value cards. The visual treatment mirrors the approved
- * production visual master while keeping motion pointer-only and
- * reduced-motion friendly.
+ * Premium hero composition: dimensional RIG monogram, warm orb and three
+ * floating value cards. Motion is pointer-only and reduced-motion friendly.
  */
 export function HeroGraphic() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -44,9 +42,9 @@ export function HeroGraphic() {
     >
       <div className="hero-orb-shape" aria-hidden="true" />
       <div className="hero-rig-mark" aria-hidden="true">
-        <span className="hero-rig-mark-shadow">R</span>
-        <span className="hero-rig-mark-face">R</span>
-        <span className="hero-rig-mark-caption">RIG</span>
+        <span className="hero-rig-letter hero-rig-r">R</span>
+        <span className="hero-rig-letter hero-rig-i">I</span>
+        <span className="hero-rig-letter hero-rig-g">G</span>
       </div>
       <div className="hero-float-card hero-float-card-1">
         <p className="hero-float-card-title">Clarity first</p>
