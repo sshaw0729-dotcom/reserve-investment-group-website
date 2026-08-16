@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 const NAV_ITEMS = [
@@ -22,9 +23,9 @@ export function SiteHeader() {
 
   return (
     <header className="site-header container">
-      <a href="/" className="site-header-logo">
+      <Link href="/" className="site-header-logo">
         Reserve Investment Group, Inc
-      </a>
+      </Link>
       <button
         type="button"
         className="site-header-toggle"
@@ -38,13 +39,13 @@ export function SiteHeader() {
         <ul>
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
-              <a href={item.href}>{item.label}</a>
+              <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
         </ul>
-        <a href="/schedule/" className="site-header-cta">
+        <Link href="/schedule/" className="site-header-cta">
           Schedule an introductory conversation
-        </a>
+        </Link>
       </nav>
     </header>
   );
