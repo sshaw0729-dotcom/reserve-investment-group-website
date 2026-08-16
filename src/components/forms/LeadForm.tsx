@@ -6,23 +6,12 @@ type LeadFormProps = {
   formId: string;
   pageSlug: string;
   areaOfInterestDefault?: string;
-  // Optional lead-magnet gate: when set, a download link/button appears
-  // after successful submission instead of just a thank-you message.
-  // downloadHref should point to a real file in /public — never gate a
-  // link that doesn't resolve. See MARKETING-ECOSYSTEM-BRIEF.md Section 5.
   downloadHref?: string;
   downloadLabel?: string;
 };
 
 type FieldErrors = Partial<Record<"firstName" | "lastName" | "email" | "consent", string>>;
 
-/**
- * Standard introductory lead form per FORM-DATA-FLOW.md: first/last name,
- * email, optional phone, area of interest, preferred contact method,
- * consent. Posts only these allowlisted fields to the Netlify Function.
- * Never collects account numbers, SSNs, or free-form confidential text.
- * No field values are ever sent to analytics — only form_id/page_slug.
- */
 export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref, downloadLabel }: LeadFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -70,12 +59,9 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
           areaOfInterest: formData.get("areaOfInterest") ?? "",
           preferredContactMethod: formData.get("preferredContactMethod") ?? "",
           consent,
-          // Metadata only, not a form field — needed server-side to route
-          // lead-magnet downloads into the matching nurture sequence
-          // (EMAIL-NURTURE-SEQUENCES.md). Same values already sent to
-          // PostHog via track() below, so this doesn't add new exposure.
           formId,
           pageSlug,
+          website: formData.get("website") ?? "",
         }),
       });
       if (!res.ok) throw new Error("submission failed");
@@ -113,55 +99,27 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
         sensitive information through this form.
       </p>
 
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor={`${formId}-website`}>Website</label>
+        <input id={`${formId}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="form-field">
         <label htmlFor={`${formId}-firstName`}>First name</label>
-        <input
-          id={`${formId}-firstName`}
-          name="firstName"
-          type="text"
-          autoComplete="given-name"
-          aria-invalid={Boolean(errors.firstName)}
-          aria-describedby={errors.firstName ? `${formId}-firstName-error` : undefined}
-        />
-        {errors.firstName && (
-          <span id={`${formId}-firstName-error`} className="form-error">
-            {errors.firstName}
-          </span>
-        )}
+        <input id={`${formId}-firstName`} name="firstName" type="text" autoComplete="given-name" aria-invalid={Boolean(errors.firstName)} aria-describedby={errors.firstName ? `${formId}-firstName-error` : undefined} />
+        {errors.firstName && <span id={`${formId}-firstName-error`} className="form-error">{errors.firstName}</span>}
       </div>
 
       <div className="form-field">
         <label htmlFor={`${formId}-lastName`}>Last name</label>
-        <input
-          id={`${formId}-lastName`}
-          name="lastName"
-          type="text"
-          autoComplete="family-name"
-          aria-invalid={Boolean(errors.lastName)}
-          aria-describedby={errors.lastName ? `${formId}-lastName-error` : undefined}
-        />
-        {errors.lastName && (
-          <span id={`${formId}-lastName-error`} className="form-error">
-            {errors.lastName}
-          </span>
-        )}
+        <input id={`${formId}-lastName`} name="lastName" type="text" autoComplete="family-name" aria-invalid={Boolean(errors.lastName)} aria-describedby={errors.lastName ? `${formId}-lastName-error` : undefined} />
+        {errors.lastName && <span id={`${formId}-lastName-error`} className="form-error">{errors.lastName}</span>}
       </div>
 
       <div className="form-field">
         <label htmlFor={`${formId}-email`}>Email</label>
-        <input
-          id={`${formId}-email`}
-          name="email"
-          type="email"
-          autoComplete="email"
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? `${formId}-email-error` : undefined}
-        />
-        {errors.email && (
-          <span id={`${formId}-email-error`} className="form-error">
-            {errors.email}
-          </span>
-        )}
+        <input id={`${formId}-email`} name="email" type="email" autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? `${formId}-email-error` : undefined} />
+        {errors.email && <span id={`${formId}-email-error`} className="form-error">{errors.email}</span>}
       </div>
 
       <div className="form-field">
@@ -190,34 +148,18 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
       </div>
 
       <div className="form-field form-field-checkbox">
-        <input
-          id={`${formId}-consent`}
-          name="consent"
-          type="checkbox"
-          aria-invalid={Boolean(errors.consent)}
-          aria-describedby={errors.consent ? `${formId}-consent-error` : undefined}
-        />
+        <input id={`${formId}-consent`} name="consent" type="checkbox" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? `${formId}-consent-error` : undefined} />
         <label htmlFor={`${formId}-consent`}>
-          I&apos;d like to be contacted about the services described on this
-          page. See our{" "}
-          <a href="/privacy/">Privacy Policy</a>.
+          I&apos;d like to be contacted about the services described on this page. See our <a href="/privacy/">Privacy Policy</a>.
         </label>
-        {errors.consent && (
-          <span id={`${formId}-consent-error`} className="form-error">
-            {errors.consent}
-          </span>
-        )}
+        {errors.consent && <span id={`${formId}-consent-error`} className="form-error">{errors.consent}</span>}
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === "submitting"}>
         {status === "submitting" ? "Submitting…" : "Submit"}
       </button>
 
-      {status === "error" && (
-        <p role="alert" className="form-error">
-          Something went wrong. Please try again, or contact us directly.
-        </p>
-      )}
+      {status === "error" && <p role="alert" className="form-error">Something went wrong. Please try again, or contact us directly.</p>}
     </form>
   );
 }
