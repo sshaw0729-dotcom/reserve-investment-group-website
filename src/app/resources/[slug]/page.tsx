@@ -2,6 +2,7 @@
 // src/lib/content/leadmagnets.ts. Each gates a real PDF checklist
 // (public/resources/{pdfFilename}) behind LeadForm. Educational framing
 // only — no promised outcomes. See MARKETING-ECOSYSTEM-BRIEF.md Section 5.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LEAD_MAGNETS } from "../../../lib/content/leadmagnets";
@@ -12,18 +13,22 @@ import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
 import { DisclosureBlock } from "../../../components/marketing/DisclosureBlock";
 import { LeadForm } from "../../../components/forms/LeadForm";
 
+type LeadMagnetPageProps = { params: Promise<{ slug: string }> };
+
 export function generateStaticParams() {
   return LEAD_MAGNETS.map((m) => ({ slug: m.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const magnet = LEAD_MAGNETS.find((m) => m.slug === params.slug);
+export async function generateMetadata({ params }: LeadMagnetPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const magnet = LEAD_MAGNETS.find((m) => m.slug === slug);
   if (!magnet) return {};
   return { title: magnet.title, description: magnet.metaDescription, alternates: { canonical: `/resources/${magnet.slug}/` } };
 }
 
-export default function LeadMagnetPage({ params }: { params: { slug: string } }) {
-  const magnet = LEAD_MAGNETS.find((m) => m.slug === params.slug);
+export default async function LeadMagnetPage({ params }: LeadMagnetPageProps) {
+  const { slug } = await params;
+  const magnet = LEAD_MAGNETS.find((m) => m.slug === slug);
   if (!magnet) return notFound();
 
   const relatedServices = SERVICES.filter((s) => magnet.relatedServiceSlugs.includes(s.slug));
@@ -69,7 +74,7 @@ export default function LeadMagnetPage({ params }: { params: { slug: string } })
             <ul>
               {relatedInsights.map((i) => (
                 <li key={i.slug}>
-                  <a href={`/insights/${i.slug}/`}>{i.title}</a>
+                  <Link href={`/insights/${i.slug}/`}>{i.title}</Link>
                 </li>
               ))}
             </ul>
@@ -82,7 +87,7 @@ export default function LeadMagnetPage({ params }: { params: { slug: string } })
             <ul>
               {relatedServices.map((s) => (
                 <li key={s.slug}>
-                  <a href={`/services/${s.slug}/`}>{s.title}</a>
+                  <Link href={`/services/${s.slug}/`}>{s.title}</Link>
                 </li>
               ))}
             </ul>
@@ -95,7 +100,7 @@ export default function LeadMagnetPage({ params }: { params: { slug: string } })
             <ul>
               {relatedPersonas.map((p) => (
                 <li key={p.slug}>
-                  <a href={`/who-we-help/${p.slug}/`}>{p.title}</a>
+                  <Link href={`/who-we-help/${p.slug}/`}>{p.title}</Link>
                 </li>
               ))}
             </ul>
@@ -108,7 +113,7 @@ export default function LeadMagnetPage({ params }: { params: { slug: string } })
         individualized investment, tax, or legal advice, is not a
         complete financial plan, and should not be relied on as the sole
         basis for any financial decision. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
-        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
+        <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for additional information.
       </DisclosureBlock>
     </main>
   );
