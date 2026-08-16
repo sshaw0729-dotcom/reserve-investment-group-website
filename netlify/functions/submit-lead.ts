@@ -9,14 +9,10 @@ import {
   FOLK_WEBSITE_LEADS_GROUP_ID,
 } from "./lib/folk";
 
-// Scaffold — server-side lead intake. Implements the flow in
-// FORM-DATA-FLOW.md. Do not log field values. Do not forward to PostHog.
-//
-// CRM destination resolved 2026-08-06 (MISSING-INFORMATION-REGISTER.md
-// #17, lead-magnet slice only): folk, into the practice's existing
-// "Website Leads" group. General (non-lead-magnet) contact-form routing
-// is intentionally left as-is for now — this only wires the forms that
-// need to trigger EMAIL-NURTURE-SEQUENCES.md.
+const MAX_BODY_BYTES = 16_384;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const AREA_VALUES = new Set(["", "financial-planning", "retirement-planning", "business-owner-planning", "wealth-management", "other"]);
+const CONTACT_METHOD_VALUES = new Set(["email", "phone"]);
 
 const ALLOWED_FIELDS = [
   "firstName",
@@ -28,69 +24,93 @@ const ALLOWED_FIELDS = [
   "consent",
   "formId",
   "pageSlug",
+  "website",
 ] as const;
 
-// formId → nurture sequence, matching EMAIL-NURTURE-SEQUENCES.md Section 2.
 const MAGNET_SEQUENCE_MAP: Record<string, { sequence: "A" | "B" | "C"; title: string }> = {
   "retirement-readiness-checklist": { sequence: "A", title: "Retirement Readiness Checklist" },
   "business-owner-planning-checklist": { sequence: "B", title: "Business-Owner Planning Checklist" },
   "equity-compensation-checklist": { sequence: "C", title: "Equity Compensation Checklist for Executives" },
 };
 
+function cleanString(value: unknown, max: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const cleaned = value.replace(/[\u0000-\u001F\u007F]/g, " ").trim();
+  if (cleaned.length > max) return undefined;
+  return cleaned;
+}
+
 function buildUnsubscribeUrl(email: string): string {
   const secret = process.env.UNSUBSCRIBE_SECRET;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://reserveinvestmentgroup.com";
-  if (!secret) return `${siteUrl}/contact/`; // fail open to a real page, never a broken link
+  if (!secret) return `${siteUrl}/contact/`;
   const token = createHmac("sha256", secret).update(email.toLowerCase().trim()).digest("hex");
   return `${siteUrl}/.netlify/functions/unsubscribe?email=${encodeURIComponent(email)}&token=${token}`;
 }
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return { statusCode: 405, headers: { Allow: "POST" }, body: "Method Not Allowed" };
+  }
+
+  const body = event.body ?? "";
+  if (Buffer.byteLength(body, "utf8") > MAX_BODY_BYTES) {
+    return { statusCode: 413, body: JSON.stringify({ ok: false }) };
   }
 
   try {
-    const raw = JSON.parse(event.body ?? "{}");
+    const raw = JSON.parse(body || "{}");
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+      return { statusCode: 400, body: JSON.stringify({ ok: false }) };
+    }
+
     const submission: Record<string, unknown> = {};
     for (const field of ALLOWED_FIELDS) {
       if (field in raw) submission[field] = raw[field];
     }
 
-    // TODO: full server-side validation, sanitization, rate limiting, spam
-    // checks. Log only non-PII metadata.
-    console.log("[submit-lead] received submission", { fields: Object.keys(submission) });
+    // Honeypot: bots commonly fill hidden fields. Return success so the
+    // endpoint does not reveal the spam rule, but do not forward anything.
+    const website = cleanString(submission.website, 200);
+    if (website) {
+      console.log("[submit-lead] rejected honeypot submission");
+      return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    }
 
-    const formId = typeof submission.formId === "string" ? submission.formId : undefined;
-    const magnet = formId ? MAGNET_SEQUENCE_MAP[formId] : undefined;
-    const email = typeof submission.email === "string" ? submission.email : undefined;
+    const firstName = cleanString(submission.firstName, 80);
+    const lastName = cleanString(submission.lastName, 80);
+    const email = cleanString(submission.email, 254)?.toLowerCase();
+    const phone = cleanString(submission.phone, 40) ?? "";
+    const areaOfInterest = cleanString(submission.areaOfInterest, 80) ?? "";
+    const preferredContactMethod = cleanString(submission.preferredContactMethod, 20) ?? "email";
+    const formId = cleanString(submission.formId, 120);
+    const pageSlug = cleanString(submission.pageSlug, 240);
+    const consent = submission.consent === true;
 
-    if (magnet && email) {
-      // Best-effort: a folk/CRM outage must never block the visitor from
-      // getting their download. Errors are swallowed after this point —
-      // the checklist link the browser already has still works either way.
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !EMAIL_RE.test(email) ||
+      !consent ||
+      !formId ||
+      !pageSlug ||
+      !pageSlug.startsWith("/") ||
+      !AREA_VALUES.has(areaOfInterest) ||
+      !CONTACT_METHOD_VALUES.has(preferredContactMethod)
+    ) {
+      console.log("[submit-lead] rejected invalid submission", { formId: formId ?? "unknown" });
+      return { statusCode: 400, body: JSON.stringify({ ok: false }) };
+    }
+
+    console.log("[submit-lead] accepted submission", { formId, pageSlug });
+
+    const magnet = MAGNET_SEQUENCE_MAP[formId];
+    if (magnet) {
       try {
         const today = new Date().toISOString().slice(0, 10);
-        const firstName = typeof submission.firstName === "string" ? submission.firstName : undefined;
-        const lastName = typeof submission.lastName === "string" ? submission.lastName : undefined;
-        const landingPage = typeof submission.pageSlug === "string" ? submission.pageSlug : formId ?? "";
         const unsubscribeUrl = buildUnsubscribeUrl(email);
-
-        // Someone who previously unsubscribed and later fills out a new
-        // form has taken a fresh affirmative action, so we still log the
-        // interest and let them have the download — but we don't silently
-        // re-enroll them in the automated sequence off the back of an old
-        // opt-out. See EMAIL-NURTURE-SEQUENCES.md Section 8.
         const previouslyUnsubscribed = await folkIsUnsubscribed(email);
-
-        // Funnel Stage uses a compact, machine-parseable format (not
-        // prose) because the scheduled sender job (EMAIL-NURTURE-
-        // SEQUENCES.md Section 8) reads it back with no conversation
-        // context — it can't infer meaning, only parse a fixed pattern.
-        // next_day tracks which email is still owed; "Day 0" is due, not
-        // sent, at enrollment — this function can't send email itself
-        // (no Exchange access from serverless code), only the scheduled
-        // job can.
         const funnelStage = previouslyUnsubscribed
           ? "NURTURE|not_enrolled|reason=previously_unsubscribed"
           : `NURTURE|seq=${magnet.sequence}|enrolled=${today}|next_day=0`;
@@ -99,11 +119,8 @@ export const handler: Handler = async (event) => {
           [FOLK_WEBSITE_LEADS_GROUP_ID]: {
             "Lead Source": "Lead Magnet Download",
             "Offer Interest": magnet.title,
-            "Landing Page Viewed": landingPage,
+            "Landing Page Viewed": pageSlug,
             "Funnel Stage": funnelStage,
-            // Reused verbatim by the scheduled sender job for every email
-            // in this person's sequence — never regenerated, so it never
-            // needs the signing secret outside this function.
             "Notes for AI": previouslyUnsubscribed ? "" : unsubscribeUrl,
           },
         };
