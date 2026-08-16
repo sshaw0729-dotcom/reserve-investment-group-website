@@ -1,3 +1,5 @@
+import "./PlanningPathIcon.css";
+
 type PlanningPathIconProps = {
   type: "plan" | "wealth" | "change";
 };
