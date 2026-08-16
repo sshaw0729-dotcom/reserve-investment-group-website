@@ -1,30 +1,3 @@
-// Home — wired to the design-system components. Practice owner approved
-// publication and instructed removal of the pre-launch banner 2026-08-08
-// (see MISSING-INFORMATION-REGISTER.md, COMPLIANCE-PACKAGE-TEMPLATE.md
-// asset CORE-001). Layout and visual language rebuilt 2026-08-11 to match
-// the approved Canva "Conversion Website v2" concept (see
-// MISSING-INFORMATION-REGISTER.md #21). Rebuilt again 2026-08-11 (later
-// same day, per practice owner feedback) to restore the concept's hero
-// gradient/floating-card graphic, numbered process sections, and section
-// copy that the first pass had simplified away. Briefly reconciled again
-// 2026-08-11 against a newer Canva reference ("Interactive Website
-// Concept"), then reverted the same day per practice owner instruction,
-// using the approved "Production Website Package v2026-08-09-v1"
-// prototype as the reference for the original copy (see
-// WEBSITE-PROTOTYPE-REFERENCE.md). The 3-D hero graphic, floating cards,
-// hover-lift interactions, and entrance animations added during that
-// window are intentionally kept — only the section copy was reverted.
-// The site's real navigation (not any concept's fictional simplified
-// nav) and the LeadForm/submit-lead backend pipeline are intentionally
-// unchanged — see FORM-DATA-FLOW.md. All section copy below mirrors the
-// qualified, non-promissory language already used in
-// src/lib/content/services.ts and src/app/faq/page.tsx — no new claims
-// about returns, savings, or guaranteed outcomes. The three hero
-// floating-card phrases ("Clarity first," "Your priorities," "Long-term
-// focus") are qualitative value statements with no numeric or factual
-// claims, so they carry the same compliance posture as the value-pillar
-// copy elsewhere on this page.
-
 import Image from "next/image";
 import { Hero } from "../components/marketing/Hero";
 import { CTAStrip } from "../components/marketing/CTAStrip";
@@ -56,6 +29,13 @@ const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
   areaServed: ["South Euclid", "Cleveland", "Cleveland Heights", "Shaker Heights", "Beachwood", "Solon", "Willoughby", "Mentor"],
 });
 
+const HOME_TRUST_ITEMS = [
+  "Clear, unhurried process",
+  "Educational approach",
+  "No-pressure introductory conversation",
+  "Registration and disclosures available",
+];
+
 const HOME_MINI_STEPS = [
   { number: "01", label: "Start with what matters" },
   { number: "02", label: "Build a coordinated plan" },
@@ -65,6 +45,7 @@ const HOME_MINI_STEPS = [
 const HOME_PROCESS_CARDS = [
   {
     number: "01",
+    icon: "plan",
     title: "Financial planning",
     description:
       "Explore financial planning topics and services that may be relevant to your goals and circumstances—including retirement, cash flow, major decisions, and the financial information that connects them.",
@@ -73,6 +54,7 @@ const HOME_PROCESS_CARDS = [
   },
   {
     number: "02",
+    icon: "wealth",
     title: "Wealth management",
     description:
       "Discuss how investments, liquidity, time horizon, risk considerations, and account structure may fit within your broader financial picture.",
@@ -81,6 +63,7 @@ const HOME_PROCESS_CARDS = [
   },
   {
     number: "03",
+    icon: "change",
     title: "Business owners & changing priorities",
     description:
       "Business decisions, retirement, career changes, family responsibilities, and other transitions can change which financial questions deserve attention next.",
@@ -113,6 +96,14 @@ const HOME_FAQS = [
     a: "No. We help you organize the relevant financial information as part of the conversation—you don't need to have it organized in advance.",
   },
   {
+    q: "Who do you typically work with?",
+    a: "We work with individuals, families, and business owners at different stages of their financial planning journey, depending on their circumstances and goals.",
+  },
+  {
+    q: "How is your firm compensated?",
+    a: "Fees, commissions, or other compensation, if any, depend on the specific product, service, provider, and scope of the relationship. Applicable fees and compensation are disclosed in the relevant agreements, product materials, or other required disclosures before the applicable engagement or transaction.",
+  },
+  {
     q: "Do you provide tax or legal advice?",
     a: "No. We coordinate with your tax and legal professionals where appropriate, but we do not provide tax or legal advice unless that authority is separately confirmed.",
   },
@@ -142,17 +133,17 @@ export default function HomePage() {
           </a>
         </div>
         <ul className="home-hero-trust-row">
-          <li>
-            <span aria-hidden="true">✓</span> No-pressure first conversation
-          </li>
-          <li>
-            <span aria-hidden="true">✓</span> Clear next steps
-          </li>
-          <li>
-            <span aria-hidden="true">✓</span> Personalized guidance
-          </li>
+          <li><span aria-hidden="true">✓</span> No-pressure first conversation</li>
+          <li><span aria-hidden="true">✓</span> Clear next steps</li>
+          <li><span aria-hidden="true">✓</span> Personalized guidance</li>
         </ul>
       </Hero>
+
+      <section className="home-trust-band" aria-label="What to expect">
+        <div className="container home-trust-band-inner">
+          {HOME_TRUST_ITEMS.map((item) => <span key={item}>{item}</span>)}
+        </div>
+      </section>
 
       <section className="home-section container">
         <div className="home-mini-steps">
@@ -173,24 +164,29 @@ export default function HomePage() {
           <p className="home-section-eyebrow">Financial planning should start with you</p>
           <h2>A clearer way to organize the decisions in front of you.</h2>
           <p>
-            We begin by learning what matters to you and organizing the
-            financial information relevant to your goals. From there, we
-            discuss the areas that may deserve further attention based on
-            your goals and circumstances.
+            We begin by learning what matters to you and organizing the financial information relevant to your goals. From there, we discuss the areas that may deserve further attention based on your goals and circumstances.
           </p>
         </div>
         <div className="home-process-cards">
           {HOME_PROCESS_CARDS.map((card) => (
             <div className="home-process-card" key={card.number}>
+              <div className={`home-process-icon home-process-icon-${card.icon}`} aria-hidden="true"><span /></div>
               <p className="home-process-card-number">{card.number}</p>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
-              <a href={card.href}>
-                {card.linkLabel} <span aria-hidden="true">→</span>
-              </a>
+              <a href={card.href}>{card.linkLabel} <span aria-hidden="true">→</span></a>
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="home-section home-decision-section container">
+        <div className="home-section-heading home-section-heading-centered">
+          <p className="home-section-eyebrow">Choose your starting point</p>
+          <h2>What financial decision is taking up the most space in your mind?</h2>
+          <p>Select the closest fit. You can begin with that question without having everything organized first.</p>
+        </div>
+        <HomeConversationStarter />
       </section>
 
       <section className="home-section container">
@@ -198,22 +194,22 @@ export default function HomePage() {
           <p className="home-section-eyebrow">About Reserve Investment Group</p>
           <h2>Built to make financial decisions feel more understandable.</h2>
           <p>
-            Reserve Investment Group is centered on clarity, practical
-            planning, preparedness, flexibility, resilience, and options. We
-            begin by learning what matters to you, organizing the financial
-            information relevant to your goals, and discussing areas that
-            may deserve further attention based on your goals and
-            circumstances.
+            Reserve Investment Group is centered on clarity, practical planning, preparedness, flexibility, resilience, and options. We begin by learning what matters to you, organizing the financial information relevant to your goals, and discussing areas that may deserve further attention based on your goals and circumstances.
           </p>
         </div>
         <div className="home-feature-row">
           {HOME_ABOUT_ITEMS.map((item) => (
             <div className="home-feature-row-item" key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              <h3>{item.title}</h3><p>{item.description}</p>
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="home-editorial-bridge container" aria-label="Planning perspective">
+        <span aria-hidden="true" />
+        <p>Financial decisions rarely happen in isolation.</p>
+        <span aria-hidden="true" />
       </section>
 
       <section className="home-approach" id="approach">
@@ -221,11 +217,7 @@ export default function HomePage() {
           <div className="home-section-heading">
             <p className="home-section-eyebrow">Our approach</p>
             <h2>Start with what matters. Organize what connects. Decide what comes next.</h2>
-            <p>
-              A relationship-driven process designed to make the financial
-              information around your goals easier to understand and
-              discuss.
-            </p>
+            <p>A relationship-driven process designed to make the financial information around your goals easier to understand and discuss.</p>
           </div>
           <ApproachTabs />
         </div>
@@ -233,25 +225,16 @@ export default function HomePage() {
 
       <section className="home-section container">
         <div className="home-section-heading">
-          <h2>What financial decision is taking up the most space in your mind?</h2>
-          <p>
-            Select the closest fit. The page will tailor the next
-            step—without asking you for information first.
-          </p>
-        </div>
-        <HomeConversationStarter />
-      </section>
-
-      <section className="home-section container">
-        <div className="home-section-heading">
           <p className="home-section-eyebrow">Why Reserve</p>
           <h2>No hype. No predictions. No false certainty.</h2>
+          <p>
+            Financial planning involves tradeoffs, uncertainty, and changing priorities. Our role is to help make the information easier to understand so you can make informed decisions with greater context.
+          </p>
         </div>
         <div className="home-feature-row">
           {HOME_WHY_ITEMS.map((item) => (
             <div className="home-feature-row-item" key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              <h3>{item.title}</h3><p>{item.description}</p>
             </div>
           ))}
         </div>
@@ -264,33 +247,17 @@ export default function HomePage() {
         </div>
         <div className="accordion">
           {HOME_FAQS.map((item) => (
-            <AccordionItem key={item.q} question={item.q} pageSlug="/">
-              <p>{item.a}</p>
-            </AccordionItem>
+            <AccordionItem key={item.q} question={item.q} pageSlug="/"><p>{item.a}</p></AccordionItem>
           ))}
         </div>
-        <p>
-          <a href="/faq/">See all frequently asked questions</a>
-        </p>
+        <p><a href="/faq/">See all frequently asked questions</a></p>
       </section>
 
       <section className="home-closing-cta">
-        <Image
-          className="home-closing-cta-watermark"
-          src={referenceRigArtwork}
-          alt=""
-          width={335}
-          height={315}
-          unoptimized
-          aria-hidden="true"
-        />
+        <Image className="home-closing-cta-watermark" src={referenceRigArtwork} alt="" width={335} height={315} unoptimized aria-hidden="true" />
         <div className="container">
           <h2>Start with the decision that matters most.</h2>
-          <p>
-            Start with the financial question, decision, or transition that
-            matters most to you. We can begin there and discuss what
-            information may be relevant next.
-          </p>
+          <p>Start with the financial question, decision, or transition that matters most to you. We can begin there and discuss what information may be relevant next.</p>
           <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
         </div>
       </section>
