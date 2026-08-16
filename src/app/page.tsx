@@ -38,16 +38,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Office address and phone confirmed by practice owner 2026-08-06
-// (MISSING-INFORMATION-REGISTER.md #14/#15) — this is the first page in
-// the codebase to call localBusinessJsonLd() now that real NAP data
-// exists. areaServed intentionally lists South Euclid (the actual office
-// city) plus the broader Wave 1 service area already used elsewhere on
-// the site, rather than implying an office in every listed city.
-//
-// 216-284-3615 is confirmed correct and is now the primary number on
-// the live Google Business Profile (updated 2026-08-06, pending Google's
-// review). See MISSING-INFORMATION-REGISTER.md #15.
 const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
   name: "Reserve Investment Group, Inc",
   description:
@@ -64,17 +54,12 @@ const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
   areaServed: ["South Euclid", "Cleveland", "Cleveland Heights", "Shaker Heights", "Beachwood", "Solon", "Willoughby", "Mentor"],
 });
 
-// Compact three-step teaser strip that appears directly under the hero in
-// the Canva concept, ahead of the fuller numbered card section below.
 const HOME_MINI_STEPS = [
   { number: "01", label: "Start with what matters" },
   { number: "02", label: "Build a coordinated plan" },
   { number: "03", label: "Review and adapt" },
 ];
 
-// Numbered process cards. hrefs point at the real service pages (or the
-// schedule page for the third card, matching the Canva concept's "Start a
-// conversation" link) rather than the Canva prototype's placeholder hrefs.
 const HOME_PROCESS_CARDS = [
   {
     number: "01",
@@ -97,7 +82,7 @@ const HOME_PROCESS_CARDS = [
     title: "Business owners & changing priorities",
     description:
       "Business decisions, retirement, career changes, family responsibilities, and other transitions can change which financial questions deserve attention next.",
-    linkLabel: "Start a conversation",
+    linkLabel: "Schedule an introductory conversation",
     href: "/schedule/",
   },
 ];
@@ -116,9 +101,6 @@ const HOME_WHY_ITEMS = [
   { title: "Personal", description: "Begin with what matters to you." },
 ];
 
-// Question phrasing matches the approved Canva concept; answers reuse the
-// qualified language already established in src/app/faq/page.tsx rather
-// than introducing new claims.
 const HOME_FAQS = [
   {
     q: "What happens in the first conversation?",
@@ -151,10 +133,10 @@ export default function HomePage() {
       >
         <div className="home-hero-cta-row">
           <a href="/schedule/" className="btn btn-primary">
-            Schedule a Private Conversation <span aria-hidden="true">→</span>
+            Schedule an introductory conversation <span aria-hidden="true">→</span>
           </a>
           <a href="#approach" className="btn btn-secondary">
-            Explore Our Approach
+            Learn about our approach
           </a>
         </div>
         <ul className="home-hero-trust-row">
@@ -299,7 +281,7 @@ export default function HomePage() {
             matters most to you. We can begin there and discuss what
             information may be relevant next.
           </p>
-          <CTAStrip label="Schedule a Conversation" href="/schedule/" />
+          <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
         </div>
       </section>
     </main>
