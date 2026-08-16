@@ -1,6 +1,7 @@
 // Persona spoke pages — dynamic route driven by src/lib/content/personas.ts.
 // Educational framing only, per COMPLIANCE-RISK-MAP.md — never implies
 // uniform needs across an entire profession or life stage.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PERSONAS } from "../../../lib/content/personas";
@@ -11,18 +12,22 @@ import { CTAStrip } from "../../../components/marketing/CTAStrip";
 import { AccordionItem } from "../../../components/ui/Accordion";
 import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
 
+type PersonaPageProps = { params: Promise<{ slug: string }> };
+
 export function generateStaticParams() {
   return PERSONAS.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const persona = PERSONAS.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: PersonaPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const persona = PERSONAS.find((p) => p.slug === slug);
   if (!persona) return {};
   return { title: persona.title, description: persona.metaDescription, alternates: { canonical: `/who-we-help/${persona.slug}/` } };
 }
 
-export default function PersonaPage({ params }: { params: { slug: string } }) {
-  const persona = PERSONAS.find((p) => p.slug === params.slug);
+export default async function PersonaPage({ params }: PersonaPageProps) {
+  const { slug } = await params;
+  const persona = PERSONAS.find((p) => p.slug === slug);
   if (!persona) return notFound();
 
   const relatedServices = SERVICES.filter((s) => persona.relatedServiceSlugs.includes(s.slug));
@@ -62,7 +67,7 @@ export default function PersonaPage({ params }: { params: { slug: string } }) {
             <ul>
               {relatedServices.map((s) => (
                 <li key={s.slug}>
-                  <a href={`/services/${s.slug}/`}>{s.title}</a>
+                  <Link href={`/services/${s.slug}/`}>{s.title}</Link>
                 </li>
               ))}
             </ul>
@@ -75,7 +80,7 @@ export default function PersonaPage({ params }: { params: { slug: string } }) {
             <ul>
               {relatedLocations.map((l) => (
                 <li key={l.slug}>
-                  <a href={`/locations/${l.slug}/`}>{l.title}</a>
+                  <Link href={`/locations/${l.slug}/`}>{l.title}</Link>
                 </li>
               ))}
             </ul>

@@ -3,6 +3,7 @@
 // office/service-area confirmation)" — do not publish until
 // MISSING-INFORMATION-REGISTER.md item #14 (office/service area) is
 // resolved, since this page's local framing depends on it.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../../components/marketing/CTAStrip";
@@ -43,10 +44,10 @@ export default function ExecutiveRetirementCombinedPage() {
         </ul>
         <h2>Related reading</h2>
         <ul>
-          <li><a href="/services/retirement-planning/">Retirement Planning</a></li>
-          <li><a href="/services/executive-financial-planning/">Executive Financial Planning</a></li>
-          <li><a href="/who-we-help/corporate-executives/">Corporate Executives</a></li>
-          <li><a href="/locations/shaker-heights/">Shaker Heights</a></li>
+          <li><Link href="/services/retirement-planning/">Retirement Planning</Link></li>
+          <li><Link href="/services/executive-financial-planning/">Executive Financial Planning</Link></li>
+          <li><Link href="/who-we-help/corporate-executives/">Corporate Executives</Link></li>
+          <li><Link href="/locations/shaker-heights/">Shaker Heights</Link></li>
         </ul>
       </section>
       <DisclosureBlock>

@@ -2,6 +2,7 @@
 // Never claims a physical office unless MISSING-INFORMATION-REGISTER.md
 // item #14 is resolved. No fabricated local history, memberships, or
 // client counts anywhere in this template or its content source.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LOCATIONS } from "../../../lib/content/locations";
@@ -12,18 +13,22 @@ import { CTAStrip } from "../../../components/marketing/CTAStrip";
 import { AccordionItem } from "../../../components/ui/Accordion";
 import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
 
+type LocationPageProps = { params: Promise<{ slug: string }> };
+
 export function generateStaticParams() {
   return LOCATIONS.map((l) => ({ slug: l.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const location = LOCATIONS.find((l) => l.slug === params.slug);
+export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const location = LOCATIONS.find((l) => l.slug === slug);
   if (!location) return {};
   return { title: location.title, description: location.metaDescription, alternates: { canonical: `/locations/${location.slug}/` } };
 }
 
-export default function LocationPage({ params }: { params: { slug: string } }) {
-  const location = LOCATIONS.find((l) => l.slug === params.slug);
+export default async function LocationPage({ params }: LocationPageProps) {
+  const { slug } = await params;
+  const location = LOCATIONS.find((l) => l.slug === slug);
   if (!location) return notFound();
 
   const relevantServices = SERVICES.filter((s) => location.relevantServiceSlugs.includes(s.slug));
@@ -50,7 +55,7 @@ export default function LocationPage({ params }: { params: { slug: string } }) {
             <ul>
               {relevantServices.map((s) => (
                 <li key={s.slug}>
-                  <a href={`/services/${s.slug}/`}>{s.title}</a>
+                  <Link href={`/services/${s.slug}/`}>{s.title}</Link>
                 </li>
               ))}
             </ul>
@@ -63,7 +68,7 @@ export default function LocationPage({ params }: { params: { slug: string } }) {
             <ul>
               {relevantPersonas.map((p) => (
                 <li key={p.slug}>
-                  <a href={`/who-we-help/${p.slug}/`}>{p.title}</a>
+                  <Link href={`/who-we-help/${p.slug}/`}>{p.title}</Link>
                 </li>
               ))}
             </ul>

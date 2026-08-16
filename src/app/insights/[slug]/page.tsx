@@ -4,6 +4,7 @@
 // investment recommendations, or performance figures anywhere in this
 // template or its content source. See PROJECT-BRIEF.md,
 // COMPLIANCE-RISK-MAP.md.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { INSIGHTS } from "../../../lib/content/insights";
@@ -15,18 +16,22 @@ import { DisclosureBlock } from "../../../components/marketing/DisclosureBlock";
 import { AccordionItem } from "../../../components/ui/Accordion";
 import { JsonLd, faqJsonLd, articleJsonLd } from "../../../lib/seo/jsonld";
 
+type InsightPageProps = { params: Promise<{ slug: string }> };
+
 export function generateStaticParams() {
   return INSIGHTS.map((i) => ({ slug: i.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const insight = INSIGHTS.find((i) => i.slug === params.slug);
+export async function generateMetadata({ params }: InsightPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const insight = INSIGHTS.find((i) => i.slug === slug);
   if (!insight) return {};
   return { title: insight.title, description: insight.metaDescription, alternates: { canonical: `/insights/${insight.slug}/` } };
 }
 
-export default function InsightPage({ params }: { params: { slug: string } }) {
-  const insight = INSIGHTS.find((i) => i.slug === params.slug);
+export default async function InsightPage({ params }: InsightPageProps) {
+  const { slug } = await params;
+  const insight = INSIGHTS.find((i) => i.slug === slug);
   if (!insight) return notFound();
 
   const relatedServices = SERVICES.filter((s) => insight.relatedServiceSlugs.includes(s.slug));
@@ -60,7 +65,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
       <section className="container">
         {insight.contentType === "cluster" && (
           <p className="insight-cluster-label">
-            Part of: <a href={`/insights/#${insight.clusterId}`}>{insight.clusterTitle}</a>
+            Part of: <Link href={`/insights/#${insight.clusterId}`}>{insight.clusterTitle}</Link>
           </p>
         )}
         <h1>{insight.title}</h1>
@@ -90,7 +95,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
             <ul>
               {clusterSiblings.map((sib) => (
                 <li key={sib.slug}>
-                  <a href={`/insights/${sib.slug}/`}>{sib.title}</a>
+                  <Link href={`/insights/${sib.slug}/`}>{sib.title}</Link>
                 </li>
               ))}
             </ul>
@@ -103,7 +108,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
             <ul>
               {relatedServices.map((s) => (
                 <li key={s.slug}>
-                  <a href={`/services/${s.slug}/`}>{s.title}</a>
+                  <Link href={`/services/${s.slug}/`}>{s.title}</Link>
                 </li>
               ))}
             </ul>
@@ -116,7 +121,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
             <ul>
               {relatedPersonas.map((p) => (
                 <li key={p.slug}>
-                  <a href={`/who-we-help/${p.slug}/`}>{p.title}</a>
+                  <Link href={`/who-we-help/${p.slug}/`}>{p.title}</Link>
                 </li>
               ))}
             </ul>
@@ -142,7 +147,7 @@ export default function InsightPage({ params }: { params: { slug: string } }) {
         individualized investment, tax, or legal advice, and it should
         not be relied on as the sole basis for any financial decision.
         Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our{" "}
-        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
+        <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Schedule an introductory conversation" href="/schedule/" />
     </main>

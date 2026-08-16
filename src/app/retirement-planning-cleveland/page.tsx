@@ -2,6 +2,7 @@
 // Dual parent: Retirement Planning (service) + Cleveland (location).
 // Upgraded to the Landing Page System template (MARKETING-ECOSYSTEM-BRIEF.md,
 // Section 1) — same URL, no new page created, only sections added.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../components/marketing/CTAStrip";
@@ -90,16 +91,16 @@ export default function RetirementPlanningClevelandPage() {
         </div>
         <h2>Related reading</h2>
         <ul>
-          <li><a href="/services/retirement-planning/">Retirement Planning</a></li>
-          <li><a href="/who-we-help/pre-retirees/">Pre-Retirees</a></li>
-          <li><a href="/who-we-help/retirees/">Retirees</a></li>
-          <li><a href="/locations/cleveland/">Cleveland</a></li>
+          <li><Link href="/services/retirement-planning/">Retirement Planning</Link></li>
+          <li><Link href="/who-we-help/pre-retirees/">Pre-Retirees</Link></li>
+          <li><Link href="/who-we-help/retirees/">Retirees</Link></li>
+          <li><Link href="/locations/cleveland/">Cleveland</Link></li>
         </ul>
       </section>
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
-        individuals; individual circumstances vary. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
+        individuals; individual circumstances vary. Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary retirement review" href="/retirement-review/" />
     </main>

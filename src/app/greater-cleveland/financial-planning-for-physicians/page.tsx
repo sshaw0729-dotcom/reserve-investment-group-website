@@ -6,6 +6,7 @@
 // Upgraded to the Landing Page System template (MARKETING-ECOSYSTEM-BRIEF.md,
 // Section 1) — same URL, no new page created, only sections added. This is
 // also the canonical target for physicianfinancialplans.com.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../../components/marketing/CTAStrip";
@@ -97,9 +98,9 @@ export default function PhysicianCombinedPage() {
         </div>
         <h2>Related reading</h2>
         <ul>
-          <li><a href="/services/financial-planning/">Financial Planning</a></li>
-          <li><a href="/who-we-help/physicians/">Physicians</a></li>
-          <li><a href="/locations/cleveland/">Cleveland</a></li>
+          <li><Link href="/services/financial-planning/">Financial Planning</Link></li>
+          <li><Link href="/who-we-help/physicians/">Physicians</Link></li>
+          <li><Link href="/locations/cleveland/">Cleveland</Link></li>
         </ul>
       </section>
 
@@ -107,7 +108,7 @@ export default function PhysicianCombinedPage() {
         This page describes planning considerations that may apply to some
         physicians; individual circumstances vary. Reserve Investment Group,
         Inc. is not a registered investment adviser or broker-dealer. See our{" "}
-        <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for
+        <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for
         additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary financial review" href="/financial-review/" />
