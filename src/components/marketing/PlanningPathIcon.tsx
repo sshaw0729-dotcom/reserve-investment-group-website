@@ -10,17 +10,17 @@ export function PlanningPathIcon({ type }: PlanningPathIconProps) {
       {type === "plan" && (
         <svg viewBox="0 0 48 48" focusable="false">
           <circle className="home-process-icon-navy" cx="24" cy="24" r="14.5" />
-          <path className="home-process-icon-gold-fill" d="M29.8 18.2 26.4 26.4 18.2 29.8 21.6 21.6 29.8 18.2Z" />
-          <circle className="home-process-icon-navy-fill" cx="24" cy="24" r="1.8" />
+          <path className="home-process-icon-gold-fill" d="M24 13.8 27.2 24 24 21.6 20.8 24 24 13.8Z" />
+          <path className="home-process-icon-navy-fill" d="M24 34.2 20.8 24 24 26.4 27.2 24 24 34.2Z" />
+          <circle className="home-process-icon-navy-fill" cx="24" cy="24" r="1.5" />
         </svg>
       )}
 
       {type === "wealth" && (
         <svg viewBox="0 0 48 48" focusable="false">
-          <path className="home-process-icon-navy" d="M11 32.5h26" />
-          <path className="home-process-icon-navy" d="M14 29 21 22l5 4 9-11" />
-          <path className="home-process-icon-gold" d="M28.5 15H35v6.5" />
-          <path className="home-process-icon-gold" d="M14 36h20" />
+          <rect className="home-process-icon-navy" x="11.5" y="11.5" width="25" height="25" rx="3" />
+          <path className="home-process-icon-navy" d="M11.5 21.5h25M24 11.5v25" />
+          <circle className="home-process-icon-gold-fill" cx="30.2" cy="28.6" r="2.5" />
         </svg>
       )}
 
