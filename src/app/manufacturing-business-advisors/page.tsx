@@ -4,6 +4,7 @@
 // rather than a single city, matching the domain's broader framing.
 // Upgraded to the Landing Page System template (MARKETING-ECOSYSTEM-BRIEF.md,
 // Section 1) — same URL, no new page created, only sections added.
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 import { CTAStrip } from "../../components/marketing/CTAStrip";
@@ -93,16 +94,16 @@ export default function ManufacturingBusinessAdvisorsPage() {
         </div>
         <h2>Related reading</h2>
         <ul>
-          <li><a href="/who-we-help/manufacturing-leaders/">Manufacturing Leaders</a></li>
-          <li><a href="/services/business-owner-planning/">Business-Owner Planning</a></li>
-          <li><a href="/services/business-succession-planning/">Business Succession Planning</a></li>
+          <li><Link href="/who-we-help/manufacturing-leaders/">Manufacturing Leaders</Link></li>
+          <li><Link href="/services/business-owner-planning/">Business-Owner Planning</Link></li>
+          <li><Link href="/services/business-succession-planning/">Business Succession Planning</Link></li>
         </ul>
       </section>
 
       <DisclosureBlock>
         This page describes planning considerations that may apply to some
         manufacturing business owners; individual circumstances vary.
-        Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <a href="/disclosures/">Form CRS &amp; Disclosures</a> page for additional information.
+        Reserve Investment Group, Inc. is not a registered investment adviser or broker-dealer. See our <Link href="/disclosures/">Form CRS &amp; Disclosures</Link> page for additional information.
       </DisclosureBlock>
       <CTAStrip label="Request a complimentary financial review" href="/business-owner-financial-review/" />
     </main>
