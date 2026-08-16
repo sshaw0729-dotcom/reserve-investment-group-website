@@ -2,7 +2,7 @@
   "name": "greater-cleveland-financial-platform",
   "version": "0.0.0",
   "private": true,
-  "engines": { "node": ">=20" },
+  "engines": { "node": ">=20.9.0" },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,7 +19,7 @@
     "check:compliance-manifest": "node scripts/check-compliance-manifest.mjs"
   },
   "dependencies": {
-    "next": "15.5.21",
+    "next": "16.3.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "posthog-js": "^1.161.0",
@@ -31,8 +31,8 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "eslint": "^8.57.0",
-    "eslint-config-next": "15.5.21",
-    "vitest": "^1.6.0"
+    "eslint-config-next": "16.3.1",
+    "vitest": "4.1.10"
   },
   "overrides": {
     "glob": "^10.5.0"
