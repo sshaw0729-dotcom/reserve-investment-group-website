@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 
 /**
@@ -42,9 +43,14 @@ export function HeroGraphic() {
     >
       <div className="hero-orb-shape" aria-hidden="true" />
       <div className="hero-rig-mark" aria-hidden="true">
-        <span className="hero-rig-letter hero-rig-r">R</span>
-        <span className="hero-rig-letter hero-rig-i">I</span>
-        <span className="hero-rig-letter hero-rig-g">G</span>
+        <Image
+          src="/brand/rig-3d.png"
+          alt=""
+          width={335}
+          height={315}
+          className="hero-rig-artwork"
+          priority
+        />
       </div>
       <div className="hero-float-card hero-float-card-1">
         <p className="hero-float-card-title">Clarity first</p>
