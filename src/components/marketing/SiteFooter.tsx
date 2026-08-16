@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { referenceRigArtwork } from "../../lib/brand/referenceRigArtwork";
 import { DisclosureBlock } from "./DisclosureBlock";
 
 export function SiteFooter() {
@@ -7,7 +9,14 @@ export function SiteFooter() {
       <div className="site-footer-top">
         <Link href="/" className="site-footer-brand" aria-label="Reserve Investment Group, Inc. home">
           <span className="site-brand-mark site-brand-mark-footer" aria-hidden="true">
-            <span className="site-brand-r">R</span><span className="site-brand-i">I</span><span className="site-brand-g">G</span>
+            <Image
+              className="site-brand-mark-image"
+              src={referenceRigArtwork}
+              alt=""
+              width={335}
+              height={315}
+              unoptimized
+            />
           </span>
           <span>Reserve Investment Group, Inc.</span>
         </Link>
