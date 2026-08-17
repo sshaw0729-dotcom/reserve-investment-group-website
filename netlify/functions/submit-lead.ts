@@ -104,53 +104,68 @@ export const handler: Handler = async (event) => {
     console.log("[submit-lead] accepted submission", { formId, pageSlug });
 
     const magnet = MAGNET_SEQUENCE_MAP[formId];
+    const today = new Date().toISOString().slice(0, 10);
+    let customFieldValues: Record<string, Record<string, unknown>> | undefined;
+    let noteBody: string;
+
     if (magnet) {
-      try {
-        const today = new Date().toISOString().slice(0, 10);
-        const unsubscribeUrl = buildUnsubscribeUrl(email);
-        const previouslyUnsubscribed = await folkIsUnsubscribed(email);
-        const funnelStage = previouslyUnsubscribed
-          ? "NURTURE|not_enrolled|reason=previously_unsubscribed"
-          : `NURTURE|seq=${magnet.sequence}|enrolled=${today}|next_day=0`;
+      const unsubscribeUrl = buildUnsubscribeUrl(email);
+      const previouslyUnsubscribed = await folkIsUnsubscribed(email);
+      const funnelStage = previouslyUnsubscribed
+        ? "NURTURE|not_enrolled|reason=previously_unsubscribed"
+        : `NURTURE|seq=${magnet.sequence}|enrolled=${today}|next_day=0`;
 
-        const fieldValues = {
-          [FOLK_WEBSITE_LEADS_GROUP_ID]: {
-            "Lead Source": "Lead Magnet Download",
-            "Offer Interest": magnet.title,
-            "Landing Page Viewed": pageSlug,
-            "Funnel Stage": funnelStage,
-            "Notes for AI": previouslyUnsubscribed ? "" : unsubscribeUrl,
-          },
-        };
+      customFieldValues = {
+        [FOLK_WEBSITE_LEADS_GROUP_ID]: {
+          "Lead Source": "Lead Magnet Download",
+          "Offer Interest": magnet.title,
+          "Landing Page Viewed": pageSlug,
+          "Funnel Stage": funnelStage,
+          "Notes for AI": previouslyUnsubscribed ? "" : unsubscribeUrl,
+        },
+      };
 
-        let person = await folkFindPersonByEmail(email);
+      noteBody = previouslyUnsubscribed
+        ? `Downloaded "${magnet.title}" on ${today}. NOT enrolled in the automated email sequence — this address is on the Email Unsubscribed list from a prior opt-out. Follow up manually if appropriate.`
+        : `Downloaded "${magnet.title}" on ${today}. Enrolled in Email Nurture Sequence ${magnet.sequence} (EMAIL-NURTURE-SEQUENCES.md). Day 0 email due immediately; Day 3/7/14 emails scheduled from this date. Unsubscribe link issued: ${unsubscribeUrl}`;
+    } else {
+      noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${areaOfInterest || "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
+    }
+
+    try {
+      let person = await folkFindPersonByEmail(email);
+      if (!person) {
+        person = await folkCreatePerson({
+          email,
+          phone: phone || undefined,
+          firstName,
+          lastName,
+          groupIds: [FOLK_WEBSITE_LEADS_GROUP_ID],
+          customFieldValues,
+        });
         if (!person) {
-          person = await folkCreatePerson({
-            email,
-            firstName,
-            lastName,
-            groupIds: [FOLK_WEBSITE_LEADS_GROUP_ID],
-            customFieldValues: fieldValues,
-          });
-        } else {
-          await folkUpdatePerson(person.id, {
-            addGroupIds: [FOLK_WEBSITE_LEADS_GROUP_ID],
-            customFieldValues: fieldValues,
-          });
+          console.error("[submit-lead] Folk person creation failed", { formId });
+          return { statusCode: 502, body: JSON.stringify({ ok: false, error: "crm_write_failed" }) };
         }
-
-        if (person) {
-          const noteBody = previouslyUnsubscribed
-            ? `Downloaded "${magnet.title}" on ${today}. NOT enrolled in the automated email sequence — ` +
-              `this address is on the Email Unsubscribed list from a prior opt-out. Follow up manually if appropriate.`
-            : `Downloaded "${magnet.title}" on ${today}. Enrolled in Email Nurture Sequence ${magnet.sequence} ` +
-              `(EMAIL-NURTURE-SEQUENCES.md). Day 0 email due immediately; Day 3/7/14 emails scheduled from this date. ` +
-              `Unsubscribe link issued: ${unsubscribeUrl}`;
-          await folkCreateNote(person.id, noteBody);
+      } else {
+        const updated = await folkUpdatePerson(person, {
+          phone: phone || undefined,
+          addGroupIds: [FOLK_WEBSITE_LEADS_GROUP_ID],
+          customFieldValues,
+        });
+        if (!updated) {
+          console.error("[submit-lead] Folk person update failed", { formId });
+          return { statusCode: 502, body: JSON.stringify({ ok: false, error: "crm_write_failed" }) };
         }
-      } catch (crmError) {
-        console.error("[submit-lead] folk forwarding failed, continuing", crmError);
       }
+
+      const noteCreated = await folkCreateNote(person.id, noteBody);
+      if (!noteCreated) {
+        console.error("[submit-lead] Folk note creation failed after lead persisted", { formId });
+      }
+    } catch (crmError) {
+      console.error("[submit-lead] Folk forwarding failed", crmError);
+      return { statusCode: 502, body: JSON.stringify({ ok: false, error: "crm_write_failed" }) };
     }
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
