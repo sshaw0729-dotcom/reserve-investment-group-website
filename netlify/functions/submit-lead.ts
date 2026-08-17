@@ -99,6 +99,27 @@ function buildLeadNotification(input: {
   };
 }
 
+function buildLeadThankYou(firstName: string): { subject: string; htmlBody: string } {
+  const safeFirstName = escapeHtml(firstName);
+  return {
+    subject: "Thanks for reaching out — one quick question",
+    htmlBody:
+      `<p>Hi ${safeFirstName},</p>` +
+      `<p>Thank you for reaching out to Reserve Investment Group.</p>` +
+      `<p>We received your information, and someone from our team will review it shortly.</p>` +
+      `<p>Before we connect, I’d like to ask you one simple question:</p>` +
+      `<p><strong>What was happening financially that caused you to reach out today?</strong></p>` +
+      `<p>There’s no “right” answer. Some people contact us because they’re approaching retirement. Others are concerned about whether they’re making the right financial decisions, paying too much in taxes, managing investments effectively, or simply wondering whether their current plan is still working for them.</p>` +
+      `<p>Understanding <strong>what prompted you to take action now</strong> helps us make the conversation more relevant to you.</p>` +
+      `<p>If you’d like, simply reply to this email with a sentence or two.</p>` +
+      `<p>When we speak, our goal won’t be to pressure you into making a decision. We’ll first try to understand where you are today, what you would like to accomplish, what may be getting in the way, and whether there is actually a reason for us to continue the conversation.</p>` +
+      `<p>If we believe we can help, we’ll explain what that might look like. If not, we’ll tell you that too.</p>` +
+      `<p>Thank you again for giving us the opportunity to learn more about what’s important to you.</p>` +
+      `<p>Warm regards,<br><strong>Reserve Investment Group, Inc.</strong><br>info@reserveinvestmentgroup.com<br>ReserveInvestmentGroup.com</p>` +
+      `<p style="font-size:12px;color:#555;">This message is for informational purposes only and is not intended as investment, tax, or legal advice. Please do not send Social Security numbers, account passwords, complete account numbers, tax documents, or other sensitive personal information by email.</p>`,
+  };
+}
+
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, headers: { Allow: "POST" }, body: "Method Not Allowed" };
@@ -245,9 +266,27 @@ export const handler: Handler = async (event) => {
       console.log("[submit-lead] internal lead notification sent", { formId });
     }
 
+    const thankYou = buildLeadThankYou(firstName);
+    const thankYouResult = await sendGraphMail({
+      to: email,
+      subject: thankYou.subject,
+      htmlBody: thankYou.htmlBody,
+    });
+
+    if (!thankYouResult.ok) {
+      console.error("[submit-lead] lead thank-you email failed", thankYouResult.error);
+      await folkCreateNote(personId, "Automatic thank-you email failed after this lead was saved. Review Netlify function logs and Microsoft Graph configuration.").catch(() => false);
+    } else {
+      console.log("[submit-lead] lead thank-you email sent", { formId });
+    }
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ ok: true, notificationSent: notificationResult.ok }),
+      body: JSON.stringify({
+        ok: true,
+        notificationSent: notificationResult.ok,
+        thankYouSent: thankYouResult.ok,
+      }),
     };
   } catch {
     return { statusCode: 400, body: JSON.stringify({ ok: false }) };
