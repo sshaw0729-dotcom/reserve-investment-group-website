@@ -5,15 +5,9 @@ import { folkFindPersonByEmail, folkCreatePerson, folkUpdatePerson, FOLK_EMAIL_U
 // CAN-SPAM requires a working unsubscribe mechanism (see
 // EMAIL-NURTURE-SEQUENCES.md Section 1). This is that mechanism: a link
 // in every nurture email's footer points here with the recipient's email
-// and a signed token, so clicking it immediately (not on some manual
-// review cycle) adds them to the "Email Unsubscribed" folk group. The
-// scheduled sequence-sender checks that group before every send.
-//
-// Token is a simple HMAC over the email address using UNSUBSCRIBE_SECRET,
-// so a stranger can't unsubscribe someone else's address by guessing a
-// URL — not full auth, but enough to stop casual abuse. Generate the
-// token when building each email's unsubscribe link:
-//   crypto.createHmac("sha256", UNSUBSCRIBE_SECRET).update(email.toLowerCase()).digest("hex")
+// and a signed token, so clicking it immediately adds them to the
+// "Email Unsubscribed" folk group. The scheduled sequence-sender checks
+// that group before every send.
 
 function isValidToken(email: string, token: string): boolean {
   const secret = process.env.UNSUBSCRIBE_SECRET;
@@ -53,19 +47,18 @@ export const handler: Handler = async (event) => {
 
   try {
     const existing = await folkFindPersonByEmail(email);
+    let persisted = false;
     if (existing) {
-      await folkUpdatePerson(existing.id, { addGroupIds: [FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID] });
+      persisted = await folkUpdatePerson(existing, { addGroupIds: [FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID] });
     } else {
-      // No CRM record yet (shouldn't normally happen — you can't get an
-      // unsubscribe link without having received an email first, which
-      // means a record already exists). Create one anyway so a future
-      // sync can't accidentally re-add this address without the
-      // suppression flag attached.
-      await folkCreatePerson({ email, groupIds: [FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID] });
+      const created = await folkCreatePerson({ email, groupIds: [FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID] });
+      persisted = Boolean(created);
     }
 
-    // Non-PII confirmation only — no field values logged, consistent with
-    // FORM-DATA-FLOW.md.
+    if (!persisted) {
+      throw new Error("Could not persist unsubscribe in Folk");
+    }
+
     console.log("[unsubscribe] processed request");
 
     return {
