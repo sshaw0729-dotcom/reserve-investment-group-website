@@ -71,7 +71,7 @@ function buildLeadNotification(input: {
   magnetTitle?: string;
 }): { subject: string; htmlBody: string } {
   const fullName = `${input.firstName} ${input.lastName}`.trim();
-  const rows = [
+  const rows: Array<[string, string]> = [
     ["Name", fullName],
     ["Email", input.email],
     ["Phone", input.phone || "Not provided"],
@@ -79,7 +79,7 @@ function buildLeadNotification(input: {
     ["Area of interest", input.areaOfInterest || "Not specified"],
     ["Form", input.formId],
     ["Page", input.pageSlug],
-    ...(input.magnetTitle ? [["Lead magnet", input.magnetTitle]] : []),
+    ...(input.magnetTitle ? [["Lead magnet", input.magnetTitle] as [string, string]] : []),
   ];
 
   const htmlRows = rows
