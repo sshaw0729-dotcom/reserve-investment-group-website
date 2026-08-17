@@ -8,11 +8,13 @@ import {
   folkIsUnsubscribed,
   FOLK_WEBSITE_LEADS_GROUP_ID,
 } from "./lib/folk";
+import { sendGraphMail } from "./lib/msgraph";
 
 const MAX_BODY_BYTES = 16_384;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const AREA_VALUES = new Set(["", "financial-planning", "retirement-planning", "business-owner-planning", "wealth-management", "other"]);
 const CONTACT_METHOD_VALUES = new Set(["email", "phone"]);
+const LEAD_NOTIFICATION_TO = process.env.LEAD_NOTIFICATION_TO ?? "info@reserveinvestmentgroup.com";
 
 const ALLOWED_FIELDS = [
   "firstName",
@@ -40,12 +42,61 @@ function cleanString(value: unknown, max: number): string | undefined {
   return cleaned;
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function buildUnsubscribeUrl(email: string): string {
   const secret = process.env.UNSUBSCRIBE_SECRET;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://reserveinvestmentgroup.com";
   if (!secret) return `${siteUrl}/contact/`;
   const token = createHmac("sha256", secret).update(email.toLowerCase().trim()).digest("hex");
   return `${siteUrl}/.netlify/functions/unsubscribe?email=${encodeURIComponent(email)}&token=${token}`;
+}
+
+function buildLeadNotification(input: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  areaOfInterest: string;
+  preferredContactMethod: string;
+  formId: string;
+  pageSlug: string;
+  magnetTitle?: string;
+}): { subject: string; htmlBody: string } {
+  const fullName = `${input.firstName} ${input.lastName}`.trim();
+  const rows = [
+    ["Name", fullName],
+    ["Email", input.email],
+    ["Phone", input.phone || "Not provided"],
+    ["Preferred contact", input.preferredContactMethod],
+    ["Area of interest", input.areaOfInterest || "Not specified"],
+    ["Form", input.formId],
+    ["Page", input.pageSlug],
+    ...(input.magnetTitle ? [["Lead magnet", input.magnetTitle]] : []),
+  ];
+
+  const htmlRows = rows
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:6px 0;">${escapeHtml(value)}</td></tr>`
+    )
+    .join("");
+
+  return {
+    subject: `New website lead: ${fullName}`,
+    htmlBody:
+      `<p>A new lead was submitted on reserveinvestmentgroup.com.</p>` +
+      `<table role="presentation" style="border-collapse:collapse;">${htmlRows}</table>` +
+      `<p style="margin-top:16px;">The lead has also been saved to Folk under Website Leads.</p>` +
+      `<p style="font-size:12px;color:#555;">Do not reply with or request Social Security numbers, account credentials, tax documents, investment statements, or other sensitive information by email.</p>`,
+  };
 }
 
 export const handler: Handler = async (event) => {
@@ -132,6 +183,7 @@ export const handler: Handler = async (event) => {
       noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${areaOfInterest || "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
     }
 
+    let personId: string;
     try {
       let person = await folkFindPersonByEmail(email);
       if (!person) {
@@ -159,7 +211,8 @@ export const handler: Handler = async (event) => {
         }
       }
 
-      const noteCreated = await folkCreateNote(person.id, noteBody);
+      personId = person.id;
+      const noteCreated = await folkCreateNote(personId, noteBody);
       if (!noteCreated) {
         console.error("[submit-lead] Folk note creation failed after lead persisted", { formId });
       }
@@ -168,7 +221,34 @@ export const handler: Handler = async (event) => {
       return { statusCode: 502, body: JSON.stringify({ ok: false, error: "crm_write_failed" }) };
     }
 
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    const notification = buildLeadNotification({
+      firstName,
+      lastName,
+      email,
+      phone,
+      areaOfInterest,
+      preferredContactMethod,
+      formId,
+      pageSlug,
+      magnetTitle: magnet?.title,
+    });
+    const notificationResult = await sendGraphMail({
+      to: LEAD_NOTIFICATION_TO,
+      subject: notification.subject,
+      htmlBody: notification.htmlBody,
+    });
+
+    if (!notificationResult.ok) {
+      console.error("[submit-lead] internal lead notification failed", notificationResult.error);
+      await folkCreateNote(personId, `Internal lead-notification email to ${LEAD_NOTIFICATION_TO} failed after this lead was saved. Review Netlify function logs and Microsoft Graph configuration.`).catch(() => false);
+    } else {
+      console.log("[submit-lead] internal lead notification sent", { formId });
+    }
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ ok: true, notificationSent: notificationResult.ok }),
+    };
   } catch {
     return { statusCode: 400, body: JSON.stringify({ ok: false }) };
   }
