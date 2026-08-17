@@ -21,6 +21,7 @@ function folkHeaders(): HeadersInit {
 export type FolkPerson = {
   id: string;
   emails?: string[];
+  phones?: string[];
   firstName?: string;
   lastName?: string;
   groups?: Array<{ id: string; name?: string }>;
@@ -44,6 +45,7 @@ export async function folkFindPersonByEmail(email: string): Promise<FolkPerson |
 
 export async function folkCreatePerson(input: {
   email: string;
+  phone?: string;
   firstName?: string;
   lastName?: string;
   groupIds: string[];
@@ -55,6 +57,7 @@ export async function folkCreatePerson(input: {
       headers: folkHeaders(),
       body: JSON.stringify({
         emails: [input.email],
+        phones: input.phone ? [input.phone] : undefined,
         firstName: input.firstName,
         lastName: input.lastName,
         groups: input.groupIds.map((id) => ({ id })),
@@ -72,6 +75,7 @@ export async function folkCreatePerson(input: {
 export async function folkUpdatePerson(
   person: FolkPerson,
   input: {
+    phone?: string;
     addGroupIds?: string[];
     customFieldValues?: Record<string, Record<string, unknown>>;
   }
@@ -79,11 +83,14 @@ export async function folkUpdatePerson(
   try {
     const existingGroupIds = (person.groups ?? []).map((group) => group.id);
     const groups = [...new Set([...existingGroupIds, ...(input.addGroupIds ?? [])])].map((id) => ({ id }));
+    const existingPhones = person.phones ?? [];
+    const phones = input.phone ? [...new Set([...existingPhones, input.phone])] : undefined;
     const res = await fetch(`${FOLK_API_BASE}/people/${person.id}`, {
       method: "PATCH",
       headers: folkHeaders(),
       body: JSON.stringify({
         groups,
+        phones,
         customFieldValues: input.customFieldValues,
       }),
     });
@@ -110,11 +117,18 @@ export async function folkCreateNote(personId: string, content: string): Promise
   }
 }
 
+/** Fail closed: an API failure is treated as suppressed. */
 export async function folkIsUnsubscribed(email: string): Promise<boolean> {
   try {
-    const person = await folkFindPersonByEmail(email);
-    if (!person) return false;
-    return (person.groups ?? []).some((group) => group.id === FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID);
+    const url = new URL(`${FOLK_API_BASE}/people`);
+    url.searchParams.set("filter[emails][eq]", email.toLowerCase().trim());
+    url.searchParams.set("filter[groups][in][id]", FOLK_EMAIL_UNSUBSCRIBED_GROUP_ID);
+    url.searchParams.set("limit", "1");
+    const res = await fetch(url, { headers: folkHeaders() });
+    if (!res.ok) return true;
+    const payload = (await res.json()) as FolkEnvelope<FolkPerson[]>;
+    if (!Array.isArray(payload.data)) return true;
+    return payload.data.length > 0;
   } catch {
     return true;
   }
