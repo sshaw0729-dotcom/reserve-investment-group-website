@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { referenceRigArtwork } from "../../lib/brand/referenceRigArtwork";
 
 const NAV_ITEMS = [
@@ -22,6 +22,42 @@ const NAV_ITEMS = [
  */
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileClosing, setMobileClosing] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const closeImmediately = useCallback(() => {
+    clearCloseTimer();
+    setMobileClosing(false);
+    setMobileOpen(false);
+  }, [clearCloseTimer]);
+
+  const closeWithFade = useCallback(() => {
+    if (!mobileOpen || mobileClosing) return;
+
+    clearCloseTimer();
+    setMobileClosing(true);
+    closeTimerRef.current = setTimeout(() => {
+      setMobileOpen(false);
+      setMobileClosing(false);
+      closeTimerRef.current = null;
+    }, 140);
+  }, [clearCloseTimer, mobileClosing, mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    window.addEventListener("scroll", closeImmediately, { passive: true });
+    return () => window.removeEventListener("scroll", closeImmediately);
+  }, [closeImmediately, mobileOpen]);
+
+  useEffect(() => clearCloseTimer, [clearCloseTimer]);
 
   return (
     <header className="site-header container">
@@ -41,21 +77,36 @@ export function SiteHeader() {
       <button
         type="button"
         className="site-header-toggle"
-        aria-expanded={mobileOpen}
+        aria-expanded={mobileOpen && !mobileClosing}
         aria-controls="primary-nav"
-        onClick={() => setMobileOpen((v) => !v)}
+        onClick={() => {
+          if (mobileOpen) {
+            closeImmediately();
+          } else {
+            setMobileOpen(true);
+          }
+        }}
       >
         Menu
       </button>
-      <nav id="primary-nav" aria-label="Primary" hidden={!mobileOpen} className="site-header-nav">
+      <nav
+        id="primary-nav"
+        aria-label="Primary"
+        aria-hidden={mobileClosing || undefined}
+        data-closing={mobileClosing || undefined}
+        hidden={!mobileOpen}
+        className="site-header-nav"
+      >
         <ul>
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
-              <Link href={item.href}>{item.label}</Link>
+              <Link href={item.href} onClick={closeWithFade}>
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
-        <Link href="/schedule/" className="site-header-cta">
+        <Link href="/schedule/" className="site-header-cta" onClick={closeWithFade}>
           Schedule an introductory conversation
         </Link>
       </nav>
