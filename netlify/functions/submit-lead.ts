@@ -27,7 +27,28 @@ const ALLOWED_FIELDS = [
   "formId",
   "pageSlug",
   "website",
+  "funnelData",
 ] as const;
+
+const FUNNEL_OFFERS: Record<string, string> = {
+  "auto-home-insurance-review": "Auto, Home & Business Insurance Review",
+  "term-life-review": "Term Life Insurance Review",
+  "iul-conversation": "Indexed Universal Life Conversation",
+  "final-expense-review": "Final Expense Insurance Review",
+  "merchant-statement-review": "Merchant Statement Review",
+};
+
+const FUNNEL_DETAIL_LABELS: Record<string, string> = {
+  coverage_type: "Coverage type",
+  zip_code: "ZIP code",
+  currently_insured: "Currently insured",
+  renewal_date: "Renewal date",
+  term_length: "Term length",
+  coverage_amount: "Coverage amount",
+  planning_goal: "Planning goal",
+  final_expense_coverage: "Final-expense coverage",
+  business_name: "Business name",
+};
 
 const MAGNET_SEQUENCE_MAP: Record<string, { sequence: "A" | "B" | "C"; title: string }> = {
   "retirement-readiness-checklist": { sequence: "A", title: "Retirement Readiness Checklist" },
@@ -40,6 +61,22 @@ function cleanString(value: unknown, max: number): string | undefined {
   const cleaned = value.replace(/[\u0000-\u001F\u007F]/g, " ").trim();
   if (cleaned.length > max) return undefined;
   return cleaned;
+}
+
+function cleanFunnelData(value: unknown): Record<string, string> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const result: Record<string, string> = {};
+  for (const key of Object.keys(FUNNEL_DETAIL_LABELS)) {
+    const cleaned = cleanString((value as Record<string, unknown>)[key], 120);
+    if (cleaned) result[key] = cleaned;
+  }
+  return result;
+}
+
+function formatFunnelDetails(details: Record<string, string>) {
+  return Object.entries(details)
+    .map(([key, value]) => `${FUNNEL_DETAIL_LABELS[key]}: ${value}`)
+    .join("; ");
 }
 
 function escapeHtml(value: string): string {
@@ -156,6 +193,7 @@ export const handler: Handler = async (event) => {
     const formId = cleanString(submission.formId, 120);
     const pageSlug = cleanString(submission.pageSlug, 240);
     const consent = submission.consent === true;
+    const funnelData = cleanFunnelData(submission.funnelData);
 
     if (
       !firstName ||
@@ -176,6 +214,7 @@ export const handler: Handler = async (event) => {
     console.log("[submit-lead] accepted submission", { formId, pageSlug });
 
     const magnet = MAGNET_SEQUENCE_MAP[formId];
+    const funnelOffer = FUNNEL_OFFERS[formId];
     const today = new Date().toISOString().slice(0, 10);
     let customFieldValues: Record<string, Record<string, unknown>> | undefined;
     let noteBody: string;
@@ -200,6 +239,17 @@ export const handler: Handler = async (event) => {
       noteBody = previouslyUnsubscribed
         ? `Downloaded "${magnet.title}" on ${today}. NOT enrolled in the automated email sequence — this address is on the Email Unsubscribed list from a prior opt-out. Follow up manually if appropriate.`
         : `Downloaded "${magnet.title}" on ${today}. Enrolled in Email Nurture Sequence ${magnet.sequence} (EMAIL-NURTURE-SEQUENCES.md). Day 0 email due immediately; Day 3/7/14 emails scheduled from this date. Unsubscribe link issued: ${unsubscribeUrl}`;
+    } else if (funnelOffer) {
+      const detailSummary = formatFunnelDetails(funnelData);
+      customFieldValues = {
+        [FOLK_WEBSITE_LEADS_GROUP_ID]: {
+          "Lead Source": "Website Funnel",
+          "Offer Interest": funnelOffer,
+          "Landing Page Viewed": pageSlug,
+          "Funnel Stage": "New Website Inquiry",
+        },
+      };
+      noteBody = `Website funnel "${funnelOffer}" submitted on ${today} from ${pageSlug}. Preferred contact method: ${preferredContactMethod}.${detailSummary ? ` Funnel details: ${detailSummary}.` : ""}`;
     } else {
       noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${areaOfInterest || "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
     }
