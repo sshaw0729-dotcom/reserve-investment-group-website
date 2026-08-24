@@ -5,6 +5,7 @@ import "../../styles/funnel.css";
 import { useFunnelTheme } from "./useFunnelTheme";
 import { submitFunnelLead } from "./wireMultiStepForm";
 import { MERCHANT_BODY_HTML } from "./content/merchant.body";
+import { track } from "../../lib/analytics/track";
 
 /**
  * /merchant-services — statement-upload audit tool + savings calculator.
@@ -17,6 +18,7 @@ export default function MerchantServicesPage() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    track("page_viewed", { page_type: "service", page_slug: "/merchant-services/", service_category: "merchant-services" });
 
     const dz = root.querySelector<HTMLElement>("#dropzone");
     const fileInput = root.querySelector<HTMLInputElement>("#statement-file");
@@ -47,6 +49,13 @@ export default function MerchantServicesPage() {
     }
 
     if (detailsForm) {
+      let formStarted = false;
+      const onFocus = () => {
+        if (formStarted) return;
+        formStarted = true;
+        track("form_started", { form_id: "merchant-statement-review", page_slug: "/merchant-services/" });
+      };
+      detailsForm.addEventListener("focusin", onFocus);
       const onSubmit = async (e: Event) => {
         e.preventDefault();
         const sent = await submitFunnelLead(detailsForm, {
@@ -61,7 +70,10 @@ export default function MerchantServicesPage() {
         }
       };
       detailsForm.addEventListener("submit", onSubmit);
-      cleanups.push(() => detailsForm.removeEventListener("submit", onSubmit));
+      cleanups.push(() => {
+        detailsForm.removeEventListener("focusin", onFocus);
+        detailsForm.removeEventListener("submit", onSubmit);
+      });
     }
 
     const calcBtn = root.querySelector<HTMLElement>("#calc-btn");
@@ -76,6 +88,7 @@ export default function MerchantServicesPage() {
         const compareRate = parseFloat((compareRateEl?.value || "2.8").replace(/[^0-9.]/g, "")) || 2.8;
         const difference = Math.round(vol * ((rate - compareRate) / 100));
         if (outputEl) outputEl.textContent = `${difference < 0 ? "−" : ""}$${Math.abs(difference).toLocaleString()}/mo`;
+        track("secondary_cta_clicked", { page_slug: "/merchant-services/", cta_location: "illustrative_cost_calculator" });
       };
       calcBtn.addEventListener("click", onCalc);
       cleanups.push(() => calcBtn.removeEventListener("click", onCalc));
