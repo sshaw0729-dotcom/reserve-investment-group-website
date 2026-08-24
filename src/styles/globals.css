@@ -160,6 +160,49 @@ table {
 .alert-success { background: #eaf3ee; border: 1px solid var(--color-success); }
 .alert-error { background: #fbeceb; border: 1px solid var(--color-error); }
 
+/* Privacy-first analytics consent — compact, brand-matched, and always
+   reversible through the persistent settings control. */
+.analytics-consent {
+  position: fixed;
+  z-index: 1000;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  left: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  max-width: 760px;
+  margin-inline: auto;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(20, 33, 61, 0.22);
+}
+.analytics-consent h2 { margin: 0 0 var(--space-2); font-size: var(--font-size-xl); }
+.analytics-consent p { margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.analytics-consent-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }
+.analytics-settings-trigger {
+  position: fixed;
+  z-index: 900;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  min-height: var(--touch-target-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.12);
+  font: inherit;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .analytics-consent { grid-template-columns: 1fr auto; align-items: center; }
+  .analytics-consent-actions { flex-wrap: nowrap; }
+}
+
 /* Buttons — used by components/ui/Button.tsx (btn-primary/btn-secondary/
    btn-text) and by raw <a>/<button> CTAs (e.g. LeadForm's submit and
    post-download link) that reuse the same class names. Was previously
