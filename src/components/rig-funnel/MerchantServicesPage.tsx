@@ -47,7 +47,7 @@ export default function MerchantServicesPage() {
     }
 
     if (detailsForm) {
-      const onSubmit = async (e: SubmitEvent) => {
+      const onSubmit = async (e: Event) => {
         e.preventDefault();
         const sent = await submitFunnelLead(detailsForm, {
           formId: "merchant-statement-review",
@@ -60,8 +60,8 @@ export default function MerchantServicesPage() {
           if (dividerOr) dividerOr.style.display = "none";
         }
       };
-      detailsForm.addEventListener("submit", onSubmit as EventListener);
-      cleanups.push(() => detailsForm.removeEventListener("submit", onSubmit as EventListener));
+      detailsForm.addEventListener("submit", onSubmit);
+      cleanups.push(() => detailsForm.removeEventListener("submit", onSubmit));
     }
 
     const calcBtn = root.querySelector<HTMLElement>("#calc-btn");
