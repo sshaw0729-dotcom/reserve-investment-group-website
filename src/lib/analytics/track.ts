@@ -35,9 +35,19 @@ export function track(event: AllowedEvent, properties: AllowedEventProperties = 
 }
 
 let initialized = false;
+let enabled = false;
 
 function posthogInitialized(): boolean {
-  return initialized;
+  return initialized && enabled;
+}
+
+export function disableAnalytics(): void {
+  if (typeof window === "undefined") return;
+  if (initialized) {
+    posthog.opt_out_capturing();
+    posthog.reset();
+  }
+  enabled = false;
 }
 
 /**
@@ -50,6 +60,12 @@ export function initAnalyticsAfterConsent(): void {
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
   if (!key || !host) return;
 
+  if (initialized) {
+    posthog.opt_in_capturing();
+    enabled = true;
+    return;
+  }
+
   posthog.init(key, {
     api_host: host,
     autocapture: false,
@@ -58,5 +74,7 @@ export function initAnalyticsAfterConsent(): void {
     persistence: "memory",
     property_denylist: [],
   });
+  posthog.opt_in_capturing();
   initialized = true;
+  enabled = true;
 }
