@@ -34,17 +34,20 @@ export function AnalyticsConsent() {
   const [resolved, setResolved] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === "granted") {
-      setPreference("granted");
-      initAnalyticsAfterConsent();
-    } else if (saved === "denied") {
-      setPreference("denied");
-      disableAnalytics();
-    } else {
-      setShowPanel(true);
-    }
-    setResolved(true);
+    const timer = window.setTimeout(() => {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      if (saved === "granted") {
+        setPreference("granted");
+        initAnalyticsAfterConsent();
+      } else if (saved === "denied") {
+        setPreference("denied");
+        disableAnalytics();
+      } else {
+        setShowPanel(true);
+      }
+      setResolved(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
