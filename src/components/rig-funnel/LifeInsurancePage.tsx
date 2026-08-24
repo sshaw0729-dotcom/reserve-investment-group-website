@@ -5,6 +5,7 @@ import "../../styles/funnel.css";
 import { useFunnelTheme } from "./useFunnelTheme";
 import { wireMultiStepForm } from "./wireMultiStepForm";
 import { LIFE_BODY_HTML } from "./content/life.body";
+import { track } from "../../lib/analytics/track";
 
 /**
  * /life-insurance — three-path selector (Term / IUL / Final Expense).
@@ -19,6 +20,7 @@ export default function LifeInsurancePage() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    track("page_viewed", { page_type: "service", page_slug: "/life-insurance/", service_category: "life-insurance" });
     const cleanupTerm = wireMultiStepForm(root.querySelector<HTMLFormElement>("#term-form-el"), {
       formId: "term-life-review",
       pageSlug: "/life-insurance/",
