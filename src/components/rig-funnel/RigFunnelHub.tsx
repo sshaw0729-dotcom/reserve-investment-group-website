@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../../styles/funnel.css";
 import { useFunnelTheme } from "./useFunnelTheme";
 import { HUB_BODY_HTML } from "./content/hub.body";
+import { track } from "../../lib/analytics/track";
 
 /**
  * Overview/hub page linking to the three vertical funnel pages
@@ -13,6 +14,10 @@ import { HUB_BODY_HTML } from "./content/hub.body";
 export default function RigFunnelHub() {
   const rootRef = useRef<HTMLDivElement>(null);
   useFunnelTheme(rootRef);
+
+  useEffect(() => {
+    track("page_viewed", { page_type: "hub", page_slug: "/insurance-and-payments/", service_category: "insurance-and-payments" });
+  }, []);
 
   return (
     <div
