@@ -3,9 +3,9 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/production-parity.css";
 import "../components/ui/button.css";
-import { SiteHeader } from "../components/marketing/SiteHeader";
 import { SiteFooter } from "../components/marketing/SiteFooter";
 import { AnalyticsConsent } from "../components/analytics/AnalyticsConsent";
+import { SiteChrome } from "../components/marketing/SiteChrome";
 
 // Brand type (Canva "Conversion Website v2" concept, confirmed by the
 // practice owner 2026-08-11): Playfair Display for headings, Inter for
@@ -28,8 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <body>
-        <SiteHeader />
-        {children}
+        <SiteChrome>{children}</SiteChrome>
         <SiteFooter />
         <AnalyticsConsent />
       </body>
