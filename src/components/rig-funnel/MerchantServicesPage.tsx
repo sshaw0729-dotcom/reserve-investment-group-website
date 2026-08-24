@@ -18,7 +18,6 @@ export default function MerchantServicesPage() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    track("page_viewed", { page_type: "service", page_slug: "/merchant-services/", service_category: "merchant-services" });
 
     const dz = root.querySelector<HTMLElement>("#dropzone");
     const fileInput = root.querySelector<HTMLInputElement>("#statement-file");
