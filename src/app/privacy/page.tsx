@@ -39,19 +39,15 @@ export default function PrivacyPage() {
           Supplying a phone number or submitting a general contact form
           without separate SMS consent does not enroll you in the program.
         </p>
+        <p><strong>Reserve Investment Group, Incorporated does not share mobile numbers, text messaging originator opt-in data, or consent with any third parties or affiliates for marketing or promotional purposes.</strong></p>
+        <p><strong>Text messaging originator opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of the Text Message services.</strong></p>
         <p>
-          <strong>No mobile information, including mobile telephone numbers,
-          SMS opt-in data, or text messaging consent, will be shared, sold,
-          rented, or disclosed to third parties or affiliates for their own
-          marketing or promotional purposes.</strong> All information-sharing
-          categories in this Policy exclude SMS originator opt-in data and
-          consent from marketing or promotional disclosure. We may provide
-          only the information necessary to contracted messaging platforms,
-          telecommunications carriers, or operational service providers
-          solely to deliver and support requested SMS messages, subject to
-          appropriate confidentiality and security safeguards. These
-          providers are not authorized to use SMS consent for their own
-          marketing.
+          The exclusion for aggregators and providers applies solely to information
+          necessary to operate, deliver and support the requested Text Message
+          services. Such providers are not authorized to use mobile numbers,
+          opt-in data or consent for their own marketing or promotional purposes.
+          All general information-sharing provisions in this Policy remain subject
+          to the restrictions on mobile messaging data stated above.
         </p>
         <p>
           You may withdraw SMS consent at any time by replying STOP to a
