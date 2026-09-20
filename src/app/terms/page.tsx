@@ -74,14 +74,14 @@ export default function TermsPage() {
           again. Reply HELP for assistance or contact us through our{" "}
           <a href="/contact/">contact page</a>.
         </p>
+        <p><strong>Reserve Investment Group, Incorporated does not share mobile numbers, text messaging originator opt-in data, or consent with any third parties or affiliates for marketing or promotional purposes.</strong></p>
+        <p><strong>Text messaging originator opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of the Text Message services.</strong></p>
         <p>
-          Mobile phone numbers, SMS opt-in information, and messaging
-          consent are not sold, rented, or shared with third parties or
-          affiliates for their marketing or promotional purposes.
-          Information may be provided to messaging platforms and
-          telecommunications carriers only as necessary to operate and
-          deliver requested text messages, subject to appropriate
-          safeguards. See our <a href="/privacy/">Privacy Policy</a>.
+          The exception for aggregators and providers is limited to
+          information necessary to operate and deliver the requested text
+          messaging service. Such providers are not authorized to use
+          mobile numbers, opt-in data or consent for their own marketing
+          or promotional purposes. See our <a href="/privacy/">Privacy Policy</a>.
         </p>
         <p>
           Text messaging is not a secure method for transmitting
