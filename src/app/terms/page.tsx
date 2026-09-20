@@ -1,12 +1,11 @@
-// Terms of Use — CORE-013. Liability/governing-law language filled
-// 2026-08-08 with owner-supplied final text, confirmed by practice
-// owner 2026-08-08 as attorney-reviewed.
+// Terms of Use — CORE-013. Existing owner-approved legal language preserved.
+// SMS language proposed 2026-09-20; requires compliance/legal review before production.
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "Terms of use for the Reserve Investment Group, Inc website.",
+  description: "Terms of use and SMS messaging program terms for Reserve Investment Group, Inc.",
   alternates: { canonical: "/terms/" },
 };
 
@@ -16,6 +15,7 @@ export default function TermsPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Terms of Use", href: "/terms/" }]} />
       <section className="container">
         <h1>Terms of Use</h1>
+        <p>Last updated: September 20, 2026</p>
         <p>
           By using this website, you agree to these Terms of Use. If you
           do not agree, please do not use this site.
@@ -48,8 +48,49 @@ export default function TermsPage() {
           We are not responsible for the content, privacy practices, or
           availability of those sites.
         </p>
-        {/* Items filled 2026-08-08 with owner-supplied final language.
-            Confirmed by practice owner 2026-08-08 as attorney-reviewed. */}
+        <h2>SMS messaging program</h2>
+        <p>
+          Program name and operator: Reserve Investment Group, Inc. SMS
+          Program. If you separately and voluntarily opt in, we may send
+          text messages about scheduling, appointment confirmations and
+          reminders, responses to your inquiries, event registrations,
+          requested educational resources, and customer support. SMS is
+          not used to accept securities orders, investment-trading
+          instructions, account credentials, or wire instructions.
+        </p>
+        <p>
+          SMS enrollment requires your express opt-in through an available
+          enrollment method. Providing a phone number, sending a general
+          website inquiry, or accepting general website terms does not by
+          itself enroll you. SMS consent is optional and is not a
+          condition of purchasing any product or service. Message
+          frequency varies. Message and data rates may apply. Wireless
+          carriers are not liable for delayed or undelivered messages.
+        </p>
+        <p>
+          You may opt out at any time by replying STOP to a program
+          message. You may receive one confirmation message; after that,
+          no further program messages will be sent unless you opt in
+          again. Reply HELP for assistance or contact us through our{" "}
+          <a href="/contact/">contact page</a>.
+        </p>
+        <p><strong>Reserve Investment Group, Incorporated does not share mobile numbers, text messaging originator opt-in data, or consent with any third parties or affiliates for marketing or promotional purposes.</strong></p>
+        <p><strong>Text messaging originator opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of the Text Message services.</strong></p>
+        <p>
+          The exception for aggregators and providers is limited to
+          information necessary to operate and deliver the requested text
+          messaging service. Such providers are not authorized to use
+          mobile numbers, opt-in data or consent for their own marketing
+          or promotional purposes. See our <a href="/privacy/">Privacy Policy</a>.
+        </p>
+        <p>
+          Text messaging is not a secure method for transmitting
+          confidential financial information. Do not text passwords,
+          Social Security numbers, account numbers, account credentials,
+          securities-trading instructions, or payment and wire-transfer
+          details. Contact us using a verified channel if you receive a
+          suspicious message claiming to be from our business.
+        </p>
         <h2>Limitation of Liability</h2>
         <p>
           To the fullest extent permitted by applicable law, Reserve
@@ -113,6 +154,7 @@ export default function TermsPage() {
           Questions about these terms can be directed to us through our{" "}
           <a href="/contact/">contact page</a>.
         </p>
+        <p>Also see our <a href="/disclosures/">regulatory disclosures</a> and <a href="/privacy/">Privacy Policy</a>.</p>
       </section>
     </main>
   );
