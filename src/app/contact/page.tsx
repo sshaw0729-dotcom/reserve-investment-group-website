@@ -1,4 +1,5 @@
-// Contact — CORE-009. Draft, pending compliance review.
+// Contact — CORE-009. SMS consent clarification proposed September 20, 2026.
+// Review with compliance before publication.
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 import { LeadForm } from "../../components/forms/LeadForm";
@@ -20,22 +21,19 @@ export default function ContactPage() {
           Reach out and we&apos;ll follow up to schedule a time to talk.
           Prefer to call? 216-284-3615.
         </p>
-        {/* 216-284-3615 confirmed correct and now the primary number on
-            the live Google Business Profile (updated 2026-08-06). */}
-        <p>
-          1414 S. Green Rd., Suite 105, South Euclid, OH 44121
-        </p>
+        <p>1414 S. Green Rd., Suite 105, South Euclid, OH 44121</p>
         <LeadForm formId="contact" pageSlug="/contact/" />
       </section>
       <DisclosureBlock>
-        {/* Replaced 2026-08-08 with owner-supplied final consent language.
-            Confirmed by practice owner 2026-08-08 as attorney-reviewed. */}
         <h2>Contact Consent</h2>
         <p>
-          By submitting this form, you authorize Reserve Investment Group,
-          Inc. and its representatives to contact you regarding your
-          inquiry using the contact information you provide, including by
-          telephone, email, or text message.
+          By submitting this form, you request that Reserve Investment Group,
+          Inc. and its representatives respond to your inquiry using your
+          provided contact details by your selected or otherwise appropriate
+          non-SMS contact method. Providing a mobile number, selecting a
+          preferred contact method, or submitting this form does not enroll
+          you in an SMS messaging program. SMS messaging requires a separate,
+          voluntary, express opt-in through an approved enrollment method.
         </p>
         <p>
           Submitting this form does not create an investment advisory,
@@ -44,14 +42,13 @@ export default function ContactPage() {
           or service.
         </p>
         <p>
-          If you provide a mobile telephone number, you consent to
-          receiving text messages related to your inquiry. Message and
-          data rates may apply. Message frequency may vary. You may opt
-          out of text messages at any time by replying STOP.
-        </p>
-        <p>
-          Consent to receive communications is not a condition of
-          purchasing any product or service.
+          Where offered, SMS enrollment is optional and is not a condition
+          of purchasing any product or service. Program messages may include
+          appointment reminders, responses to inquiries, requested resources,
+          event information, and support communications. Message frequency
+          varies; message and data rates may apply. Reply STOP to opt out
+          or HELP for assistance. Review the <a href="/terms/">SMS Messaging
+          Terms</a> and <a href="/privacy/">Privacy Policy</a> before opting in.
         </p>
         <p>
           Please do not submit confidential, sensitive, or
