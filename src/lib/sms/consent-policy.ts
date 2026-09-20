@@ -1,4 +1,4 @@
-// Versioned copy: any change to consent wording requires a new version.
+// Exact, versioned text: changing consent wording requires a new version.
 export const SMS_CONSENT_VERSION = "rig-sms-2026-09-20-v1";
 export const SMS_CONSENT_COPY =
   "I agree to receive text messages from Reserve Investment Group, Inc. about appointment scheduling and reminders, responses to my inquiries, requested educational resources, events and customer support. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for assistance. Consent is optional and is not a condition of purchase. See the Terms of Use and Privacy Policy.";
@@ -26,8 +26,8 @@ export function normalizeUsMobile(value: unknown): string | null {
 export function latestConsentState(events: SmsConsentEvent[], phone: string): "opted_in" | "opted_out" | "unknown" {
   const relevant = events.filter((e) => e.phone === phone && (e.kind === "OPT_IN" || e.kind === "STOP"));
   if (!relevant.length) return "unknown";
-  // A STOP wins ties; a new express OPT_IN after STOP may restore consent.
-  relevant.sort((a, b) => a.occurredAt.localeCompare(b.occurredAt) || (a.kind === "STOP" ? 1 : -1));
+  // STOP wins identical timestamps; ID makes ordering deterministic. Do not trust array order.
+  relevant.sort((a, b) => a.occurredAt.localeCompare(b.occurredAt) || (a.kind === b.kind ? a.id.localeCompare(b.id) : a.kind === "STOP" ? 1 : -1));
   return relevant[relevant.length - 1]?.kind === "STOP" ? "opted_out" : "opted_in";
 }
 
