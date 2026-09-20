@@ -5,7 +5,6 @@ const GROUP_ID = "grp_1a8efb94-b81f-4182-beac-e439d1ddf681";
 const PREFIX = "RIG_SMS_CONSENT_EVENT_V1 ";
 
 type Person = { id: string; emails?: string[]; phones?: string[]; firstName?: string; lastName?: string; groups?: Array<{ id: string }> };
-
 type Note = { id: string; content: string; entity?: { id: string } };
 
 function headers(apiKey: string): HeadersInit {
@@ -23,14 +22,13 @@ export async function findPersonByEmail(email: string, apiKey: string): Promise<
   url.searchParams.set("filter[emails][eq]", email);
   url.searchParams.set("limit", "2");
   const result = await folkJson(url.toString(), apiKey);
-  const people: Person[] = Array.isArray(result?.data?.items) ? result.data.items : Array.isArray(result?.data) ? result.data : [];
+  if (!Array.isArray(result?.data?.items)) throw new Error("CRM people lookup unavailable");
+  const people: Person[] = result.data.items;
   if (people.length > 1) throw new Error("Ambiguous CRM record");
   return people[0] ?? null;
 }
 
-export async function findOrCreateSmsPerson(input: {
-  email: string; firstName: string; lastName: string; phone: string;
-}, apiKey: string): Promise<Person> {
+export async function findOrCreateSmsPerson(input: { email: string; firstName: string; lastName: string; phone: string }, apiKey: string): Promise<Person> {
   const existing = await findPersonByEmail(input.email, apiKey);
   if (!existing) {
     const created = await folkJson(`${BASE}/people`, apiKey, {
@@ -54,7 +52,7 @@ export async function persistAndVerifySmsEvent(personId: string, event: SmsConse
   const content = PREFIX + JSON.stringify(event);
   const created = await folkJson(`${BASE}/notes`, apiKey, {
     method: "POST",
-    body: JSON.stringify({ entity: { id: personId }, visibility: "public", content }),
+    body: JSON.stringify({ entity: { id: personId }, visibility: "private", content }),
   });
   const noteId = created?.data?.id;
   if (typeof noteId !== "string") throw new Error("Consent note not persisted");
@@ -69,7 +67,7 @@ export async function persistAndVerifySmsEvent(personId: string, event: SmsConse
 export async function listSmsEvents(personId: string, apiKey: string): Promise<SmsConsentEvent[]> {
   const events: SmsConsentEvent[] = [];
   let url: string | undefined = `${BASE}/notes?entity.id=${encodeURIComponent(personId)}&limit=100`;
-  // Fail closed if an unexpectedly large note history cannot be completely evaluated.
+  // Fail closed rather than using an incomplete history. No API keys or PII in logs.
   for (let page = 0; url && page < 20; page++) {
     const result = await folkJson(url, apiKey);
     if (!Array.isArray(result?.data?.items)) throw new Error("CRM note history unavailable");
@@ -77,13 +75,13 @@ export async function listSmsEvents(personId: string, apiKey: string): Promise<S
       if (!note.content?.startsWith(PREFIX)) continue;
       try {
         const event: SmsConsentEvent = JSON.parse(note.content.slice(PREFIX.length));
-        if (typeof event.id !== "string" || typeof event.phone !== "string" || typeof event.occurredAt !== "string" || !["OPT_IN", "STOP"].includes(event.kind)) throw new Error("Invalid audit record");
+        if (note.entity?.id !== personId || typeof event.id !== "string" || typeof event.phone !== "string" || typeof event.occurredAt !== "string" || !["OPT_IN", "STOP"].includes(event.kind)) throw new Error("Invalid audit record");
         events.push(event);
       } catch { throw new Error("Malformed SMS audit event: fail closed"); }
     }
     const next: unknown = result?.data?.pagination?.nextLink;
-    if (typeof next !== "string") return events;
-    if (!next.startsWith(`${BASE}/notes?`)) throw new Error("Unsafe CRM pagination link");
+    if (next == null) return events;
+    if (typeof next !== "string" || !next.startsWith(`${BASE}/notes?`)) throw new Error("Unsafe CRM pagination link");
     url = next;
   }
   throw new Error("SMS audit history truncated: fail closed");
