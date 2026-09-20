@@ -20,7 +20,10 @@ describe("SMS audit persistence", () => {
     vi.stubGlobal("fetch", fetchMock);
     await expect(persistAndVerifySmsEvent(personId, event, "test-secret")).resolves.toBe(noteId);
     expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body).visibility).toBe("private");
+    const call = fetchMock.mock.calls.at(0);
+    if (!call) throw new Error("Missing mock POST call");
+    const options = call[1] as RequestInit;
+    expect(JSON.parse(String(options.body)).visibility).toBe("private");
   });
   it("rejects mismatched read-back data rather than accepting the POST alone", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValueOnce(ok({ id: noteId })).mockResolvedValueOnce(ok({ id: noteId, entity: { id: personId }, content: "tampered" })));
