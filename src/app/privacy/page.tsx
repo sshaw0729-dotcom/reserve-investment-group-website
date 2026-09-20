@@ -1,12 +1,11 @@
-// Privacy Policy — CORE-012. Retention/jurisdiction language filled
-// 2026-08-08 with owner-supplied final text, confirmed by practice
-// owner 2026-08-08 as attorney-reviewed.
+// Privacy Policy — CORE-012. Existing owner-approved language preserved.
+// SMS additions proposed 2026-09-20; compliance/legal review required before production.
 import type { Metadata } from "next";
 import { Breadcrumbs } from "../../components/marketing/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Reserve Investment Group, Inc collects, uses, and protects your information.",
+  description: "How Reserve Investment Group, Inc collects, uses, and protects your information, including mobile messaging consent.",
   alternates: { canonical: "/privacy/" },
 };
 
@@ -16,8 +15,7 @@ export default function PrivacyPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Privacy Policy", href: "/privacy/" }]} />
       <section className="container">
         <h1>Privacy Policy</h1>
-        {/* Items filled 2026-08-08 with owner-supplied final language.
-            Confirmed by practice owner 2026-08-08 as attorney-reviewed. */}
+        <p>Last updated: September 20, 2026</p>
         <h2>Information we collect</h2>
         <p>
           Contact form submissions (name, email, phone if provided, area of
@@ -27,6 +25,45 @@ export default function PrivacyPage() {
           sensitive financial information through public forms; if we ever
           need documents like these from you, we&apos;ll direct you to a
           separately secured channel, not a public form.
+        </p>
+        <h2>SMS and mobile messaging privacy</h2>
+        <p>
+          When you separately and voluntarily opt in to the Reserve Investment
+          Group, Inc. SMS Program, we may collect your mobile number, date,
+          time and method of consent, consent status, messaging preferences,
+          message records, and opt-out requests. We use these details to
+          provide requested appointment, inquiry, event, educational, and
+          support messages; document consent; honor opt-outs; and meet
+          applicable legal and recordkeeping requirements. SMS consent is
+          optional and is not a condition of buying any product or service.
+          Supplying a phone number or submitting a general contact form
+          without separate SMS consent does not enroll you in the program.
+        </p>
+        <p>
+          <strong>No mobile information, including mobile telephone numbers,
+          SMS opt-in data, or text messaging consent, will be shared, sold,
+          rented, or disclosed to third parties or affiliates for their own
+          marketing or promotional purposes.</strong> All information-sharing
+          categories in this Policy exclude SMS originator opt-in data and
+          consent from marketing or promotional disclosure. We may provide
+          only the information necessary to contracted messaging platforms,
+          telecommunications carriers, or operational service providers
+          solely to deliver and support requested SMS messages, subject to
+          appropriate confidentiality and security safeguards. These
+          providers are not authorized to use SMS consent for their own
+          marketing.
+        </p>
+        <p>
+          You may withdraw SMS consent at any time by replying STOP to a
+          program message. Reply HELP for assistance or use our{" "}
+          <a href="/contact/">contact page</a>. Withdrawal from SMS does
+          not automatically withdraw any separate consent given for other
+          contact channels. Do not text passwords, Social Security numbers,
+          account credentials, account numbers, trading instructions, or
+          wire-transfer details. SMS is not a secure channel for sensitive
+          financial information. See the full program description,
+          frequency, carrier-charge and opt-out provisions in our{" "}
+          <a href="/terms/">Terms of Use</a>.
         </p>
         <h2>Analytics</h2>
         <p>
@@ -53,6 +90,13 @@ export default function PrivacyPage() {
           regulatory records, comply with applicable legal and regulatory
           obligations, resolve disputes, enforce agreements, and protect
           our legal and business interests.
+        </p>
+        <p>
+          SMS enrollment, consent, message and opt-out records are retained
+          as needed to administer the program, demonstrate consent and
+          withdrawal, and comply with applicable recordkeeping obligations.
+          Applicable periods depend on the record type and governing rules;
+          no universal retention period is promised.
         </p>
         <p>
           The length of time information is retained may vary depending on
@@ -122,7 +166,9 @@ export default function PrivacyPage() {
         <p>
           Contact us through our <a href="/contact/">contact page</a> with
           any questions about how your information is collected or used.
+          Identify privacy-rights requests as a Privacy Request.
         </p>
+        <p>Also see our <a href="/terms/">Terms of Use</a> and <a href="/disclosures/">regulatory disclosures</a>.</p>
       </section>
     </main>
   );
