@@ -17,6 +17,7 @@ export default function SmsConsentPage() {
         <h1>Optional SMS Enrollment</h1>
         <p>Reserve Investment Group, Inc. offers text communications only to people who provide separate, express consent. Enrollment is not required to use this website or request services.</p>
         <SmsConsentForm />
+        <p>Already enrolled? <a href="/sms-opt-out/">Withdraw your SMS consent</a> or reply STOP to a message you receive.</p>
       </section>
     </main>
   );
