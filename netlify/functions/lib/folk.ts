@@ -36,8 +36,9 @@ export async function folkFindPersonByEmail(email: string): Promise<FolkPerson |
     url.searchParams.set("limit", "1");
     const res = await fetch(url, { headers: folkHeaders() });
     if (!res.ok) return null;
-    const payload = (await res.json()) as FolkEnvelope<FolkPerson[]>;
-    return Array.isArray(payload.data) ? payload.data[0] ?? null : null;
+    const payload = (await res.json()) as FolkEnvelope<{ items?: FolkPerson[] }>;
+    const items = payload.data?.items;
+    return Array.isArray(items) ? items[0] ?? null : null;
   } catch {
     return null;
   }
@@ -126,9 +127,10 @@ export async function folkIsUnsubscribed(email: string): Promise<boolean> {
     url.searchParams.set("limit", "1");
     const res = await fetch(url, { headers: folkHeaders() });
     if (!res.ok) return true;
-    const payload = (await res.json()) as FolkEnvelope<FolkPerson[]>;
-    if (!Array.isArray(payload.data)) return true;
-    return payload.data.length > 0;
+    const payload = (await res.json()) as FolkEnvelope<{ items?: FolkPerson[] }>;
+    const items = payload.data?.items;
+    if (!Array.isArray(items)) return true;
+    return items.length > 0;
   } catch {
     return true;
   }
