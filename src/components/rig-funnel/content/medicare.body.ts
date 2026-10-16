@@ -232,7 +232,7 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <div class="grid-2" style="margin: var(--space-6) 0;">
 <div class="card">
 <h3>20 or more employees</h3>
-<p>Your group plan generally stays primary, and you can usually delay Part B without a penalty. When the job or the coverage ends, an <strong>8-month Special Enrollment Period</strong> opens for you to enroll — don't let it close; after it, the penalties above apply.</p>
+<p>Your group plan generally stays primary, and you can usually delay Part B without a penalty. When the job or the coverage ends, an <strong>8-month Special Enrollment Period</strong> opens for you to enroll — and if that window closes unused, the penalties above apply.</p>
 </div>
 <div class="card">
 <h3>Fewer than 20 employees</h3>
