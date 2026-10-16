@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MedicarePage } from "../../components/rig-funnel/MedicarePages";
-import { MEDICARE_FAQ_JSONLD } from "../../components/rig-funnel/content/medicare.faq";
+import { JsonLd, faqJsonLd } from "../../lib/seo/jsonld";
+import { MEDICARE_FAQS } from "../../components/rig-funnel/content/medicare.faq";
 
 export const metadata: Metadata = {
   title: "Medicare, Explained in Plain English",
@@ -12,10 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(MEDICARE_FAQ_JSONLD) }}
-      />
+      <JsonLd data={faqJsonLd(MEDICARE_FAQS)} />
       <MedicarePage />
     </>
   );
