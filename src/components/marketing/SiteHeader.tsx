@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { referenceRigArtwork } from "../../lib/brand/referenceRigArtwork";
 
 const NAV_ITEMS = [
+  { label: "Medicare", href: "/medicare/" },
   { label: "About", href: "/about/" },
   { label: "Our Approach", href: "/our-approach/" },
   { label: "Services", href: "/services/" },
