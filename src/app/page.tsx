@@ -87,6 +87,37 @@ const HOME_WHY_ITEMS = [
   { title: "Personal", description: "Begin with what matters to you." },
 ];
 
+const HOME_VERTICAL_ITEMS = [
+  {
+    title: "Medicare Education",
+    description:
+      "Turning 65, or reviewing your coverage this fall? Plain-English guides to how Medicare works — Parts A–D, the enrollment windows, and the honest tradeoffs — plus a free one-page breakdown.",
+    linkLabel: "Explore Medicare",
+    href: "/medicare/",
+  },
+  {
+    title: "Life Insurance",
+    description:
+      "Term, indexed universal life, and final expense — three very different products, matched to your stage of life and explained before anyone quotes.",
+    linkLabel: "Explore life insurance",
+    href: "/life-insurance/",
+  },
+  {
+    title: "Auto & Home Insurance",
+    description:
+      "Auto, home, renters, and condo coverage reviewed with a licensed agent, including potential multi-policy discounts.",
+    linkLabel: "Explore coverage",
+    href: "/auto-home-insurance/",
+  },
+  {
+    title: "Merchant Services",
+    description:
+      "What is your business actually paying to accept cards? A complimentary statement review shows the number — no obligation to switch.",
+    linkLabel: "Request a statement review",
+    href: "/merchant-services/",
+  },
+];
+
 const HOME_FAQS = [
   {
     q: "What happens in the first conversation?",
@@ -236,6 +267,24 @@ export default function HomePage() {
           {HOME_WHY_ITEMS.map((item) => (
             <div className="home-feature-row-item" key={item.title}>
               <h3>{item.title}</h3><p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section container">
+        <div className="home-section-heading">
+          <p className="home-section-eyebrow">Insurance &amp; merchant services</p>
+          <h2>An insurance agency first — explained, not sold.</h2>
+          <p>
+            Reserve Investment Group is a Cleveland-area insurance agency: life, health, Medicare education, and property &amp; casualty — with broader planning coordinated alongside the right licensed professionals. These are the doors most people walk through first.
+          </p>
+        </div>
+        <div className="home-feature-row">
+          {HOME_VERTICAL_ITEMS.map((item) => (
+            <div className="home-feature-row-item" key={item.title}>
+              <h3>{item.title}</h3><p>{item.description}</p>
+              <p><a href={item.href}>{item.linkLabel} <span aria-hidden="true">→</span></a></p>
             </div>
           ))}
         </div>
