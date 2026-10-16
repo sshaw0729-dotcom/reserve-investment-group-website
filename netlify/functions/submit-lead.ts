@@ -12,7 +12,18 @@ import { sendGraphMail } from "./lib/msgraph";
 
 const MAX_BODY_BYTES = 16_384;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const AREA_VALUES = new Set(["", "financial-planning", "retirement-planning", "business-owner-planning", "wealth-management", "other"]);
+const AREA_VALUES = new Set(["", "medicare", "life-insurance", "auto-home-insurance", "merchant-services", "financial-planning", "retirement-planning", "business-owner-planning", "wealth-management", "other"]);
+const AREA_LABELS: Record<string, string> = {
+  medicare: "Medicare",
+  "life-insurance": "Life Insurance",
+  "auto-home-insurance": "Auto & Home Insurance",
+  "merchant-services": "Merchant Services",
+  "financial-planning": "Financial Planning",
+  "retirement-planning": "Retirement Planning",
+  "business-owner-planning": "Business Owner Planning",
+  "wealth-management": "Wealth Management",
+  other: "Other",
+};
 const CONTACT_METHOD_VALUES = new Set(["email", "phone"]);
 const LEAD_NOTIFICATION_TO = process.env.LEAD_NOTIFICATION_TO ?? "info@reserveinvestmentgroup.com";
 
@@ -36,7 +47,6 @@ const FUNNEL_OFFERS: Record<string, string> = {
   "iul-conversation": "Indexed Universal Life Conversation",
   "final-expense-review": "Final Expense Insurance Review",
   "merchant-statement-review": "Merchant Statement Review",
-  "medicare-one-pager": "Medicare One-Pager Download",
 };
 
 const FUNNEL_DETAIL_LABELS: Record<string, string> = {
@@ -49,7 +59,6 @@ const FUNNEL_DETAIL_LABELS: Record<string, string> = {
   planning_goal: "Planning goal",
   final_expense_coverage: "Final-expense coverage",
   business_name: "Business name",
-  medicare_status: "Medicare situation",
 };
 
 const MAGNET_SEQUENCE_MAP: Record<string, { sequence: "A" | "B" | "C"; title: string }> = {
@@ -253,7 +262,7 @@ export const handler: Handler = async (event) => {
       };
       noteBody = `Website funnel "${funnelOffer}" submitted on ${today} from ${pageSlug}. Preferred contact method: ${preferredContactMethod}.${detailSummary ? ` Funnel details: ${detailSummary}.` : ""}`;
     } else {
-      noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${areaOfInterest || "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
+      noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${AREA_LABELS[areaOfInterest] ?? areaOfInterest ?? "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
     }
 
     let personId: string;
@@ -299,7 +308,7 @@ export const handler: Handler = async (event) => {
       lastName,
       email,
       phone,
-      areaOfInterest,
+      areaOfInterest: AREA_LABELS[areaOfInterest] ?? areaOfInterest,
       preferredContactMethod,
       formId,
       pageSlug,
