@@ -22,6 +22,7 @@ export default function ContactPage() {
           Prefer to call? 216-284-3615.
         </p>
         <p>1414 S. Green Rd., Suite 105, South Euclid, OH 44121</p>
+        <p>Office hours: Monday–Friday 8:00 AM–5:00 PM · Saturday 8:00 AM–12:00 PM · Sunday closed.</p>
         <LeadForm formId="contact" pageSlug="/contact/" />
       </section>
       <DisclosureBlock>
