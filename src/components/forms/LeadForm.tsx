@@ -141,6 +141,10 @@ export function LeadForm({ formId, pageSlug, areaOfInterestDefault, downloadHref
             <label htmlFor={`${formId}-areaOfInterest`}>General area of interest</label>
             <select id={`${formId}-areaOfInterest`} name="areaOfInterest" defaultValue={areaOfInterestDefault ?? ""}>
               <option value="">Select one</option>
+              <option value="medicare">Medicare</option>
+              <option value="life-insurance">Life Insurance</option>
+              <option value="auto-home-insurance">Auto &amp; Home Insurance</option>
+              <option value="merchant-services">Merchant Services</option>
               <option value="financial-planning">Financial Planning</option>
               <option value="retirement-planning">Retirement Planning</option>
               <option value="business-owner-planning">Business Owner Planning</option>
