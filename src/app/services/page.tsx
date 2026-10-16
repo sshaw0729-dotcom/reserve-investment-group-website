@@ -7,7 +7,7 @@ import { CTAStrip } from "../../components/marketing/CTAStrip";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Financial planning, wealth management, retirement planning, and related services offered by Reserve Investment Group, Inc.",
+    "Reserve Investment Group is a Cleveland-area insurance agency — life, health, Medicare education, and property & casualty — that coordinates your broader financial planning with the right licensed professionals.",
   alternates: { canonical: "/services/" },
 };
 
