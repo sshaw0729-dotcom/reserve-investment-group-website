@@ -36,14 +36,19 @@ export function AnalyticsConsent() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved === "granted") {
-        setPreference("granted");
-        initAnalyticsAfterConsent();
-      } else if (saved === "denied") {
+      if (saved === "denied") {
         setPreference("denied");
         disableAnalytics();
       } else {
-        setShowPanel(true);
+        // Opt-out model (owner decision 2026-10-16): analytics runs by
+        // default so site measurement actually captures. A first-time
+        // visitor still sees the notice panel with the option to
+        // decline, and a saved "denied" is always honored above.
+        initAnalyticsAfterConsent();
+        setPreference("granted");
+        if (saved !== "granted") {
+          setShowPanel(true);
+        }
       }
       setResolved(true);
     }, 0);
@@ -78,7 +83,7 @@ export function AnalyticsConsent() {
           <div>
             <h2 id="analytics-consent-title">Your privacy choices</h2>
             <p>
-              We use privacy-configured analytics to understand which pages and tools are useful. Analytics remains off unless you accept. We do not send form answers or contact information to analytics. Read our <a href="/privacy/">Privacy Policy</a>.
+              We use privacy-configured analytics to understand which pages and tools are useful. Analytics is on unless you decline. We do not send form answers or contact information to analytics. Read our <a href="/privacy/">Privacy Policy</a>.
             </p>
           </div>
           <div className="analytics-consent-actions">
