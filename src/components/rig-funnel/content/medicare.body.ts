@@ -161,13 +161,13 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <div class="form-step" data-step="1">
 <div class="field"><label for="mstatus">Quick one — which best describes you?</label><select id="mstatus"><option>I'm turning 65 soon</option><option>I'm reviewing my coverage during AEP</option><option>I'm helping a parent or spouse</option><option>I'm just learning</option></select></div>
 <div class="form-row">
-<div class="field"><label for="mfname">First name</label><input id="mfname" name="firstName" required="" type="text"/></div>
-<div class="field"><label for="mlname">Last name</label><input id="mlname" name="lastName" required="" type="text"/></div>
+<div class="field" style="min-width:0;"><label for="mfname">First name</label><input id="mfname" name="firstName" required="" style="width:100%;" type="text"/></div>
+<div class="field" style="min-width:0;"><label for="mlname">Last name</label><input id="mlname" name="lastName" required="" style="width:100%;" type="text"/></div>
 </div>
 <div class="field"><label for="memail">Email</label><input id="memail" name="email" required="" type="email"/></div>
 <div class="field"><label for="mphone">Phone (optional)</label><input id="mphone" name="phone" type="tel"/></div>
 <p class="lead-form-privacy-notice">Do not submit medical records, account information, tax documents, or other sensitive information through this form.</p>
-<label class="field-check"><input name="consent" required="" type="checkbox"/> I agree to be contacted about Medicare education and my one-pager request. Consent is not a condition of purchase. See our <a href="/privacy/">Privacy Policy</a>.</label>
+<label class="field-check"><input name="consent" required="" type="checkbox"/><span> I agree to be contacted about Medicare education and my one-pager request. Consent is not a condition of purchase. See our <a href="/privacy/">Privacy Policy</a>.</span></label>
 <button class="btn btn-primary btn-full" style="margin-top: var(--space-4);" type="submit">Send me the one-pager</button>
 </div>
 <div class="success-panel" data-success="" hidden="">
