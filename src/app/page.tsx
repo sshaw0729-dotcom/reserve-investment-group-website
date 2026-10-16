@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const HOME_LOCAL_BUSINESS_SCHEMA = localBusinessJsonLd({
   name: "Reserve Investment Group, Inc",
   description:
-    "Financial planning for individuals, families, and business owners in the Greater Cleveland area.",
+    "Reserve Investment Group is a Cleveland-area insurance agency — life, health, Medicare education, and property & casualty — that coordinates your broader financial planning with the right licensed professionals.",
   url: "https://reserveinvestmentgroup.com/",
   telephone: "216-284-3615",
   address: {
