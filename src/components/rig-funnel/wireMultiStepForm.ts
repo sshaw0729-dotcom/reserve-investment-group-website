@@ -28,6 +28,7 @@ function collectFunnelData(form: HTMLFormElement, formId: string) {
   if (formId === "iul-conversation") return { planning_goal: selectValue(form, "#igoal") };
   if (formId === "final-expense-review") return { final_expense_coverage: selectValue(form, "#fecov") };
   if (formId === "merchant-statement-review") return { business_name: selectValue(form, "#bname") };
+  if (formId === "medicare-one-pager") return { medicare_status: selectValue(form, "#mstatus") };
   return {};
 }
 
