@@ -24,6 +24,13 @@ const SERVICES = [
   { title: "Tax-Aware Financial Planning", href: "/services/tax-aware-financial-planning/", description: "Coordinating with your tax professional on planning considerations." },
 ];
 
+const VERTICAL_SERVICES = [
+  { title: "Medicare Education", href: "/medicare/", description: "How Medicare works, explained before anyone tries to sell you anything: the four parts, the enrollment windows that matter, and the Medigap vs. Medicare Advantage tradeoffs. Education only — never plan recommendations." },
+  { title: "Life Insurance", href: "/life-insurance/", description: "Term, indexed universal life, and final-expense options, matched to your stage of life." },
+  { title: "Auto & Home Insurance", href: "/auto-home-insurance/", description: "Personal and commercial insurance options reviewed with a licensed agent." },
+  { title: "Merchant Services", href: "/merchant-services/", description: "A complimentary review of your payment-processing statement — see what you are actually paying." },
+];
+
 export default function ServicesPage() {
   return (
     <main>
@@ -35,6 +42,13 @@ export default function ServicesPage() {
         </p>
       </section>
       <CardGrid items={SERVICES} />
+      <section className="container">
+        <h2>Insurance &amp; merchant services</h2>
+        <p>
+          As an insurance agency, we also provide Medicare education, life insurance, auto and home coverage, and merchant services — each explained in plain English on its own page.
+        </p>
+      </section>
+      <CardGrid items={VERTICAL_SERVICES} />
       <CTAStrip label="Learn about our approach" href="/our-approach/" />
     </main>
   );
