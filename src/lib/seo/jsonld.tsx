@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import type { ReactElement } from "react";
 import type { Faq } from "../content/types";
 
 /**
@@ -84,10 +84,21 @@ export function serviceJsonLd(params: { name: string; description: string; url: 
   };
 }
 
-export function JsonLd({ data }: { data: object | null }) {
+export function JsonLd({ data }: { data: object | null }): ReactElement | null {
   if (!data) return null;
-  return createElement("script", {
-    type: "application/ld+json",
-    dangerouslySetInnerHTML: { __html: JSON.stringify(data) },
-  });
+  // Emit the script tag as a literal HTML string inside a hidden host
+  // element. Rendering <script> as a React element (JSX or createElement)
+  // produced NO script tag in the served HTML on this stack (verified
+  // live 2026-10-16: Google Rich Results Test found zero structured data
+  // on every page, including pages built long before this change), so
+  // the tag is written as raw markup instead, which React passes through
+  // verbatim. "<" is escaped as \u003c inside the JSON so content can
+  // never break out of the script element.
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  return (
+    <span
+      hidden
+      dangerouslySetInnerHTML={{ __html: `<script type="application/ld+json">${json}</script>` }}
+    />
+  );
 }
