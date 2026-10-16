@@ -36,6 +36,7 @@ const FUNNEL_OFFERS: Record<string, string> = {
   "iul-conversation": "Indexed Universal Life Conversation",
   "final-expense-review": "Final Expense Insurance Review",
   "merchant-statement-review": "Merchant Statement Review",
+  "medicare-one-pager": "Medicare One-Pager Download",
 };
 
 const FUNNEL_DETAIL_LABELS: Record<string, string> = {
@@ -48,6 +49,7 @@ const FUNNEL_DETAIL_LABELS: Record<string, string> = {
   planning_goal: "Planning goal",
   final_expense_coverage: "Final-expense coverage",
   business_name: "Business name",
+  medicare_status: "Medicare situation",
 };
 
 const MAGNET_SEQUENCE_MAP: Record<string, { sequence: "A" | "B" | "C"; title: string }> = {
