@@ -11,6 +11,15 @@ const STRIPPED_FUNNEL_PATHS = new Set([
   "/auto-home-insurance",
   "/life-insurance",
   "/merchant-services",
+  "/quote",
+  "/quote/auto",
+  "/quote/home",
+  "/quote/life",
+  "/quote/health",
+  "/quote/condo",
+  "/quote/motorcycle",
+  "/quote/boat",
+  "/quote/rv",
 ]);
 
 function FunnelHeader() {

@@ -21,15 +21,42 @@ function collectFunnelData(form: HTMLFormElement, formId: string) {
   }
   if (formId === "term-life-review") {
     return {
+      age: selectValue(form, "#age"),
       term_length: selectValue(form, "#term-len"),
       coverage_amount: selectValue(form, "#coverage-amt"),
+      tobacco_use: selectValue(form, "#tobacco"),
     };
   }
   if (formId === "iul-conversation") return { planning_goal: selectValue(form, "#igoal") };
-  if (formId === "final-expense-review") return { final_expense_coverage: selectValue(form, "#fecov") };
+  if (formId === "final-expense-review") {
+    return {
+      age: selectValue(form, "#feage"),
+      health_conditions: selectValue(form, "#fehealth"),
+      final_expense_coverage: selectValue(form, "#fecov"),
+    };
+  }
   if (formId === "merchant-statement-review") return { business_name: selectValue(form, "#bname") };
   if (formId === "medicare-one-pager") return { medicare_status: selectValue(form, "#mstatus") };
   return {};
+}
+
+// Quote worksheets (/quote/*) collect every field generically: each
+// worksheet input carries data-qfield="<label>", and the server writes
+// the full label/value list into the Folk note and the alert email.
+function collectQuoteData(form: HTMLFormElement) {
+  const data: { label: string; value: string }[] = [];
+  form.querySelectorAll<HTMLElement>("[data-qfield]").forEach((el) => {
+    const label = el.getAttribute("data-qfield") ?? "";
+    if (!label) return;
+    let value = "";
+    if (el instanceof HTMLInputElement && (el.type === "checkbox" || el.type === "radio")) {
+      if (el.checked) value = el.value.trim() || "Yes";
+    } else if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) {
+      value = el.value.trim();
+    }
+    if (value) data.push({ label, value });
+  });
+  return data;
 }
 
 export async function submitFunnelLead(form: HTMLFormElement, options: FunnelLeadOptions) {
@@ -50,7 +77,7 @@ export async function submitFunnelLead(form: HTMLFormElement, options: FunnelLea
     const response = await fetch("/.netlify/functions/submit-lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, phone, areaOfInterest: "other", preferredContactMethod: phone ? "phone" : "email", consent, formId: options.formId, pageSlug: options.pageSlug, website: "", funnelData: collectFunnelData(form, options.formId) }),
+      body: JSON.stringify({ firstName, lastName, email, phone, areaOfInterest: "other", preferredContactMethod: phone ? "phone" : "email", consent, formId: options.formId, pageSlug: options.pageSlug, website: "", funnelData: collectFunnelData(form, options.formId), ...(options.formId.startsWith("quote-") ? { quoteData: collectQuoteData(form) } : {}) }),
     });
     if (!response.ok) throw new Error("Lead submission failed");
     form.querySelectorAll<HTMLElement>(".form-step").forEach((step) => (step.hidden = true));
