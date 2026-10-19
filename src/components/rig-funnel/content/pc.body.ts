@@ -194,6 +194,7 @@ export const PC_BODY_HTML = `<div class="funnel-theme-control"><button aria-labe
 <h2 style="color: var(--color-text-inverse);">Ready to see your options?</h2>
 <p class="lede" style="max-width: 520px; margin-inline:auto;">It takes about three minutes to request a review from a licensed insurance agent.</p>
 <a class="btn btn-inverse btn-lg" href="#quote-form" style="margin-top: var(--space-8);">Request a complimentary coverage review</a>
+<p style="margin-top: var(--space-6); color: var(--color-text-inverse); opacity: 0.85;">Prefer to give us the full details up front? Use a quote worksheet: <a href="/quote/auto/" style="color: #ecd9b4;">Auto</a> · <a href="/quote/home/" style="color: #ecd9b4;">Home</a> · <a href="/quote/condo/" style="color: #ecd9b4;">Condo</a> · <a href="/quote/" style="color: #ecd9b4;">All worksheets</a></p>
 </div>
 </section>
 `;

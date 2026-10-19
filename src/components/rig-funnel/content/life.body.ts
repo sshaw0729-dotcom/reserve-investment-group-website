@@ -206,4 +206,11 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 </details>
 </div>
 </section>
+<section class="section-navy">
+<div class="container" style="text-align:center;">
+<h2 style="color: var(--color-text-inverse);">Ready to give us the full picture?</h2>
+<p class="lede" style="max-width: 520px; margin-inline:auto;">Our life insurance quote worksheet collects your health picture, coverage goal, and beneficiaries in one pass — so your quote starts from real numbers, not estimates.</p>
+<a class="btn btn-inverse btn-lg" href="/quote/life/" style="margin-top: var(--space-8);">Start the life quote worksheet</a>
+</div>
+</section>
 `;

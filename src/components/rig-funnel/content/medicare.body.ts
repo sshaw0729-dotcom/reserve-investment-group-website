@@ -156,6 +156,7 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <h2>Get the free one-page Medicare breakdown</h2>
 <p class="lede">One page: Parts A through D, the Medigap vs. Medicare Advantage tradeoffs, and the enrollment timeline — in plain English, to keep.</p>
 <p>Prefer to talk? Call <a href="tel:2162843615">(216) 284-3615</a>, or use our <a href="/contact/">full contact form</a> and choose "Medicare" as your area of interest.</p>
+<p>Planning ahead? Our <a href="/quote/health/">health &amp; Medicare quote worksheet</a> collects your situation, doctors, and prescriptions so a licensed agent can prepare for your review.</p>
 </div>
 <form class="lead-form" id="medicare-onepager-form">
 <div class="form-step" data-step="1">
