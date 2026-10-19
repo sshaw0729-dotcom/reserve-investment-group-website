@@ -10,7 +10,7 @@ import {
 } from "./lib/folk";
 import { sendGraphMail } from "./lib/msgraph";
 
-const MAX_BODY_BYTES = 16_384;
+const MAX_BODY_BYTES = 65_536;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const AREA_VALUES = new Set(["", "medicare", "life-insurance", "auto-home-insurance", "merchant-services", "financial-planning", "retirement-planning", "business-owner-planning", "wealth-management", "other"]);
 const AREA_LABELS: Record<string, string> = {
@@ -25,7 +25,13 @@ const AREA_LABELS: Record<string, string> = {
   other: "Other",
 };
 const CONTACT_METHOD_VALUES = new Set(["email", "phone"]);
-const LEAD_NOTIFICATION_TO = process.env.LEAD_NOTIFICATION_TO ?? "info@reserveinvestmentgroup.com";
+// Lead alerts go to the team inbox AND Bethany (Ron's directive,
+// 2026-10-19). LEAD_NOTIFICATION_TO may override with a comma-separated
+// list; the default already carries both addresses.
+const LEAD_NOTIFICATION_RECIPIENTS = (process.env.LEAD_NOTIFICATION_TO ?? "info@reserveinvestmentgroup.com,bethany.williams@reserveinvestmentgroup.com")
+  .split(",")
+  .map((address) => address.trim())
+  .filter(Boolean);
 
 const ALLOWED_FIELDS = [
   "firstName",
@@ -39,6 +45,7 @@ const ALLOWED_FIELDS = [
   "pageSlug",
   "website",
   "funnelData",
+  "quoteData",
 ] as const;
 
 const FUNNEL_OFFERS: Record<string, string> = {
@@ -47,6 +54,21 @@ const FUNNEL_OFFERS: Record<string, string> = {
   "iul-conversation": "Indexed Universal Life Conversation",
   "final-expense-review": "Final Expense Insurance Review",
   "merchant-statement-review": "Merchant Statement Review",
+  "medicare-one-pager": "Medicare One-Pager Download",
+};
+
+// Quote worksheets (/quote/*) — full worksheet detail is written to the
+// Folk note and the notification email (Ron's directive, 2026-10-19,
+// reversing the earlier routing-metadata-only design).
+const QUOTE_OFFERS: Record<string, string> = {
+  "quote-auto": "Auto Insurance Quote Worksheet",
+  "quote-home": "Home Insurance Quote Worksheet",
+  "quote-life": "Life Insurance Quote Worksheet",
+  "quote-health": "Health & Medicare Quote Worksheet",
+  "quote-condo": "Condo Insurance Quote Worksheet",
+  "quote-motorcycle": "Motorcycle Insurance Quote Worksheet",
+  "quote-boat": "Boat Insurance Quote Worksheet",
+  "quote-rv": "RV Insurance Quote Worksheet",
 };
 
 const FUNNEL_DETAIL_LABELS: Record<string, string> = {
@@ -59,6 +81,10 @@ const FUNNEL_DETAIL_LABELS: Record<string, string> = {
   planning_goal: "Planning goal",
   final_expense_coverage: "Final-expense coverage",
   business_name: "Business name",
+  medicare_status: "Medicare situation",
+  age: "Age",
+  tobacco_use: "Tobacco use",
+  health_conditions: "Health conditions (past 2 years)",
 };
 
 const MAGNET_SEQUENCE_MAP: Record<string, { sequence: "A" | "B" | "C"; title: string }> = {
@@ -90,6 +116,33 @@ function formatFunnelDetails(details: Record<string, string>) {
     .join("; ");
 }
 
+type QuoteEntry = { label: string; value: string };
+
+function cleanQuoteData(value: unknown): QuoteEntry[] {
+  if (!Array.isArray(value)) return [];
+  const result: QuoteEntry[] = [];
+  for (const item of value.slice(0, 150)) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) continue;
+    const label = cleanString((item as Record<string, unknown>).label, 80);
+    // Worksheet long fields (vehicles, claims, medications) need more room
+    // than the 120-char funnel cap — allow up to 1000 chars per value.
+    const entryValue = cleanString((item as Record<string, unknown>).value, 1000);
+    if (label && entryValue) result.push({ label, value: entryValue });
+  }
+  return result;
+}
+
+function formatQuoteDetails(entries: QuoteEntry[]) {
+  const lines: string[] = [];
+  for (const entry of entries) {
+    const prefix = `${entry.label}: `;
+    const existing = lines.findIndex((line) => line.startsWith(prefix));
+    if (existing >= 0) lines[existing] = `${lines[existing]}, ${entry.value}`;
+    else lines.push(`${entry.label}: ${entry.value}`);
+  }
+  return lines.join("\n");
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -117,6 +170,7 @@ function buildLeadNotification(input: {
   formId: string;
   pageSlug: string;
   magnetTitle?: string;
+  detailBlock?: string;
 }): { subject: string; htmlBody: string } {
   const fullName = `${input.firstName} ${input.lastName}`.trim();
   const rows: Array<[string, string]> = [
@@ -137,11 +191,26 @@ function buildLeadNotification(input: {
     )
     .join("");
 
+  const detailRows = (input.detailBlock ?? "")
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => {
+      const splitAt = line.indexOf(": ");
+      const label = splitAt >= 0 ? line.slice(0, splitAt) : line;
+      const value = splitAt >= 0 ? line.slice(splitAt + 2) : "";
+      return `<tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:6px 0;">${escapeHtml(value)}</td></tr>`;
+    })
+    .join("");
+  const detailSection = detailRows
+    ? `<p style="margin-top:16px;"><strong>Full worksheet detail</strong></p><table role="presentation" style="border-collapse:collapse;">${detailRows}</table>`
+    : "";
+
   return {
     subject: `New website lead: ${fullName}`,
     htmlBody:
       `<p>A new lead was submitted on reserveinvestmentgroup.com.</p>` +
       `<table role="presentation" style="border-collapse:collapse;">${htmlRows}</table>` +
+      detailSection +
       `<p style="margin-top:16px;">The lead has also been saved to Folk under Website Leads.</p>` +
       `<p style="font-size:12px;color:#555;">Do not reply with or request Social Security numbers, account credentials, tax documents, investment statements, or other sensitive information by email.</p>`,
   };
@@ -205,6 +274,7 @@ export const handler: Handler = async (event) => {
     const pageSlug = cleanString(submission.pageSlug, 240);
     const consent = submission.consent === true;
     const funnelData = cleanFunnelData(submission.funnelData);
+    const quoteData = cleanQuoteData(submission.quoteData);
 
     if (
       !firstName ||
@@ -226,6 +296,8 @@ export const handler: Handler = async (event) => {
 
     const magnet = MAGNET_SEQUENCE_MAP[formId];
     const funnelOffer = FUNNEL_OFFERS[formId];
+    const quoteOffer = QUOTE_OFFERS[formId];
+    let quoteDetailBlock = "";
     const today = new Date().toISOString().slice(0, 10);
     let customFieldValues: Record<string, Record<string, unknown>> | undefined;
     let noteBody: string;
@@ -261,6 +333,19 @@ export const handler: Handler = async (event) => {
         },
       };
       noteBody = `Website funnel "${funnelOffer}" submitted on ${today} from ${pageSlug}. Preferred contact method: ${preferredContactMethod}.${detailSummary ? ` Funnel details: ${detailSummary}.` : ""}`;
+    } else if (quoteOffer) {
+      // Full worksheet detail goes into the Folk note (Ron's directive,
+      // 2026-10-19) — every field the visitor provided, not a summary.
+      quoteDetailBlock = formatQuoteDetails(quoteData);
+      customFieldValues = {
+        [FOLK_WEBSITE_LEADS_GROUP_ID]: {
+          "Lead Source": "Website Quote Worksheet",
+          "Offer Interest": quoteOffer,
+          "Landing Page Viewed": pageSlug,
+          "Funnel Stage": "New Website Inquiry",
+        },
+      };
+      noteBody = `Website quote worksheet "${quoteOffer}" submitted on ${today} from ${pageSlug}. Preferred contact method: ${preferredContactMethod}.\n\nFull worksheet detail:\n${quoteDetailBlock || "(no worksheet fields completed)"}`;
     } else {
       noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${AREA_LABELS[areaOfInterest] ?? areaOfInterest ?? "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
     }
@@ -313,18 +398,29 @@ export const handler: Handler = async (event) => {
       formId,
       pageSlug,
       magnetTitle: magnet?.title,
+      detailBlock: quoteDetailBlock || undefined,
     });
-    const notificationResult = await sendGraphMail({
-      to: LEAD_NOTIFICATION_TO,
-      subject: notification.subject,
-      htmlBody: notification.htmlBody,
-    });
+    // Alert every recipient (team inbox + Bethany). The notification
+    // counts as sent if at least one copy lands; failures are named in a
+    // Folk note so a missed alert is never silent.
+    const notificationAttempts = await Promise.all(
+      LEAD_NOTIFICATION_RECIPIENTS.map(async (to) => ({
+        to,
+        result: await sendGraphMail({ to, subject: notification.subject, htmlBody: notification.htmlBody }),
+      }))
+    );
+    const failedRecipients = notificationAttempts.filter((attempt) => !attempt.result.ok).map((attempt) => attempt.to);
+    const notificationResult = { ok: failedRecipients.length < notificationAttempts.length };
 
     if (!notificationResult.ok) {
-      console.error("[submit-lead] internal lead notification failed", notificationResult.error);
-      await folkCreateNote(personId, `Internal lead-notification email to ${LEAD_NOTIFICATION_TO} failed after this lead was saved. Review Netlify function logs and Microsoft Graph configuration.`).catch(() => false);
+      console.error("[submit-lead] internal lead notification failed for all recipients", failedRecipients);
+      await folkCreateNote(personId, `Internal lead-notification email to ${LEAD_NOTIFICATION_RECIPIENTS.join(", ")} failed after this lead was saved. Review Netlify function logs and Microsoft Graph configuration.`).catch(() => false);
     } else {
       console.log("[submit-lead] internal lead notification sent", { formId });
+      if (failedRecipients.length > 0) {
+        console.error("[submit-lead] internal lead notification failed for some recipients", failedRecipients);
+        await folkCreateNote(personId, `Internal lead-notification email failed for: ${failedRecipients.join(", ")} (the other recipients were alerted). Review Netlify function logs and Microsoft Graph configuration.`).catch(() => false);
+      }
     }
 
     const thankYou = buildLeadThankYou(firstName);
