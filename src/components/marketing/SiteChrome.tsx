@@ -20,6 +20,9 @@ const STRIPPED_FUNNEL_PATHS = new Set([
   "/quote/motorcycle",
   "/quote/boat",
   "/quote/rv",
+  "/annuity-checkup",
+  "/annuity-checkup/apply",
+  "/annuity-checkup/checkup-sheet",
 ]);
 
 function FunnelHeader() {
