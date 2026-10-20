@@ -59,6 +59,33 @@ function collectQuoteData(form: HTMLFormElement) {
   return data;
 }
 
+// Annuity Checkup application (/annuity-checkup/apply/) collects its
+// qualification fields via data-cfield="<key>" attributes into one
+// structured object; the server labels, tier-scores, and files it.
+// Disabled fields (e.g. owner-only questions hidden by the "not yet"
+// variant) are skipped so hidden defaults never reach the lead record.
+function collectCheckupData(form: HTMLFormElement) {
+  const data: Record<string, string> = {};
+  form.querySelectorAll<HTMLElement>("[data-cfield]").forEach((el) => {
+    const key = el.getAttribute("data-cfield") ?? "";
+    if (!key) return;
+    if (el instanceof HTMLInputElement && el.type === "radio") {
+      if (el.checked && !el.disabled) data[key] = el.value.trim();
+    } else if (el instanceof HTMLInputElement && el.type === "checkbox") {
+      if (el.checked && !el.disabled) {
+        const value = el.value.trim();
+        if (value) data[key] = data[key] ? `${data[key]}; ${value}` : value;
+      }
+    } else if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) {
+      if (!el.disabled) {
+        const value = el.value.trim();
+        if (value) data[key] = value;
+      }
+    }
+  });
+  return data;
+}
+
 export async function submitFunnelLead(form: HTMLFormElement, options: FunnelLeadOptions) {
   const firstName = fieldValue(form, '[name="firstName"], #fname, #tfname, #ifname, #fefname, #bfname');
   const lastName = fieldValue(form, '[name="lastName"], #lname, #tlname, #ilname, #felname, #blname');
@@ -77,7 +104,7 @@ export async function submitFunnelLead(form: HTMLFormElement, options: FunnelLea
     const response = await fetch("/.netlify/functions/submit-lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, phone, areaOfInterest: "other", preferredContactMethod: phone ? "phone" : "email", consent, formId: options.formId, pageSlug: options.pageSlug, website: "", funnelData: collectFunnelData(form, options.formId), ...(options.formId.startsWith("quote-") ? { quoteData: collectQuoteData(form) } : {}) }),
+      body: JSON.stringify({ firstName, lastName, email, phone, areaOfInterest: "other", preferredContactMethod: phone ? "phone" : "email", consent, formId: options.formId, pageSlug: options.pageSlug, website: "", funnelData: collectFunnelData(form, options.formId), ...(options.formId.startsWith("quote-") ? { quoteData: collectQuoteData(form) } : {}), ...(options.formId === "annuity-checkup-apply" ? { checkupData: collectCheckupData(form) } : {}) }),
     });
     if (!response.ok) throw new Error("Lead submission failed");
     form.querySelectorAll<HTMLElement>(".form-step").forEach((step) => (step.hidden = true));
