@@ -46,6 +46,7 @@ const ALLOWED_FIELDS = [
   "website",
   "funnelData",
   "quoteData",
+  "checkupData",
 ] as const;
 
 const FUNNEL_OFFERS: Record<string, string> = {
@@ -69,6 +70,34 @@ const QUOTE_OFFERS: Record<string, string> = {
   "quote-motorcycle": "Motorcycle Insurance Quote Worksheet",
   "quote-boat": "Boat Insurance Quote Worksheet",
   "quote-rv": "RV Insurance Quote Worksheet",
+};
+
+// Annuity Owner's Checkup (/annuity-checkup/*) — opt-in captures the
+// magnet request; the application carries the full qualification detail
+// and is tier-scored per the blueprint (Ron's build order, 2026-10-20).
+const CHECKUP_OPTIN_FORM_ID = "annuity-checkup-optin";
+const CHECKUP_APPLY_FORM_ID = "annuity-checkup-apply";
+const CHECKUP_OFFER_TITLE = "Annuity Checkup";
+const CHECKUP_LICENSED_STATES = new Set(["Ohio", "Michigan", "Florida"]);
+const CHECKUP_HIGH_VALUE_BANDS = new Set(["$250–500K", "$500K–$1M", "$1M+"]);
+const CHECKUP_MID_VALUE_BAND = "$100–250K";
+const CHECKUP_SOON_TIMELINES = new Set(["I'm exploring now", "I'd like answers in the next 30–90 days"]);
+
+const CHECKUP_DETAIL_LABELS: Record<string, string> = {
+  state: "State",
+  age_band: "Age band",
+  owns_annuity: "Owns an annuity",
+  annuity_type: "Annuity type",
+  carrier: "Carrier",
+  value_band: "Approximate contract value",
+  purchase_window: "Purchased",
+  income_started: "Income started",
+  concerns: "What's on your mind",
+  concerns_other: "Other concern (detail)",
+  other_assets_band: "Other retirement savings",
+  timeline: "Timeline",
+  preferred_format: "Preferred format",
+  best_time: "Best time to reach",
 };
 
 const FUNNEL_DETAIL_LABELS: Record<string, string> = {
@@ -143,6 +172,37 @@ function formatQuoteDetails(entries: QuoteEntry[]) {
   return lines.join("\n");
 }
 
+function cleanCheckupData(value: unknown): Record<string, string> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const result: Record<string, string> = {};
+  for (const key of Object.keys(CHECKUP_DETAIL_LABELS)) {
+    // Concern lists and free-text details get more room than short fields.
+    const max = key === "concerns" || key === "concerns_other" ? 500 : 120;
+    const cleaned = cleanString((value as Record<string, unknown>)[key], max);
+    if (cleaned) result[key] = cleaned;
+  }
+  return result;
+}
+
+function formatCheckupDetails(details: Record<string, string>) {
+  return Object.entries(details)
+    .map(([key, value]) => `${CHECKUP_DETAIL_LABELS[key]}: ${value}`)
+    .join("\n");
+}
+
+// Blueprint §4: A = owns an annuity ≥ $250K with a near timeline;
+// B = owns at $100–250K, or ≥ $250K still just learning;
+// C = under $100K (or value unconfirmed), no annuity yet, or wrong state.
+function scoreCheckupTier(details: Record<string, string>): "A" | "B" | "C" {
+  if (details.state && !CHECKUP_LICENSED_STATES.has(details.state)) return "C";
+  if (details.owns_annuity !== "Yes") return "C";
+  const isHigh = CHECKUP_HIGH_VALUE_BANDS.has(details.value_band ?? "");
+  const isMid = details.value_band === CHECKUP_MID_VALUE_BAND;
+  if (isHigh && CHECKUP_SOON_TIMELINES.has(details.timeline ?? "")) return "A";
+  if (isHigh || isMid) return "B";
+  return "C";
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -171,6 +231,8 @@ function buildLeadNotification(input: {
   pageSlug: string;
   magnetTitle?: string;
   detailBlock?: string;
+  detailHeading?: string;
+  subjectSuffix?: string;
 }): { subject: string; htmlBody: string } {
   const fullName = `${input.firstName} ${input.lastName}`.trim();
   const rows: Array<[string, string]> = [
@@ -202,11 +264,11 @@ function buildLeadNotification(input: {
     })
     .join("");
   const detailSection = detailRows
-    ? `<p style="margin-top:16px;"><strong>Full worksheet detail</strong></p><table role="presentation" style="border-collapse:collapse;">${detailRows}</table>`
+    ? `<p style="margin-top:16px;"><strong>${escapeHtml(input.detailHeading ?? "Full worksheet detail")}</strong></p><table role="presentation" style="border-collapse:collapse;">${detailRows}</table>`
     : "";
 
   return {
-    subject: `New website lead: ${fullName}`,
+    subject: `New website lead: ${fullName}${input.subjectSuffix ?? ""}`,
     htmlBody:
       `<p>A new lead was submitted on reserveinvestmentgroup.com.</p>` +
       `<table role="presentation" style="border-collapse:collapse;">${htmlRows}</table>` +
@@ -275,6 +337,7 @@ export const handler: Handler = async (event) => {
     const consent = submission.consent === true;
     const funnelData = cleanFunnelData(submission.funnelData);
     const quoteData = cleanQuoteData(submission.quoteData);
+    const checkupData = cleanCheckupData(submission.checkupData);
 
     if (
       !firstName ||
@@ -297,7 +360,12 @@ export const handler: Handler = async (event) => {
     const magnet = MAGNET_SEQUENCE_MAP[formId];
     const funnelOffer = FUNNEL_OFFERS[formId];
     const quoteOffer = QUOTE_OFFERS[formId];
+    const isCheckupOptin = formId === CHECKUP_OPTIN_FORM_ID;
+    const isCheckupApply = formId === CHECKUP_APPLY_FORM_ID;
     let quoteDetailBlock = "";
+    let checkupDetailBlock = "";
+    let notificationDetailHeading: string | undefined;
+    let notificationSubjectSuffix: string | undefined;
     const today = new Date().toISOString().slice(0, 10);
     let customFieldValues: Record<string, Record<string, unknown>> | undefined;
     let noteBody: string;
@@ -346,6 +414,34 @@ export const handler: Handler = async (event) => {
         },
       };
       noteBody = `Website quote worksheet "${quoteOffer}" submitted on ${today} from ${pageSlug}. Preferred contact method: ${preferredContactMethod}.\n\nFull worksheet detail:\n${quoteDetailBlock || "(no worksheet fields completed)"}`;
+    } else if (isCheckupOptin) {
+      customFieldValues = {
+        [FOLK_WEBSITE_LEADS_GROUP_ID]: {
+          "Lead Source": "Website Annuity Checkup",
+          "Offer Interest": CHECKUP_OFFER_TITLE,
+          "Landing Page Viewed": pageSlug,
+          "Funnel Stage": "Magnet opt-in",
+        },
+      };
+      noteBody = `Requested the Annuity Owner's Checkup sheet on ${today} from ${pageSlug} (magnet opt-in). Checkup sheet: /annuity-checkup/checkup-sheet/. Preferred contact method: ${preferredContactMethod}. Next step: the application at /annuity-checkup/apply/ — Bethany's confirmation step applies once an application is completed.`;
+    } else if (isCheckupApply) {
+      // Full application detail goes into the Folk note and the alert
+      // email (same full-detail rule as the quote worksheets), with the
+      // blueprint §4 tier scored server-side and carried in both.
+      const tier = scoreCheckupTier(checkupData);
+      const checkupDetails = formatCheckupDetails(checkupData);
+      checkupDetailBlock = `Checkup tier: ${tier}\n${checkupDetails}`;
+      notificationDetailHeading = "Full application detail";
+      notificationSubjectSuffix = ` — Annuity Checkup (Tier ${tier})`;
+      customFieldValues = {
+        [FOLK_WEBSITE_LEADS_GROUP_ID]: {
+          "Lead Source": "Website Annuity Checkup",
+          "Offer Interest": CHECKUP_OFFER_TITLE,
+          "Landing Page Viewed": pageSlug,
+          "Funnel Stage": "New Website Inquiry",
+        },
+      };
+      noteBody = `Website Annuity Checkup application submitted on ${today} from ${pageSlug}. Checkup tier: ${tier} (A = book now, DOSSIER before the call; B = booking offered, Bethany calls first if no booking in 48h; C = magnet + nurture only, no calendar access). Preferred contact method: ${preferredContactMethod}.\n\nFull application detail:\n${checkupDetails || "(no application fields completed)"}`;
     } else {
       noteBody = `Website form "${formId}" submitted on ${today} from ${pageSlug}. Area of interest: ${AREA_LABELS[areaOfInterest] ?? areaOfInterest ?? "not specified"}. Preferred contact method: ${preferredContactMethod}.`;
     }
@@ -398,7 +494,9 @@ export const handler: Handler = async (event) => {
       formId,
       pageSlug,
       magnetTitle: magnet?.title,
-      detailBlock: quoteDetailBlock || undefined,
+      detailBlock: quoteDetailBlock || checkupDetailBlock || undefined,
+      detailHeading: notificationDetailHeading,
+      subjectSuffix: notificationSubjectSuffix,
     });
     // Alert every recipient (team inbox + Bethany). The notification
     // counts as sent if at least one copy lands; failures are named in a
