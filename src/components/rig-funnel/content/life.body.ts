@@ -4,8 +4,8 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="badge">Term · IUL · Final Expense</span>
-<h1>The right life insurance<br/>starts with the right question.</h1>
-<p class="lede">Term, IUL, and final expense protect very different things, for very different people. Tell us what you want to protect, and a licensed insurance agent can help you explore an appropriate path.</p>
+<h1>How much life insurance do you need — and which kind fits your life?</h1>
+<p class="lede">It depends on what you are protecting — and for how long. Term, IUL, and final expense protect very different things, for very different people. Tell us what you want to protect, and a licensed insurance agent can help you explore an appropriate path.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="#paths">Find my path</a>
 </div>
@@ -71,7 +71,7 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 <div class="container hero-grid" style="align-items:flex-start;">
 <div>
 <span class="eyebrow">Term life</span>
-<h2>Start a personalized term-life review</h2>
+<h2>How do you start a personalized term-life review?</h2>
 <p class="lede">Answer a few quick questions to begin a personalized review. Premiums and eligibility depend on age, health, coverage amount, policy type, underwriting, and carrier.</p>
 <div class="grid-2" style="margin-top: var(--space-10);">
 <div class="card"><div class="stat-value">10–30 yr</div><p class="stat-label">Term lengths available</p></div>
@@ -121,7 +121,7 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="eyebrow">Indexed Universal Life</span>
-<h2>Explore permanent coverage for retirement and legacy considerations</h2>
+<h2>Is permanent coverage right for your retirement or legacy plans?</h2>
 <p class="lede">IUL is a conversation, not an instant quote — the right structure depends on your income, timeline, and existing retirement accounts. Start with a complimentary conversation with a licensed insurance agent.</p>
 <ul style="display:flex; flex-direction:column; gap: var(--space-3); margin: var(--space-8) 0;">
 <li style="color: color-mix(in srgb, var(--color-text-inverse) 82%, transparent); display:flex; gap: var(--space-3);"><svg fill="none" viewbox="0 0 16 16"><path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>Permanent coverage that builds cash value over time</span></li>
@@ -152,7 +152,7 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 </div>
 <div>
 <span class="eyebrow">Final expense</span>
-<h2>Explore final-expense coverage options</h2>
+<h2>How does final-expense coverage work — and who is it for?</h2>
 <p class="lede">Application and medical-exam requirements vary by carrier and applicant. Final-expense coverage may help address funeral and other end-of-life expenses.</p>
 <form class="lead-form" id="fe-form-el" style="margin-top: var(--space-8);">
 <div class="step-track">
@@ -203,6 +203,18 @@ export const LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-la
 <details class="accordion-item">
 <summary>Do I need a medical exam for term life? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
 <p>Many term policies do require a brief exam depending on age and coverage amount; some accelerated-underwriting options skip the exam entirely. Your agent will confirm what applies to your estimate.</p>
+</details>
+<details class="accordion-item">
+<summary>How much life insurance do most families need? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>There is no single right number — it depends on your income, debts, mortgage, and how many years of support your family would need without you. A common starting frame is a multiple of your annual income, refined by a needs review: what your family spends each year, what you owe, and what other resources they would have. A licensed agent can run that math with your real numbers rather than a rule of thumb.</p>
+</details>
+<details class="accordion-item">
+<summary>Do my business partner and I need life insurance? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>Many business partners do — life insurance can fund a buy-sell agreement so a surviving partner can buy a deceased partner's share, and key-person coverage can help the business absorb losing someone essential. What fits depends on how the business is structured and who depends on it. Our business-planning conversations start with that structure.</p>
+</details>
+<details class="accordion-item">
+<summary>How much life insurance does a small business owner in Ohio actually need? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>Enough to answer three questions: What happens to the business if you die tomorrow — debts, payroll, a partner buyout? What happens to your household — income replacement, mortgage, final expenses? And what do you want to leave behind — legacy, estate liquidity? The amounts come from those answers, not from a multiple on a chart — which is why we start with a conversation rather than a quote.</p>
 </details>
 </div>
 </section>

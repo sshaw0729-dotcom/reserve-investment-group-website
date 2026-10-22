@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import MerchantServicesPage from "../../components/rig-funnel/MerchantServicesPage";
+import { JsonLd, faqJsonLd } from "../../lib/seo/jsonld";
+import { MERCHANT_FAQS } from "../../components/rig-funnel/content/merchant.faq";
 
 export const metadata: Metadata = {
   title: "Credit Card Processing & Merchant Services",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <MerchantServicesPage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(MERCHANT_FAQS)} />
+      <MerchantServicesPage />
+    </>
+  );
 }

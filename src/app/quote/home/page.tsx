@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { QuoteHomePage } from "../../../components/rig-funnel/QuotePages";
+import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
+import { QUOTE_HOME_FAQS } from "../../../components/rig-funnel/content/quote.faq";
 
 export const metadata: Metadata = {
   title: "Home Insurance Quote Worksheet",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <QuoteHomePage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(QUOTE_HOME_FAQS)} />
+      <QuoteHomePage />
+    </>
+  );
 }

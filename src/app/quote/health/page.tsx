@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { QuoteHealthPage } from "../../../components/rig-funnel/QuotePages";
+import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
+import { QUOTE_HEALTH_FAQS } from "../../../components/rig-funnel/content/quote.faq";
 
 export const metadata: Metadata = {
   title: "Health & Medicare Quote Worksheet",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <QuoteHealthPage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(QUOTE_HEALTH_FAQS)} />
+      <QuoteHealthPage />
+    </>
+  );
 }

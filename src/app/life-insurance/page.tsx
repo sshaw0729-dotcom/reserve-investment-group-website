@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import LifeInsurancePage from "../../components/rig-funnel/LifeInsurancePage";
+import { JsonLd, faqJsonLd } from "../../lib/seo/jsonld";
+import { LIFE_FAQS } from "../../components/rig-funnel/content/life.faq";
 
 export const metadata: Metadata = {
   title: "Term, IUL & Final Expense Life Insurance",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <LifeInsurancePage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(LIFE_FAQS)} />
+      <LifeInsurancePage />
+    </>
+  );
 }

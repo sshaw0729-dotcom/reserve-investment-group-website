@@ -4,8 +4,8 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="badge">Third-party processing options</span>
-<h1>Better understand<br/>your card-processing costs.</h1>
-<p class="lede">Request a complimentary review to better understand interchange, processor markup, monthly fees, and other statement charges. Secure document transfer, if needed, is arranged after initial contact.</p>
+<h1>How much should your business pay for credit card processing?</h1>
+<p class="lede">Most small businesses pay roughly 2% to 3.5% of card volume all in — but your actual number is on your own statement, in the split between interchange, processor markup, and monthly fees. Request a complimentary review to better understand interchange, processor markup, monthly fees, and other statement charges. Secure document transfer, if needed, is arranged after initial contact.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="#audit-form">Request a statement review</a>
 <a class="btn btn-ghost btn-lg" href="#calculator">Compare illustrative processing costs</a>
@@ -29,7 +29,7 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">How it works</span>
-<h2>Four steps to understanding your costs</h2>
+<h2>How does a statement review work?</h2>
 </div>
 <div class="steps-row">
 <div class="step-item">
@@ -59,7 +59,7 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <div class="container hero-grid" style="align-items:flex-start;">
 <div>
 <span class="eyebrow">Complimentary statement review</span>
-<h2>Request a secure merchant-statement review</h2>
+<h2>How do you request a secure merchant-statement review?</h2>
 <p class="lede">We can help organize the available cost information and discuss third-party processing alternatives. Actual pricing and approval depend on provider terms and underwriting.</p>
 <div class="grid-2" style="margin-top: var(--space-10);">
 <div class="card"><div class="stat-value">24 hrs</div><p class="stat-label">Typical response to your request</p></div>
@@ -97,7 +97,7 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">Quick estimate</span>
-<h2 style="color: var(--color-text-inverse);">Compare illustrative processing costs</h2>
+<h2 style="color: var(--color-text-inverse);">What would a different effective rate cost — or save — each month?</h2>
 </div>
 <div class="grid-2" style="max-width: 780px; margin-inline:auto; align-items: center;">
 <div class="card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15);">
@@ -121,11 +121,11 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <h2>Frequently asked questions</h2>
 </div>
 <details class="accordion-item" open="">
-<summary>I'm locked into a contract with my current processor. <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<summary>What if I'm locked into a contract with my current processor? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
 <p>Contract terms vary. We can help identify questions to ask your current or prospective provider, but legal interpretation should be handled by qualified counsel.</p>
 </details>
 <details class="accordion-item">
-<summary>What about PCI compliance? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<summary>What is PCI compliance — and who is responsible for it? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
 <p>PCI requirements depend on the provider, equipment, transaction environment, and merchant responsibilities. Confirm applicable requirements with the processing provider.</p>
 </details>
 <details class="accordion-item">
@@ -136,11 +136,19 @@ export const MERCHANT_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <summary>Do I need to lease new equipment? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
 <p>Not necessarily — many merchants keep existing hardware or reprogram it. We can review whether alternative equipment or processing arrangements may be appropriate.</p>
 </details>
+<details class="accordion-item">
+<summary>How much should a small business pay for credit card processing? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>Most small businesses pay roughly 2% to 3.5% of card volume all in, depending on card mix, average ticket, and pricing structure. The only honest number is your own: total fees for the month divided by total card volume — your cost of acceptance. A complimentary statement review computes it from your actual statement.</p>
+</details>
+<details class="accordion-item">
+<summary>My processor raised my rates. How can I lower my processing fees? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>Start by identifying what actually rose. Processor markup and monthly fees can be negotiated or shopped; interchange and card-brand assessments are set by the card networks and the issuing banks and can't be changed by any processor. A statement review sorts your charges into those buckets, so you can see what is actually negotiable before you talk to anyone.</p>
+</details>
 </div>
 </section>
 <section class="section-navy">
 <div class="container" style="text-align:center;">
-<h2 style="color: var(--color-text-inverse);">Better understand your processing costs</h2>
+<h2 style="color: var(--color-text-inverse);">Want to know what you're really paying to accept cards?</h2>
 <p class="lede" style="max-width: 520px; margin-inline:auto;">No obligation. A member of our team will typically respond within 24 hours.</p>
 <a class="btn btn-inverse btn-lg" href="#audit-form" style="margin-top: var(--space-8);">Request a statement review</a>
 </div>

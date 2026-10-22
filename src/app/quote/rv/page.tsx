@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { QuoteRvPage } from "../../../components/rig-funnel/QuotePages";
+import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
+import { QUOTE_RV_FAQS } from "../../../components/rig-funnel/content/quote.faq";
 
 export const metadata: Metadata = {
   title: "RV Insurance Quote Worksheet",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <QuoteRvPage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(QUOTE_RV_FAQS)} />
+      <QuoteRvPage />
+    </>
+  );
 }

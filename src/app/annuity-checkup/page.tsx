@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { AnnuityLandingPage } from "../../components/rig-funnel/AnnuityPages";
+import { JsonLd, faqJsonLd } from "../../lib/seo/jsonld";
+import { ANNUITY_FAQS } from "../../components/rig-funnel/content/annuity.faq";
 
 export const metadata: Metadata = {
   title: "Annuity Owner's Checkup",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AnnuityLandingPage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(ANNUITY_FAQS)} />
+      <AnnuityLandingPage />
+    </>
+  );
 }

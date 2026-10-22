@@ -22,8 +22,8 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="badge">Medicare education · South Euclid, Ohio</span>
-<h1>Medicare, explained in plain English.</h1>
-<p class="lede">Turning 65 comes with a vocabulary lesson nobody teaches you: Part A, Part B, Part C, Part D — four letters, four completely different jobs, and a set of enrollment windows that don't wait for anyone.</p>
+<h1>Turning 65 in Cleveland, Ohio? When do you sign up for Medicare — and what does it cover?</h1>
+<p class="lede">Most people first sign up during a 7-month window that starts 3 months before the month they turn 65 — and Medicare covers hospital care under Part A, medical care under Part B, and, through private plans, Medicare Advantage (Part C) and prescription drugs (Part D). Turning 65 also comes with a vocabulary lesson nobody teaches you: Part A, Part B, Part C, Part D — four letters, four completely different jobs, and a set of enrollment windows that don't wait for anyone.</p>
 <p>We're Reserve Investment Group — a Cleveland-area insurance agency in South Euclid, Ohio. Medicare education is one of our core services, and this page is our approach in one place: how Medicare works, in plain English, with the timelines laid out honestly. No plan pitches live here. When you understand the pieces, the decisions get smaller.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="#one-pager">Get the free one-page breakdown</a>
@@ -48,7 +48,7 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">Start where you are</span>
-<h2>Two paths into Medicare</h2>
+<h2>Turning 65, or already on Medicare — which path are you on?</h2>
 </div>
 <div class="path-grid">
 <a class="path-card" href="/medicare/turning-65/" style="color:inherit;">
@@ -68,7 +68,7 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">The basics</span>
-<h2>The ABCD of Medicare</h2>
+<h2>What are Medicare Parts A, B, C, and D?</h2>
 </div>
 <div class="grid-2">
 <div class="card">
@@ -108,7 +108,7 @@ export const MEDICARE_BODY_HTML = `${THEME_TOGGLE}
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">How we work</span>
-<h2>How Reserve Investment Group helps</h2>
+<h2>How does Reserve Investment Group help you understand Medicare?</h2>
 </div>
 <div class="card" style="margin-bottom: var(--space-4);">
 <h3>Education first</h3>
@@ -186,7 +186,7 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Medicare education · Turning 65</span>
-<h1>Turning 65: the 7-month window that starts it all</h1>
+<h1>Turning 65? When does your Medicare enrollment window open — and what happens if you miss it?</h1>
 <p class="lede">Most people become eligible for Medicare at 65, and your first chance to sign up is built around your birthday — not around the fall enrollment season you hear advertised.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="/medicare/#one-pager">Get the free one-page breakdown</a>
@@ -198,7 +198,7 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <section>
 <div class="container" style="max-width: 760px;">
 <span class="eyebrow">Your first window</span>
-<h2>Your Initial Enrollment Period</h2>
+<h2>What is your Initial Enrollment Period?</h2>
 <p>Your first chance to sign up is your <strong>Initial Enrollment Period (IEP)</strong> — a 7-month window built around your birthday:</p>
 <ul>
 <li>It <strong>starts 3 months before</strong> the month you turn 65</li>
@@ -215,7 +215,7 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <section class="section-surface">
 <div class="container" style="max-width: 760px;">
 <span class="eyebrow">If the window closes</span>
-<h2>What happens if you miss it</h2>
+<h2>What happens if you miss your enrollment window?</h2>
 <p>If your IEP closes and you don't have coverage that qualifies you for a Special Enrollment Period, the fallback is the <strong>General Enrollment Period — January 1 through March 31</strong> each year. Coverage starts the month after you enroll, which can leave a real gap.</p>
 <p>The longer cost is penalties:</p>
 <ul>
@@ -228,7 +228,7 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <section>
 <div class="container" style="max-width: 760px;">
 <span class="eyebrow">Still on the job</span>
-<h2>Still working at 65? The rules change — carefully</h2>
+<h2>Still working at 65? Can you delay Medicare?</h2>
 <p>Plenty of people work past 65 with employer health coverage. Whether you can safely delay Medicare depends mainly on one number: <strong>how many people work for the employer.</strong></p>
 <div class="grid-2" style="margin: var(--space-6) 0;">
 <div class="card">
@@ -262,6 +262,24 @@ export const MEDICARE_TURNING65_BODY_HTML = `${THEME_TOGGLE}
 <p>New to the basics? Start with <a href="/medicare/">the ABCD of Medicare →</a></p>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>When exactly is my Initial Enrollment Period?</h3>
+<p>It's a 7-month window: it starts 3 months before the month you turn 65, includes your birthday month, and ends 3 months after. If your birthday is in June, your window runs March 1 through September 30. Signing up before your birthday month generally starts coverage on the first day of that month.</p>
+<h3>I'm already receiving Social Security. Do I still need to sign up?</h3>
+<p>Generally, no — if you're already receiving Social Security benefits when you turn 65, you're usually enrolled in Part A and Part B automatically and your Medicare card arrives by mail. If you're not receiving benefits yet, nothing happens automatically; you sign up through Social Security.</p>
+<h3>Can I delay Medicare if I'm still working at 65?</h3>
+<p>Often — it depends mainly on your employer's size. With group coverage from an employer with 20 or more employees, you can usually delay Part B without a penalty, and you get an 8-month Special Enrollment Period when that coverage or the job ends. With fewer than 20 employees, Medicare is generally expected to pay first at 65, so delaying Part B can leave coverage gaps and penalties. COBRA and retiree coverage do not count as employer coverage for delaying Part B.</p>
+<h3>What happens if I miss my window?</h3>
+<p>The fallback is the General Enrollment Period, January 1 through March 31 each year, with coverage starting the month after you enroll. Waiting can also add late-enrollment penalties that follow you for years — 10% for each full 12-month period for Part B, and about 1% per uncovered month for Part D — generally paid for as long as you have that coverage.</p>
+<h3>What if I have a health savings account (HSA)?</h3>
+<p>Enrolling in Medicare ends your eligibility to contribute to an HSA — and if you delay Part A past 65 and sign up later, Part A coverage can backdate up to 6 months, which can make HSA contributions in that backdated window a tax problem. Many people stop HSA contributions at least 6 months before applying for Medicare. This one deserves a conversation with your tax professional before your birthday, not after.</p>
+</div>
+</section>
 ${CTA_BAND}
 <section>
 <div class="container">
@@ -274,7 +292,7 @@ export const MEDICARE_PERIODS_BODY_HTML = `${THEME_TOGGLE}
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Medicare education · Enrollment periods</span>
-<h1>Medicare's enrollment periods, explained</h1>
+<h1>Which Medicare enrollment period are you in — and what can you change during it?</h1>
 <p class="lede">Medicare doesn't have one sign-up season — it has several windows, each with its own job, its own dates, and its own consequences. Here's the whole map.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="/medicare/#one-pager">Get the free one-page breakdown</a>
@@ -287,7 +305,7 @@ export const MEDICARE_PERIODS_BODY_HTML = `${THEME_TOGGLE}
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">The whole map</span>
-<h2>Five windows, five different jobs</h2>
+<h2>How many Medicare enrollment periods are there — and what does each one do?</h2>
 </div>
 <div class="grid-2">
 <div class="card">
@@ -316,7 +334,7 @@ export const MEDICARE_PERIODS_BODY_HTML = `${THEME_TOGGLE}
 <section class="section-surface">
 <div class="container" style="max-width: 760px;">
 <span class="eyebrow">The fall review</span>
-<h2>The Annual Enrollment Period (AEP): your fall review</h2>
+<h2>The Annual Enrollment Period: when is it, and what should you review?</h2>
 <p><strong>October 15 through December 7</strong>, every year. Anyone with Medicare can use it to join, switch, or drop a Medicare Advantage plan or a Part D drug plan, or to move between Original Medicare and Medicare Advantage. Anything you change takes effect <strong>January 1</strong>.</p>
 <p>Why review at all? Because plans change even when you don't. Each fall, your plan sends an <strong>Annual Notice of Change</strong> (it should arrive by the end of September) describing what's different next year — costs, covered drugs, networks. Before December 7, three questions are worth five minutes:</p>
 <ol>
@@ -330,10 +348,10 @@ export const MEDICARE_PERIODS_BODY_HTML = `${THEME_TOGGLE}
 <section>
 <div class="container" style="max-width: 760px;">
 <span class="eyebrow">A second look</span>
-<h2>The Medicare Advantage Open Enrollment Period</h2>
+<h2>In a Medicare Advantage plan? What can you change January through March?</h2>
 <p><strong>January 1 through March 31.</strong> If you're enrolled in a Medicare Advantage plan, this window lets you make <strong>one</strong> change: switch to a different Advantage plan, or leave Advantage and return to Original Medicare (adding a standalone Part D plan if you return). It isn't open to people on Original Medicare, and it can't be used to join Advantage for the first time — that happens during AEP or when you're first eligible.</p>
 <span class="eyebrow">Windows life opens</span>
-<h2>Special Enrollment Periods</h2>
+<h2>What life changes open a Special Enrollment Period?</h2>
 <p>Some windows aren't on the calendar — they're triggered. Losing job-based coverage, retiring, or moving out of your plan's service area can open a Special Enrollment Period with its own deadline. The most common: when employer coverage ends, you generally get <strong>8 months</strong> to sign up for Part B without a penalty. These clocks run whether or not anyone reminds you — if a big change is coming, learn your date before the change, not after.</p>
 </div>
 </section>
@@ -349,6 +367,24 @@ export const MEDICARE_PERIODS_BODY_HTML = `${THEME_TOGGLE}
 <li><strong>Retiring, losing coverage, or moving:</strong> you likely have a Special Enrollment Period — with a deadline attached.</li>
 </ul>
 <p>New to the basics? Start with <a href="/medicare/">the ABCD of Medicare →</a></p>
+</div>
+</section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>When is the Annual Enrollment Period?</h3>
+<p>October 15 through December 7, every year. Anyone with Medicare can join, switch, or drop a Medicare Advantage plan or a Part D drug plan, or move between Original Medicare and Medicare Advantage. Anything you change takes effect January 1.</p>
+<h3>What if I do nothing during the Annual Enrollment Period?</h3>
+<p>You generally stay in your current plan — even if its costs, covered drugs, or network changed for next year. “No change” is a decision too; it's worth five minutes with your plan's Annual Notice of Change before December 7.</p>
+<h3>Can I change my Medicare Advantage plan in January?</h3>
+<p>Yes — the Medicare Advantage Open Enrollment Period runs January 1 through March 31. If you're in an Advantage plan, you can make one change: switch to a different Advantage plan, or return to Original Medicare and add a standalone Part D plan. It isn't open to people on Original Medicare, and it can't be used to join Advantage for the first time.</p>
+<h3>I missed my first enrollment window. What now?</h3>
+<p>The General Enrollment Period runs January 1 through March 31 each year for people who missed their Initial Enrollment Period. Coverage starts the month after you enroll — and late-enrollment penalties may apply, so ask about them before you enroll, not after.</p>
+<h3>I'm retiring soon. Do I get my own enrollment window?</h3>
+<p>Usually, yes. Losing job-based coverage opens a Special Enrollment Period — for Part B, you generally get 8 months from when the coverage or the job ends to enroll without a penalty. These clocks run whether or not anyone reminds you, so learn your date before the change, not after.</p>
 </div>
 </section>
 ${CTA_BAND}

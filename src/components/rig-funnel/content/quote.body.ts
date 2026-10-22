@@ -8,7 +8,7 @@ export const QUOTE_INDEX_BODY_HTML = `<div class="funnel-theme-control"><button 
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheets</span>
-<h1>Start your quote with the full picture.</h1>
+<h1>What do you need to get an accurate insurance quote?</h1>
 <p class="lede">Accurate quotes need more than a name and a ZIP code. Pick a worksheet, give us the details once, and a licensed insurance agent will prepare your quote from the same facts the carriers will ask for.</p>
 <p class="hero-microcopy">No obligation · Used only to prepare your quote · We will never ask for a Social Security number</p>
 </div>
@@ -81,21 +81,38 @@ export const QUOTE_INDEX_BODY_HTML = `<div class="funnel-theme-control"><button 
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">How it works</span>
-<h2>Three steps</h2>
+<h2>How does the worksheet process work?</h2>
 </div>
 <p><strong>1. Complete the worksheet.</strong> Five minutes, give or take. Skip anything that does not apply — and never enter a Social Security number; we will never ask for one.</p>
 <p><strong>2. We review and shop.</strong> A licensed insurance agent reviews your information, checks anything missing, and prepares your options from the carriers RIG represents.</p>
 <p><strong>3. You decide.</strong> We bring you the quote and a clear recommendation. Nothing is placed, changed, or bound without your say-so.</p>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>How long does a quote worksheet take?</h3>
+<p>Most worksheets take about five minutes. They ask for the details carriers will ask for anyway — giving them once, up front, is what makes the first quote accurate instead of a ballpark.</p>
+<h3>Does sending a worksheet start or change my coverage?</h3>
+<p>No. Sending a worksheet does not start, change, or bind any coverage. A licensed insurance agent reviews your information and reaches out — typically within one business day — and nothing is placed without your say-so.</p>
+<h3>What information should I never send through a worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Worksheets ask only for what carriers require to prepare an accurate quote, and your information is used only to prepare yours.</p>
+<h3>Who reviews my worksheet?</h3>
+<p>A licensed Reserve Investment Group insurance agent — a person in Greater Cleveland, not a call center. They check for anything missing, prepare your options from the carriers RIG represents, and bring you the quote with a clear recommendation.</p>
+<h3>Can I get quotes for more than one kind of coverage?</h3>
+<p>Yes. Each worksheet covers one line so the details stay accurate — complete as many as you need, and tell the agent reviewing them that they're connected, so multi-policy options are priced together where that helps.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_AUTO_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Auto</span>
-<h1>Auto insurance quote worksheet</h1>
+<h1>What do you need to get an accurate auto insurance quote in Ohio?</h1>
 <p class="lede">Tell us about the drivers and vehicles once, and a licensed insurance agent can shop your auto coverage with the carriers RIG represents. The more complete the worksheet, the more accurate the first quote.</p>
 <p class="hero-microcopy">About 5 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -236,14 +253,29 @@ export const QUOTE_AUTO_BODY_HTML = `<div class="funnel-theme-control"><button a
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What information do carriers need to quote auto insurance?</h3>
+<p>The drivers to insure (including dates of birth and driver's license details), the vehicles and how they're used, and your current coverage — the same facts this worksheet collects. Carriers require them to prepare an accurate quote rather than an estimate.</p>
+<h3>Why does the worksheet ask about every driver in my household?</h3>
+<p>Because carriers rate the household, not just the car: everyone of driving age at your address can affect the price, whether or not they drive your vehicles. Leaving a driver off doesn't lower the real quote — it just makes the first number wrong.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_HOME_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Home</span>
-<h1>Home insurance quote worksheet</h1>
+<h1>What do you need to get an accurate homeowners insurance quote?</h1>
 <p class="lede">One pass through the details carriers ask about your home — construction, updates, safety features, and claims — so a licensed insurance agent can quote your homeowners coverage accurately the first time.</p>
 <p class="hero-microcopy">About 5 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -364,14 +396,29 @@ export const QUOTE_HOME_BODY_HTML = `<div class="funnel-theme-control"><button a
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What home details affect a homeowners quote?</h3>
+<p>Construction and roof details, updates to major systems, safety features, and your claims history — the facts this worksheet collects. They drive both eligibility and price, which is why the worksheet asks before an agent quotes rather than after.</p>
+<h3>Is replacement cost the same as what I paid for my home?</h3>
+<p>No. Replacement cost is what it would cost to rebuild the home as it stands — labor and materials today — not its market value or purchase price. Homeowners coverage is written around replacement cost, and the worksheet's details are how an agent estimates it accurately.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_LIFE_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Life</span>
-<h1>Life insurance quote worksheet</h1>
+<h1>What do you need to get an accurate life insurance quote?</h1>
 <p class="lede">Life quotes are only as good as the health and coverage picture behind them. This worksheet collects what a licensed insurance agent needs to place you with the right insurer and rate class.</p>
 <p class="hero-microcopy">About 6 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -517,14 +564,29 @@ export const QUOTE_LIFE_BODY_HTML = `<div class="funnel-theme-control"><button a
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What health information does a life insurance quote need?</h3>
+<p>Your age, tobacco use, health history, and the medications and conditions carriers ask about — plus the coverage amount and term you're considering. Life quotes are only as good as the health picture behind them; this worksheet collects it once so an agent can match you with the right insurer and rate class.</p>
+<h3>How much life insurance do I need?</h3>
+<p>Start with what the coverage is for: income your family would lose, debts and a mortgage to clear, years until kids are independent, or final expenses. A common frame is a multiple of annual income, refined by a needs review with your real numbers — the worksheet gives an agent what they need to run it.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_HEALTH_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Health &amp; Medicare</span>
-<h1>Health &amp; Medicare quote worksheet</h1>
+<h1>What do you need to prepare for a Medicare and health coverage review?</h1>
 <p class="lede">Medicare decisions start with your situation — your timeline, your doctors, your prescriptions. This worksheet collects those details so a licensed insurance agent can prepare for an educational review of how Medicare works and what to look at next. Nothing here enrolls you in anything.</p>
 <p class="hero-microcopy">About 4 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -590,14 +652,29 @@ export const QUOTE_HEALTH_BODY_HTML = `<div class="funnel-theme-control"><button
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What happens after I send the health & Medicare worksheet?</h3>
+<p>A licensed insurance agent reviews your situation — your timeline, your doctors, your prescriptions — and prepares for an educational review conversation about how Medicare works and how the pieces fit. The worksheet itself doesn't enroll you in anything.</p>
+<h3>Will sending this worksheet sign me up for a Medicare plan?</h3>
+<p>No. Nothing here enrolls you in a plan or changes your coverage. Medicare choices involve your doctors, prescriptions, budget, and timing, and enrollment decisions belong in a one-on-one conversation, in the right enrollment window.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_CONDO_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Condo</span>
-<h1>Condo insurance quote worksheet</h1>
+<h1>What do you need to get an accurate condo (HO-6) insurance quote?</h1>
 <p class="lede">Your association&#x27;s master policy covers the building — an HO-6 policy covers you: your personal property, the inside of your unit, and your liability. This worksheet collects what a licensed insurance agent needs to quote it correctly.</p>
 <p class="hero-microcopy">About 5 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -704,14 +781,29 @@ export const QUOTE_CONDO_BODY_HTML = `<div class="funnel-theme-control"><button 
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What does an HO-6 condo policy cover that my association's master policy doesn't?</h3>
+<p>The master policy covers the building and common areas. An HO-6 policy covers you: your personal property, the inside of your unit, your personal liability, and loss of use. This worksheet collects what an agent needs to see where the master policy stops.</p>
+<h3>Why does the worksheet ask about my association's master policy?</h3>
+<p>Because condo coverage is written around it. Whether your master policy is “walls-in” or “bare walls” decides how much interior coverage your HO-6 needs — answering it here keeps the quote from double-insuring or under-insuring your unit.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_MOTORCYCLE_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Motorcycle</span>
-<h1>Motorcycle insurance quote worksheet</h1>
+<h1>What do you need to get an accurate motorcycle insurance quote?</h1>
 <p class="lede">The rider matters as much as the bike. This worksheet collects both — your experience and training, the machine and its accessories, and how you actually ride — so your quote reflects the real risk.</p>
 <p class="hero-microcopy">About 4 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -821,14 +913,29 @@ export const QUOTE_MOTORCYCLE_BODY_HTML = `<div class="funnel-theme-control"><bu
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What affects a motorcycle insurance quote?</h3>
+<p>The rider and the machine: your experience and training, the bike and its accessories, and how you actually ride — miles, seasons, passengers, storage. This worksheet collects all of it, because each one moves the price.</p>
+<h3>Does a safety course change my motorcycle premium?</h3>
+<p>It can. Many carriers offer discounts for completing an approved rider safety course, and training also signals lower risk at underwriting. Note it on the worksheet, and an agent can check which carriers RIG represents reward it.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_BOAT_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · Boat</span>
-<h1>Boat insurance quote worksheet</h1>
+<h1>What do you need to get an accurate boat insurance quote?</h1>
 <p class="lede">Boat quotes turn on the vessel, its operators, and where it is used and kept. This worksheet collects all three, so a licensed insurance agent can quote your watercraft coverage without a round of follow-up calls.</p>
 <p class="hero-microcopy">About 5 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -946,14 +1053,29 @@ export const QUOTE_BOAT_BODY_HTML = `<div class="funnel-theme-control"><button a
 </form>
 </div>
 </section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What do you need to quote boat insurance?</h3>
+<p>The vessel (year, make, length, value), its operators and their experience, and where the boat is used and kept. Boat quotes turn on all three — this worksheet collects them in one pass so the first quote is a real one.</p>
+<h3>Does where I keep my boat matter?</h3>
+<p>Yes. Where a boat is stored and used — marina, trailer, Lake Erie or inland lakes — affects both risk and price, and some carriers price navigation territory explicitly. The worksheet asks so your quote reflects your actual waters.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
+</div>
+</section>
 `;
-
 export const QUOTE_RV_BODY_HTML = `<div class="funnel-theme-control"><button aria-label="Toggle light or dark mode" class="theme-toggle" id="theme-toggle" type="button"><svg fill="none" id="theme-icon" viewbox="0 0 16 16"><path d="M13.5 9.8A6 6 0 0 1 6.2 2.5a6 6 0 1 0 7.3 7.3z" fill="currentColor"></path></svg><span>Theme</span></button></div>
 <section class="hero">
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Quote worksheet · RV</span>
-<h1>RV insurance quote worksheet</h1>
+<h1>What do you need to get an accurate RV insurance quote?</h1>
 <p class="lede">An RV can be a vehicle, a vacation home, or your actual home — the right coverage depends on which. This worksheet captures the rig and how you use it, so a licensed insurance agent can quote it properly.</p>
 <p class="hero-microcopy">About 5 minutes · No obligation · Reviewed by a licensed insurance agent</p>
 </div>
@@ -1063,6 +1185,22 @@ export const QUOTE_RV_BODY_HTML = `<div class="funnel-theme-control"><button ari
 <p>Thank you — a licensed insurance agent will review your information and reach out, typically within one business day. Sending this worksheet does not start, change, or bind any coverage.</p>
 </div>
 </form>
+</div>
+</section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>Is an RV insured like a car or like a home?</h3>
+<p>It depends on how you use it. A vacation RV is usually insured much like a vehicle, with optional vacation-liability and personal-effects coverage. A full-time RV — your actual home — needs coverage that behaves more like homeowners insurance. This worksheet captures the rig and how you use it so the quote matches.</p>
+<h3>What if I live in my RV full-time?</h3>
+<p>Tell us on the worksheet. Full-time use changes the coverage conversation — liability, personal belongings, and emergency-expense coverage all matter more when the RV is your residence — and an agent can quote it as the home it is.</p>
+<h3>Does sending this worksheet start or change my coverage?</h3>
+<p>No. Sending this worksheet does not start, change, or bind any coverage. A licensed insurance agent will review your information and reach out, typically within one business day.</p>
+<h3>What should I never enter on this worksheet?</h3>
+<p>A Social Security number — we will never ask for one here. Your information is used only to prepare your quote.</p>
 </div>
 </section>
 `;

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import PCInsurancePage from "../../components/rig-funnel/PCInsurancePage";
+import { JsonLd, faqJsonLd } from "../../lib/seo/jsonld";
+import { PC_FAQS } from "../../components/rig-funnel/content/pc.faq";
 
 export const metadata: Metadata = {
   title: "Auto, Home & Business Insurance Quotes",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <PCInsurancePage />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(PC_FAQS)} />
+      <PCInsurancePage />
+    </>
+  );
 }

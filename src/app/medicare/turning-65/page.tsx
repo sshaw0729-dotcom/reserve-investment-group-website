@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { MedicareTurning65Page } from "../../../components/rig-funnel/MedicarePages";
+import { JsonLd, faqJsonLd } from "../../../lib/seo/jsonld";
+import { MEDICARE_TURNING65_FAQS } from "../../../components/rig-funnel/content/medicare-turning65.faq";
 
 export const metadata: Metadata = {
   title: "Turning 65: Your Medicare Enrollment Window, Explained",
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <MedicareTurning65Page />;
+  return (
+    <>
+      <JsonLd data={faqJsonLd(MEDICARE_TURNING65_FAQS)} />
+      <MedicareTurning65Page />
+    </>
+  );
 }

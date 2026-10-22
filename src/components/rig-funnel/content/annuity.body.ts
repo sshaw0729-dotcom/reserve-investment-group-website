@@ -11,7 +11,7 @@ export const ANNUITY_LANDING_BODY_HTML = `${THEME_CONTROL}
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Free owner review</span>
-<h1>The Annuity Owner&#x27;s Checkup</h1>
+<h1>Do you know what your annuity costs you — and what it will pay you?</h1>
 <p class="lede">If you own an annuity and your statement might as well be written in another language, you are not alone. The Checkup is a free, no-obligation review that answers four plain questions about the contract you already own — what it costs you, what it will pay you, where your surrender period stands, and whether it is still doing the job you bought it for.</p>
 <p class="hero-microcopy">Free · No obligation · Educational — not a sales pitch · Ohio, Michigan &amp; Florida</p>
 </div>
@@ -95,12 +95,30 @@ export const ANNUITY_LANDING_BODY_HTML = `${THEME_CONTROL}
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">How it works</span>
-<h2>Three steps</h2>
+<h2>How does the Checkup work?</h2>
 </div>
 <p><strong>1. Read the sheet.</strong> Five minutes with your latest statement. Most owners find at least one number they cannot explain — that is normal, and it is exactly what the checkup is for.</p>
 <p><strong>2. Answer a few questions.</strong> The short application tells us what you own and what is on your mind, so your checkup is prepared before we meet. We will never ask for a Social Security number or account credentials.</p>
 <p><strong>3. A 30-minute call.</strong> We confirm a time that suits you, walk the four questions with your statement in hand, and you leave with answers — whether or not anything ever changes.</p>
 <p style="margin-top: var(--space-6);"><a class="btn btn-primary" href="/annuity-checkup/apply/">Start the checkup application</a></p>
+</div>
+</section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>My annuity is coming out of its surrender period. What are my options?</h3>
+<p>When a surrender period ends, the cost of leaving drops away — but ending isn't automatically the right move, and staying isn't either. Your options generally include leaving the contract as it is, turning on or adjusting income, exchanging into a different contract, or withdrawing some or all of the value. Each carries tax consequences and, for a new contract, a new surrender clock. The Checkup measures your contract against the job you bought it for before anyone weighs those options.</p>
+<h3>How do I find out what my annuity is costing me?</h3>
+<p>Add up every charge: rider fees (income, death benefit, long-term care), mortality and expense charges on variable contracts, and the spread built into fixed and indexed crediting. Some appear on your statement; some only appear in the contract. The Checkup names and prices each one — including the ones that never show up as a line on your statement.</p>
+<h3>What is the difference between contract value, surrender value, and income base?</h3>
+<p>Contract value is the running total inside the contract — the scoreboard. Surrender value is what you would actually receive if you cashed out today — the exit price. Income base is a bookkeeping figure used only to calculate guaranteed lifetime income payments — a measuring stick, not money you can withdraw. Our free Checkup Sheet walks through all three with your own statement.</p>
+<h3>What happens at the Annuity Owner's Checkup?</h3>
+<p>You read the Checkup Sheet with your latest statement, answer a short application so we can prepare, and then sit a 30-minute call where we walk the four questions — what it costs, what it will pay, where your surrender window stands, and whether it is still doing its job — with your statement in hand. You leave with answers whether or not anything ever changes.</p>
+<h3>Is the Checkup a sales pitch for a new annuity?</h3>
+<p>No. It is a free educational review of the contract you already own, and sometimes the answer is: keep exactly what you have. Nothing is sold on the call, and the review is not a recommendation to buy, sell, surrender, or exchange any contract.</p>
 </div>
 </section>
 <section>
@@ -115,7 +133,7 @@ export const ANNUITY_APPLY_BODY_HTML = `${THEME_CONTROL}
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Annuity Owner&#x27;s Checkup · Application</span>
-<h1>Let&#x27;s prepare your checkup before we talk</h1>
+<h1>Ready to have your checkup prepared before we talk?</h1>
 <p class="lede">A few questions about what you own and what is on your mind — so your 30-minute checkup starts with answers, not intake. No surprises, no pitch, and we will never ask for a Social Security number or account credentials.</p>
 <p class="hero-microcopy">About 3 minutes · Free · No obligation</p>
 </div>
@@ -229,7 +247,7 @@ export const ANNUITY_SHEET_BODY_HTML = `${THEME_CONTROL}
 <div class="container">
 <div class="hero-copy" style="max-width: 760px;">
 <span class="badge">Annuity Owner&#x27;s Checkup · The sheet</span>
-<h1>Your annuity, in plain English</h1>
+<h1>How do you read your annuity statement, in plain English?</h1>
 <p class="lede">Work through this sheet with your latest annuity statement in hand. Four questions, three decoded numbers, about five minutes — and you will know more about your contract than most owners ever do.</p>
 <p class="hero-microcopy">Free · Educational · Bring your latest statement</p>
 </div>
@@ -247,7 +265,7 @@ export const ANNUITY_SHEET_BODY_HTML = `${THEME_CONTROL}
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">First, decode the statement</span>
-<h2>Three numbers that are not the same number</h2>
+<h2>Why does your statement show three different numbers?</h2>
 </div>
 <p style="margin-bottom: var(--space-5);">Most annuity statements show at least three different values, and owners routinely mistake one for another. Find all three on yours:</p>
 <p style="margin-bottom: var(--space-4);"><strong>Contract value</strong> (sometimes &ldquo;accumulation value&rdquo;) — the running total inside the contract, after credited interest or market performance and after fees come out. It is the number that grows or shrinks — but it is <em>not</em> what you would walk away with today.</p>
@@ -260,7 +278,7 @@ export const ANNUITY_SHEET_BODY_HTML = `${THEME_CONTROL}
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">The checkup</span>
-<h2>The four questions</h2>
+<h2>What four questions should every annuity owner ask?</h2>
 </div>
 <p style="margin-bottom: var(--space-5);"><strong>1. What do I actually own — and what is it costing me?</strong> Find your contract type (fixed, fixed indexed, or variable) and list every rider attached to it. Each rider — income, death benefit, long-term care — carries its own annual charge, often a percentage of the income base rather than the contract value. Add them up. If your statement does not show them clearly, that is itself an answer worth having.</p>
 <p style="margin-bottom: var(--space-5);"><strong>2. What will it pay me?</strong> Look in three places: the guaranteed income amount if you turn on the income rider (and at what age it pays best), the death benefit as it stands today (not the day you bought it), and the do-nothing path — what the contract projects if you simply leave it alone. Guaranteed figures and illustrated figures are different animals; know which one you are reading.</p>
@@ -272,7 +290,7 @@ export const ANNUITY_SHEET_BODY_HTML = `${THEME_CONTROL}
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">If you book the free checkup</span>
-<h2>Bring these</h2>
+<h2>What should you bring to your free checkup?</h2>
 </div>
 <p style="margin-bottom: var(--space-3);">☐ Your latest annuity statement (the whole thing, not just the summary page)</p>
 <p style="margin-bottom: var(--space-3);">☐ The contract itself, if you still have it</p>
@@ -280,6 +298,22 @@ export const ANNUITY_SHEET_BODY_HTML = `${THEME_CONTROL}
 <p style="margin-bottom: var(--space-6);">☐ Your questions — including the one you think sounds basic. There are no basic questions about your own money.</p>
 <p><a class="btn btn-primary" href="/annuity-checkup/apply/">Answer a few questions and book the free checkup</a></p>
 <p style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted);">This sheet is educational material from Reserve Investment Group, Inc. It is not tax or legal advice and not a recommendation to buy, sell, surrender, or exchange any contract. Figures on your statement that are labeled illustrated, hypothetical, or projected are not guarantees; annuity guarantees rest on the claims-paying ability of the issuing insurer.</p>
+</div>
+</section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>What is the difference between contract value and surrender value?</h3>
+<p>Contract value is the running total inside the contract. Surrender value is what you would actually receive if you cashed out today — contract value minus any surrender charge still in force, and before taxes. Early in a contract, the gap between them can be thousands of dollars.</p>
+<h3>Can I withdraw my income base?</h3>
+<p>No. The income base (or benefit base) exists for one purpose only: calculating your guaranteed lifetime income payments, if your contract has an income rider. It is a measuring stick for income, not a balance you can withdraw, cash out, or leave as a lump sum.</p>
+<h3>How long do annuity surrender periods usually last?</h3>
+<p>Commonly 6 to 10 years, with charges often starting around 7–10% and stepping down to zero. Your contract's anniversary date and surrender schedule say exactly where you stand — the gap between your contract value and surrender value is what leaving today would cost.</p>
+<h3>Are the growth figures on my statement guaranteed?</h3>
+<p>Only the figures labeled guaranteed. Anything marked illustrated, hypothetical, or projected is not a promise, and annuity guarantees rest on the claims-paying ability of the issuing insurer.</p>
 </div>
 </section>
 `;

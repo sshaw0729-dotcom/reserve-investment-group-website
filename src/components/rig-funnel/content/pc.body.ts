@@ -4,8 +4,8 @@ export const PC_BODY_HTML = `<div class="funnel-theme-control"><button aria-labe
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="badge">Auto · Home · Renters · Condo · Commercial</span>
-<h1>Explore coverage options<br/>with an independent agent.</h1>
-<p class="lede">Tell us what you need to protect. A licensed insurance agent can review available options from the carriers RIG represents, based on your needs, eligibility, and carrier availability.</p>
+<h1>Are you paying too much for auto and home insurance in Ohio?</h1>
+<p class="lede">You can't know from your renewal notice alone — premiums have climbed across Ohio, and the honest test is a line-by-line comparison against what you carry now. Tell us what you need to protect. A licensed insurance agent can review available options from the carriers RIG represents, based on your needs, eligibility, and carrier availability.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="#quote-form">Request a complimentary coverage review</a>
 </div>
@@ -28,7 +28,7 @@ export const PC_BODY_HTML = `<div class="funnel-theme-control"><button aria-labe
 <div class="container">
 <div class="section-header">
 <span class="eyebrow">What are you covering?</span>
-<h2>Pick a coverage type to start</h2>
+<h2>What are you covering?</h2>
 </div>
 <div class="grid-4">
 <div class="card" style="text-align:center;">
@@ -58,7 +58,7 @@ export const PC_BODY_HTML = `<div class="funnel-theme-control"><button aria-labe
 <div class="container hero-grid" style="align-items: flex-start;">
 <div>
 <span class="eyebrow">Potential multi-policy discounts</span>
-<h2>Ask whether combining eligible policies may qualify for discounts</h2>
+<h2>Can combining your policies lower what you pay?</h2>
 <p class="lede">Multi-policy discounts vary by carrier, location, coverage, underwriting, and eligibility. A licensed agent can review the options available to you.</p>
 <div class="grid-2" style="margin-top: var(--space-10);">
 <div class="card">
@@ -186,6 +186,14 @@ export const PC_BODY_HTML = `<div class="funnel-theme-control"><button aria-labe
 <details class="accordion-item">
 <summary>What if I need coverage for my business, not just my home? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
 <p>Commercial coverage is quoted separately by risk class — use the commercial section above or call us directly and we'll walk through your specific operations.</p>
+</details>
+<details class="accordion-item">
+<summary>Why did my Ohio homeowners premium go up? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>Ohio premiums have risen for several reasons carriers point to: higher rebuilding and repair costs, more severe-weather claims, and reinsurance costs passed down to home insurers. Your own premium also moves with your home's replacement cost, roof age, claims history, and coverage choices. A coverage review sorts which of those are driving your number — and which you can do something about.</p>
+</details>
+<details class="accordion-item">
+<summary>Does bundling auto and home always save money? <svg class="chevron" fill="none" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></svg></summary>
+<p>No. Multi-policy discounts are common, but they vary by carrier, location, coverage, underwriting, and eligibility — and a bundled price can still lose to the right standalone policy. The comparison has to price your full picture both ways, which is what a review does.</p>
 </details>
 </div>
 </section>

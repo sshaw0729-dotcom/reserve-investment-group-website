@@ -4,8 +4,8 @@ export const HUB_BODY_HTML = `<div class="funnel-theme-control"><button aria-lab
 <div class="container hero-grid">
 <div class="hero-copy">
 <span class="badge">Insurance and merchant-services information</span>
-<h1>One coordinated team.<br/>Three ways to explore your options.</h1>
-<p class="lede">Connect with Reserve Investment Group to discuss available insurance coverage and third-party merchant-processing options through the appropriate licensed professional or provider.</p>
+<h1>One team for your insurance and processing questions — what do you need to protect?</h1>
+<p class="lede">Start with the decision in front of you: auto, home, and commercial coverage; term, IUL, and final-expense life insurance; or a complimentary review of what you pay to accept cards. Connect with Reserve Investment Group to discuss available insurance coverage and third-party merchant-processing options through the appropriate licensed professional or provider.</p>
 <div class="hero-actions">
 <a class="btn btn-primary btn-lg" href="/auto-home-insurance">Explore insurance options</a>
 <a class="btn btn-ghost btn-lg" href="/merchant-services">Request a statement review</a>
@@ -83,7 +83,7 @@ export const HUB_BODY_HTML = `<div class="funnel-theme-control"><button aria-lab
 <div class="container" style="max-width: 760px;">
 <div class="section-header">
 <span class="eyebrow">Why coordinate the conversation</span>
-<h2>A clearer starting point for several related needs</h2>
+<h2>Why coordinate these decisions with one team?</h2>
 </div>
 <div class="grid-2">
 <div class="card">
@@ -96,4 +96,23 @@ export const HUB_BODY_HTML = `<div class="funnel-theme-control"><button aria-lab
 </div>
 </div>
 </div>
-</section>`;
+</section>
+<section class="section-surface">
+<div class="container" style="max-width: 760px;">
+<div class="section-header">
+<span class="eyebrow">Questions, answered straight</span>
+<h2>Frequently asked questions</h2>
+</div>
+<h3>Is Reserve Investment Group an insurance agency?</h3>
+<p>Yes — Reserve Investment Group, Inc. is an Ohio-licensed insurance agency based in South Euclid, serving Greater Cleveland. We help clients explore life, health, Medicare, auto, home, and commercial coverage, and we coordinate merchant-processing reviews through third-party providers.</p>
+<h3>Do I have to switch carriers or processors to get a review?</h3>
+<p>No. Every review on this site is complimentary and carries no obligation to switch anything. Sometimes the review confirms you're in a good position already — that answer is free too.</p>
+<h3>Which insurance carriers does RIG work with?</h3>
+<p>We are independent and licensed, so the options we can present come from the carriers RIG represents — which vary by line and by your eligibility. A licensed agent reviews what's actually available for your situation rather than quoting from a single company's shelf.</p>
+<h3>What does the merchant statement review cost?</h3>
+<p>Nothing. You share your contact information first — never your statement through this site — and secure document transfer is arranged after initial contact. The review organizes your current processing costs in plain language so you can compare alternatives honestly.</p>
+<h3>Where is Reserve Investment Group located?</h3>
+<p>In South Euclid, Ohio, serving Greater Cleveland — and, for the Annuity Owner's Checkup, annuity owners in Ohio, Michigan, and Florida. Call us at (216) 284-3615.</p>
+</div>
+</section>
+`;
