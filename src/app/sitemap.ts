@@ -57,6 +57,8 @@ const STATIC_ROUTES: { path: string; priority: number }[] = [
   { path: "/medicare/", priority: 0.8 },
   { path: "/medicare/turning-65/", priority: 0.7 },
   { path: "/medicare/enrollment-periods/", priority: 0.7 },
+  { path: "/medicare-answers-cleveland/", priority: 0.7 },
+  { path: "/cleveland-credit-card-processing-costs/", priority: 0.7 },
   { path: "/greater-cleveland/financial-planning-for-physicians/", priority: 0.6 },
   { path: "/greater-cleveland/business-owner-financial-planning/", priority: 0.6 },
   { path: "/retirement-planning-cleveland/", priority: 0.6 },
